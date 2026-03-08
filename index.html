@@ -60,7 +60,7 @@
             top: 0;
             width: 100%;
             padding: 20px 5%;
-            background: rgba(10, 10, 10, 0.9);
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             display: flex;
@@ -118,6 +118,24 @@
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        /* 汉堡菜单按钮 */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+            border-radius: 3px;
         }
 
         /* Hero Section - 首页+关于合并 */
@@ -614,7 +632,7 @@
             text-align: center;
         }
 
-        /* 响应式设计 */
+        /* 响应式设计 - 平板和手机 */
         @media (max-width: 968px) {
             .hero-container {
                 grid-template-columns: 1fr;
@@ -642,26 +660,136 @@
         }
 
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
             .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-buttons {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--bg-secondary);
                 flex-direction: column;
-                align-items: center;
+                padding: 100px 40px;
+                gap: 30px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+            
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
             }
 
+            .hero {
+                padding: 100px 5% 60px;
+            }
+            
+            .hero-container {
+                gap: 40px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .hero-stats {
+                gap: 15px;
+            }
+            
+            .stat-item {
+                padding: 15px;
+                min-width: 100px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .hero-image {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .hero-image-badge {
+                left: 20px !important;
+                bottom: 20px !important;
+                padding: 15px 20px;
+            }
+
+            .skills {
+                padding: 80px 5%;
+            }
+
+            .portfolio {
+                padding: 80px 5%;
+            }
+            
+            .portfolio-grid {
+                gap: 20px;
+            }
+
+            .contact {
+                padding: 80px 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .stat-item {
+                min-width: 80px;
+                padding: 12px;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            .nav-links {
+                width: 80%;
+                padding: 80px 30px;
+            }
+            
             .contact-btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
                 justify-content: center;
             }
         }
@@ -709,11 +837,16 @@
     <!-- 导航栏 -->
     <nav>
         <div class="logo">PORTFOLIO.</div>
-        <div class="nav-links">
-            <a href="#home">首页</a>
-            <a href="#skills">技能</a>
-            <a href="#works">作品</a>
-            <a href="#contact">联系</a>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#home" onclick="toggleMenu()">首页</a>
+            <a href="#skills" onclick="toggleMenu()">技能</a>
+            <a href="#works" onclick="toggleMenu()">作品</a>
+            <a href="#contact" onclick="toggleMenu()">联系</a>
         </div>
     </nav>
 
@@ -1087,6 +1220,25 @@
             }
             
             lastScroll = currentScroll;
+        });
+
+        // 汉堡菜单切换
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // 点击页面其他地方关闭菜单
+        document.addEventListener('click', (e) => {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
         });
     </script>
 </body>
