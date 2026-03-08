@@ -358,62 +358,176 @@
             border-radius: 2px;
         }
 
-        /* 技能区域 */
+        /* 技能区域 - 新样式 */
         .skills {
             padding: 120px 5%;
             background: var(--bg-secondary);
         }
 
         .skills-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
         }
 
-        .skill-item {
-            margin-bottom: 40px;
+        .skill-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             opacity: 0;
-            transform: translateX(-50px);
+            transform: translateY(50px);
             transition: all 0.6s ease;
         }
 
-        .skill-item.visible {
+        .skill-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+        }
+
+        .skill-card-label {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .skill-card-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        /* 左侧 - 专业技能列表 */
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+
+        .skill-list-item.visible {
             opacity: 1;
             transform: translateX(0);
         }
 
-        .skill-header {
+        .skill-list-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--gradient-1);
+            border-radius: 6px;
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
         }
 
-        .skill-name {
-            font-size: 1.2rem;
-            font-weight: 600;
+        .skill-list-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
         }
 
-        .skill-percent {
-            color: var(--accent);
+        .skill-list-content p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* 技能标签 */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-tag {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        /* 右侧 - 工具图标 */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .tool-item {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .tool-item.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .tool-item:hover {
+            background: rgba(99, 102, 241, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .tool-item img {
+            width: 60%;
+            height: 60%;
+            object-fit: contain;
+        }
+
+        .tool-item span {
+            font-size: 1.5rem;
             font-weight: 700;
         }
 
-        .skill-bar {
-            height: 8px;
-            background: var(--bg-card);
-            border-radius: 4px;
-            overflow: hidden;
+        /* 工具说明文字 */
+        .tools-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .skill-progress {
-            height: 100%;
-            background: var(--gradient-1);
-            border-radius: 4px;
-            width: 0;
-            transition: width 1.5s ease;
-        }
-
-        .skill-item.visible .skill-progress {
-            width: var(--progress);
+        .tools-description strong {
+            color: var(--text-primary);
         }
 
         /* 作品区域 */
@@ -668,6 +782,10 @@
                 flex: 1;
                 min-width: 120px;
             }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -762,6 +880,15 @@
                 padding: 80px 5%;
             }
 
+            .skill-card {
+                padding: 30px;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+
             .portfolio {
                 padding: 80px 5%;
             }
@@ -810,6 +937,10 @@
                 width: 100%;
                 max-width: 280px;
                 justify-content: center;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -911,58 +1042,97 @@
         </div>
     </section>
 
-    <!-- 技能展示 -->
+    <!-- 技能展示 - 新样式 -->
     <section class="skills" id="skills">
         <h2 class="section-title">专业技能</h2>
         
         <div class="skills-container">
-            <div class="skill-item" data-progress="95%">
-                <div class="skill-header">
-                    <span class="skill-name">视频剪辑</span>
-                    <span class="skill-percent">95%</span>
-                </div>
-                <div class="skill-bar">
-                    <div class="skill-progress"></div>
+            <!-- 左侧卡片 - 专业技能介绍 -->
+            <div class="skill-card" id="skillKnowledge">
+                <div class="skill-card-label">Skill</div>
+                <h3 class="skill-card-title">Professional Knowledge</h3>
+                
+                <ul class="skill-list">
+                    <li class="skill-list-item">
+                        <div class="skill-list-icon">🎬</div>
+                        <div class="skill-list-content">
+                            <h4>视频剪辑</h4>
+                            <p>精通多平台视频规格，从短视频到长纪录片，掌握节奏把控与叙事技巧</p>
+                        </div>
+                    </li>
+                    <li class="skill-list-item">
+                        <div class="skill-list-icon">✨</div>
+                        <div class="skill-list-content">
+                            <h4>后期特效</h4>
+                            <p>熟练运用 AE 制作动态图形、视觉特效，打造专业级视频质感</p>
+                        </div>
+                    </li>
+                    <li class="skill-list-item">
+                        <div class="skill-list-icon">🎨</div>
+                        <div class="skill-list-content">
+                            <h4>调色</h4>
+                            <p>掌握达芬奇调色流程，根据项目需求定制专属色彩风格</p>
+                        </div>
+                    </li>
+                    <li class="skill-list-item">
+                        <div class="skill-list-icon">📷</div>
+                        <div class="skill-list-content">
+                            <h4>摄影摄像</h4>
+                            <p>熟悉各类拍摄设备，擅长布光与构图，捕捉最佳画面</p>
+                        </div>
+                    </li>
+                    <li class="skill-list-item">
+                        <div class="skill-list-icon">🎭</div>
+                        <div class="skill-list-content">
+                            <h4>创意策划</h4>
+                            <p>从概念到执行，提供完整的视频创意解决方案</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="skill-tags">
+                    <span class="skill-tag">商业宣传片</span>
+                    <span class="skill-tag">纪录片</span>
+                    <span class="skill-tag">微电影</span>
+                    <span class="skill-tag">产品视频</span>
+                    <span class="skill-tag">短视频</span>
                 </div>
             </div>
 
-            <div class="skill-item" data-progress="90%">
-                <div class="skill-header">
-                    <span class="skill-name">后期特效</span>
-                    <span class="skill-percent">90%</span>
+            <!-- 右侧卡片 - 工具图标 -->
+            <div class="skill-card" id="skillTools">
+                <div class="skill-card-label">Tool</div>
+                <h3 class="skill-card-title">Tools I'm Proficient In</h3>
+                
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <span style="color: #31A8FF;">Ps</span>
+                    </div>
+                    <div class="tool-item">
+                        <span style="color: #FF005A;">Ai</span>
+                    </div>
+                    <div class="tool-item">
+                        <span style="color: #000066;">Pr</span>
+                    </div>
+                    <div class="tool-item">
+                        <span style="color: #000066;">Ae</span>
+                    </div>
+                    <div class="tool-item">
+                        <span style="color: #FFA200;">🎨</span>
+                    </div>
+                    <div class="tool-item">
+                        <span style="color: #00D4FF;">🎬</span>
+                    </div>
+                    <div class="tool-item">
+                        <span style="color: #FF6B6B;">🎥</span>
+                    </div>
+                    <div class="tool-item">
+                        <span style="color: #9D5CFF;">🎪</span>
+                    </div>
                 </div>
-                <div class="skill-bar">
-                    <div class="skill-progress"></div>
-                </div>
-            </div>
 
-            <div class="skill-item" data-progress="88%">
-                <div class="skill-header">
-                    <span class="skill-name">调色</span>
-                    <span class="skill-percent">88%</span>
-                </div>
-                <div class="skill-bar">
-                    <div class="skill-progress"></div>
-                </div>
-            </div>
-
-            <div class="skill-item" data-progress="92%">
-                <div class="skill-header">
-                    <span class="skill-name">摄影摄像</span>
-                    <span class="skill-percent">92%</span>
-                </div>
-                <div class="skill-bar">
-                    <div class="skill-progress"></div>
-                </div>
-            </div>
-
-            <div class="skill-item" data-progress="85%">
-                <div class="skill-header">
-                    <span class="skill-name">动画制作</span>
-                    <span class="skill-percent">85%</span>
-                </div>
-                <div class="skill-bar">
-                    <div class="skill-progress"></div>
+                <div class="tools-description">
+                    <p>主要使用 <strong>Premiere Pro</strong>、<strong>After Effects</strong> 和 <strong>Photoshop</strong> 完成视频制作全流程。After Effects 负责动态图形与视觉特效，Premiere Pro 负责剪辑与输出，Photoshop 负责封面与素材处理。</p>
                 </div>
             </div>
         </div>
@@ -1160,17 +1330,23 @@
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                     
-                    // 如果是技能条，设置进度
-                    if (entry.target.classList.contains('skill-item')) {
-                        const progress = entry.target.getAttribute('data-progress');
-                        entry.target.style.setProperty('--progress', progress);
+                    // 如果是技能列表项，添加延迟动画
+                    if (entry.target.classList.contains('skill-list-item')) {
+                        const index = Array.from(entry.target.parentNode.children).indexOf(entry.target);
+                        entry.target.style.transitionDelay = `${index * 0.1}s`;
+                    }
+                    
+                    // 如果是工具项，添加延迟动画
+                    if (entry.target.classList.contains('tool-item')) {
+                        const index = Array.from(entry.target.parentNode.children).indexOf(entry.target);
+                        entry.target.style.transitionDelay = `${index * 0.05}s`;
                     }
                 }
             });
         }, observerOptions);
 
         // 观察所有需要动画的元素
-        document.querySelectorAll('.video-card, .skill-item').forEach(el => {
+        document.querySelectorAll('.video-card, .skill-card, .skill-list-item, .tool-item').forEach(el => {
             observer.observe(el);
         });
 
