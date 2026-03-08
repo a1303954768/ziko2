@@ -120,7 +120,7 @@ background: var(--text-primary);
 transition: all 0.3s ease;
 border-radius: 3px;
 }
-/* Hero Section - 首页 + 关于合并 */
+/* Hero Section - 首页+关于合并 */
 .hero {
 min-height: 100vh;
 padding: 150px 5% 100px;
@@ -589,7 +589,7 @@ font-size: 0.85rem;
 font-weight: 500;
 }
 
-/* --- 静帧作品网格 - 不规则拼贴风格 (修改部分) --- */
+/* --- 静帧作品网格 - 不规则拼贴风格 --- */
 .photo-gallery {
     display: none;
     max-width: 1400px;
@@ -614,18 +614,16 @@ font-weight: 500;
 /* 图片网格 - 不规则布局 */
 .photo-grid {
     display: grid;
-    /* 基础列宽 220px，自动填充 */
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     grid-auto-rows: 220px;
-    /* 关键：密集排列，自动填充空隙 */
-    grid-auto-flow: dense; 
+    grid-auto-flow: dense;
     gap: 4px;
 }
 
 .photo-item {
     position: relative;
     overflow: hidden;
-    border-radius: 0; /* 直角边框 */
+    border-radius: 0;
     cursor: pointer;
     opacity: 0;
     transform: scale(0.9);
@@ -661,7 +659,7 @@ font-weight: 500;
 /* 悬停放大效果 */
 .photo-item:hover {
     z-index: 10;
-    box-shadow: 0 0 0 2px var(--accent); /* 悬停时高亮边框 */
+    box-shadow: 0 0 0 2px var(--accent);
 }
 
 .photo-item:hover img {
@@ -682,7 +680,7 @@ font-weight: 500;
     flex-direction: column;
     justify-content: flex-end;
     padding: 15px;
-    pointer-events: none; /* 让点击穿透到下层 */
+    pointer-events: none;
 }
 
 .photo-item:hover .photo-overlay {
@@ -732,7 +730,7 @@ opacity: 1;
 max-width: 90%;
 max-height: 90%;
 object-fit: contain;
-border-radius: 4px; /* 查看器也改为微圆角或直角 */
+border-radius: 4px;
 transform: scale(0.9);
 transition: transform 0.3s ease;
 }
@@ -871,7 +869,6 @@ min-width: 120px;
 .skills-container {
 grid-template-columns: 1fr;
 }
-/* 平板调整网格基础大小 */
 .photo-grid {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     grid-auto-rows: 180px;
@@ -966,7 +963,6 @@ gap: 20px;
 .photo-scroll-container {
 height: 600px;
 }
-/* 手机调整网格 */
 .photo-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-auto-rows: 150px;
@@ -1157,7 +1153,6 @@ to { transform: rotate(360deg); }
 <h3 class="skill-card-title">我擅长的...</h3>
 <div class="tools-grid">
 <div class="tool-item">
-<!-- 达芬奇图标 -->
 <img src="images/davinci.png" alt="DaVinci Resolve">
 </div>
 <div class="tool-item">
@@ -1199,7 +1194,6 @@ to { transform: rotate(360deg); }
 </div>
 <!-- 视频作品网格 -->
 <div class="portfolio-grid" id="videoGrid">
-<!-- 作品卡片 1 -->
 <div class="video-card" onclick="openModal(this)"
 data-video="https://www.youtube.com/embed/dQw4w9WgXcQ"
 data-title="商业宣传片">
@@ -1216,7 +1210,6 @@ data-title="商业宣传片">
 </div>
 </div>
 </div>
-<!-- 作品卡片 2 -->
 <div class="video-card" onclick="openModal(this)"
 data-video="https://www.youtube.com/embed/LXb3EKWsInQ"
 data-title="纪录片">
@@ -1233,7 +1226,6 @@ data-title="纪录片">
 </div>
 </div>
 </div>
-<!-- 作品卡片 3 -->
 <div class="video-card" onclick="openModal(this)"
 data-video="https://www.youtube.com/embed/ScMzIvxBSi4"
 data-title="MV 制作">
@@ -1250,7 +1242,6 @@ data-title="MV 制作">
 </div>
 </div>
 </div>
-<!-- 作品卡片 4 -->
 <div class="video-card" onclick="openModal(this)"
 data-video="https://www.youtube.com/embed/9bZkp7q19f0"
 data-title="短视频系列">
@@ -1267,7 +1258,6 @@ data-title="短视频系列">
 </div>
 </div>
 </div>
-<!-- 作品卡片 5 -->
 <div class="video-card" onclick="openModal(this)"
 data-video="https://www.youtube.com/embed/jfKfPfyJRdk"
 data-title="活动记录">
@@ -1284,7 +1274,6 @@ data-title="活动记录">
 </div>
 </div>
 </div>
-<!-- 作品卡片 6 -->
 <div class="video-card" onclick="openModal(this)"
 data-video="https://www.youtube.com/embed/astISOttCQ0"
 data-title="产品演示">
@@ -1303,138 +1292,506 @@ data-title="产品演示">
 </div>
 </div>
 
-<!-- 静帧作品网格 - 不规则拼贴风格 -->
+<!-- 静帧作品网格 - 62张照片 -->
 <div class="photo-gallery" id="photoGrid">
 <div class="photo-scroll-container">
 <div class="photo-grid">
-    <!-- 大图 (2x2) -->
-    <div class="photo-item large" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>城市夜景</h4>
-            <p>商业摄影</p>
-        </div>
-    </div>
-    <!-- 普通图 (1x1) -->
-    <div class="photo-item" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>人物特写</h4>
-            <p>人像摄影</p>
-        </div>
-    </div>
-    <!-- 宽图 (2x1) -->
-    <div class="photo-item wide" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>自然风光</h4>
-            <p>风景摄影</p>
-        </div>
-    </div>
-    <!-- 高图 (1x2) -->
-    <div class="photo-item tall" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>产品拍摄</h4>
-            <p>商业摄影</p>
-        </div>
-    </div>
-    <!-- 普通图 (1x1) -->
-    <div class="photo-item" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>街头纪实</h4>
-            <p>纪实摄影</p>
-        </div>
-    </div>
-    <!-- 宽图 (2x1) -->
-    <div class="photo-item wide" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=800" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>建筑空间</h4>
-            <p>建筑摄影</p>
-        </div>
-    </div>
-    <!-- 普通图 (1x1) -->
-    <div class="photo-item" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>生活记录</h4>
-            <p>日常摄影</p>
-        </div>
-    </div>
-    <!-- 高图 (1x2) -->
-    <div class="photo-item tall" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>时尚大片</h4>
-            <p>时尚摄影</p>
-        </div>
-    </div>
-    <!-- 普通图 (1x1) -->
-    <div class="photo-item" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>相机设备</h4>
-            <p>产品摄影</p>
-        </div>
-    </div>
-    <!-- 大图 (2x2) -->
-    <div class="photo-item large" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1517404215738-15263e9f9178?w=800" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>电影感画面</h4>
-            <p>影视摄影</p>
-        </div>
-    </div>
-    <!-- 普通图 (1x1) -->
-    <div class="photo-item" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>影院场景</h4>
-            <p>场景摄影</p>
-        </div>
-    </div>
-    <!-- 宽图 (2x1) -->
-    <div class="photo-item wide" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>影视制作</h4>
-            <p>幕后花絮</p>
-        </div>
-    </div>
-    <!-- 普通图 (1x1) -->
-    <div class="photo-item" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>电影场景</h4>
-            <p>影视摄影</p>
-        </div>
-    </div>
-    <!-- 高图 (1x2) -->
-    <div class="photo-item tall" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1512070800540-0d4192faa0e0?w=600" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>创意摄影</h4>
-            <p>艺术创作</p>
-        </div>
-    </div>
-    <!-- 普通图 (1x1) -->
-    <div class="photo-item" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>影视拍摄</h4>
-            <p>幕后记录</p>
-        </div>
-    </div>
-    <!-- 宽图 (2x1) -->
-    <div class="photo-item wide" onclick="openImageViewer(this)">
-        <img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=800" alt="静帧作品">
-        <div class="photo-overlay">
-            <h4>摄影器材</h4>
-            <p>设备展示</p>
-        </div>
-    </div>
+<!-- 图片 1 - 大图 -->
+<div class="photo-item large" onclick="openImageViewer(this)">
+<img src="images/photo/jpg1.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 01</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 2 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg2.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 02</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 3 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg3.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 03</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 4 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg4.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 04</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 5 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg5.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 05</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 6 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg6.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 06</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 7 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg7.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 07</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 8 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg8.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 08</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 9 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg9.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 09</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 10 - 大图 -->
+<div class="photo-item large" onclick="openImageViewer(this)">
+<img src="images/photo/jpg10.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 10</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 11 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg11.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 11</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 12 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg12.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 12</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 13 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg13.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 13</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 14 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg14.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 14</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 15 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg15.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 15</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 16 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg16.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 16</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 17 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg17.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 17</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 18 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg18.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 18</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 19 - 大图 -->
+<div class="photo-item large" onclick="openImageViewer(this)">
+<img src="images/photo/jpg19.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 19</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 20 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg20.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 20</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 21 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg21.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 21</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 22 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg22.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 22</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 23 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg23.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 23</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 24 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg24.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 24</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 25 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg25.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 25</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 26 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg26.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 26</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 27 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg27.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 27</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 28 - 大图 -->
+<div class="photo-item large" onclick="openImageViewer(this)">
+<img src="images/photo/jpg28.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 28</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 29 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg29.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 29</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 30 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg30.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 30</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 31 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg31.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 31</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 32 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg32.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 32</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 33 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg33.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 33</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 34 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg34.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 34</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 35 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg35.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 35</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 36 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg36.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 36</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 37 - 大图 -->
+<div class="photo-item large" onclick="openImageViewer(this)">
+<img src="images/photo/jpg37.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 37</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 38 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg38.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 38</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 39 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg39.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 39</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 40 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg40.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 40</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 41 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg41.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 41</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 42 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg42.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 42</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 43 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg43.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 43</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 44 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg44.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 44</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 45 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg45.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 45</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 46 - 大图 -->
+<div class="photo-item large" onclick="openImageViewer(this)">
+<img src="images/photo/jpg46.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 46</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 47 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg47.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 47</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 48 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg48.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 48</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 49 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg49.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 49</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 50 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg50.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 50</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 51 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg51.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 51</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 52 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg52.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 52</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 53 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg53.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 53</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 54 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg54.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 54</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 55 - 大图 -->
+<div class="photo-item large" onclick="openImageViewer(this)">
+<img src="images/photo/jpg55.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 55</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 56 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg56.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 56</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 57 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg57.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 57</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 58 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg58.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 58</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 59 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg59.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 59</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 60 - 普通 -->
+<div class="photo-item" onclick="openImageViewer(this)">
+<img src="images/photo/jpg60.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 60</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 61 - 宽图 -->
+<div class="photo-item wide" onclick="openImageViewer(this)">
+<img src="images/photo/jpg61.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 61</h4>
+<p>摄影作品</p>
+</div>
+</div>
+<!-- 图片 62 - 高图 -->
+<div class="photo-item tall" onclick="openImageViewer(this)">
+<img src="images/photo/jpg62.jpg" alt="静帧作品">
+<div class="photo-overlay">
+<h4>作品 62</h4>
+<p>摄影作品</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1532,7 +1889,7 @@ setTimeout(() => {
 photoGrid.querySelectorAll('.photo-item').forEach((item, index) => {
 setTimeout(() => {
 item.classList.add('visible');
-}, index * 50); // 图片加载更快一点
+}, index * 50);
 });
 }, 100);
 }
