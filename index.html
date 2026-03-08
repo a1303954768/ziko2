@@ -1,1 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的作品集 | Video Portfolio</title>
+    <style>
+        /* --- 1. 全局样式设置 --- */
+        :root {
+            --bg-color: #0f0f0f;
+            --card-bg: #1f1f1f;
+            --text-main: #ffffff;
+            --text-sub: #a0a0a0;
+            --accent: #3b82f6; /* 强调色，可修改 */
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- 2. 导航栏 --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        .nav-links a { margin-left: 20px; color: var(--text-sub); }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- 3. 个人简介 (Hero Section) --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { color: var(--text-sub); font-size: 1.2rem; }
+        .social-links { margin-top: 20px; }
+        .social-links a { 
+            display: inline-block; 
+            margin: 0 10px; 
+            padding: 8px 16px; 
+            border: 1px solid var(--text-sub); 
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .social-links a:hover { background: var(--text-main); color: var(--bg-color); }
+
+        /* --- 4. 作品网格 (核心部分) --- */
+        .portfolio-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .section-title { margin-bottom: 30px; font-size: 1.5rem; border-left: 4px solid var(--accent); padding-left: 15px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .video-card:hover { transform: translateY(-5px); }
+
+        .thumbnail {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+        .video-card:hover .thumbnail img { opacity: 0.7; }
+        
+        /* 播放按钮图标 */
+        .play-icon {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px; height: 50px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .play-icon::after {
+            content: '';
+            border-style: solid;
+            border-width: 10px 0 10px 16px;
+            border-color: transparent transparent transparent white;
+            margin-left: 4px;
+        }
+
+        .card-info { padding: 15px; }
+        .card-info h3 { font-size: 1.1rem; margin-bottom: 5px; }
+        .card-info p { font-size: 0.9rem; color: var(--text-sub); }
+
+        /* --- 5. 视频弹窗 (Modal) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            aspect-ratio: 16/9;
+            background: #000;
+        }
+        .modal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .close-btn {
+            position: absolute;
+            top: -40px; right: 0;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .modal-title {
+            margin-top: 15px;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* --- 6. 页脚 --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            border-top: 1px solid #333;
+            margin-top: 60px;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="logo">MY WORKS.</div>
+        <nav class="nav-links">
+            <a href="#works">作品</a>
+            <a href="#about">关于</a>
+            <a href="mailto:your@email.com">联系</a>
+        </nav>
+    </header>
+
+    <!-- 个人简介区域 -->
+    <section class="hero" id="about">
+        <h1>你好，我是 [你的名字]</h1>
+        <p>一名专注于 [你的领域，如：商业广告/短片/纪录片] 的视频创作者。</p>
+        
+        <div class="social-links">
+            <a href="#">Bilibili</a>
+            <a href="#">YouTube</a>
+            <a href="#">Instagram</a>
+            <a href="#">小红书</a>
+        </div>
+    </section>
+
+    <!-- 作品展示区域 -->
+    <section class="portfolio-section" id="works">
+        <h2 class="section-title">精选作品</h2>
+        
+        <div class="grid">
+            <!-- 作品卡片 1 -->
+            <!-- data-video 属性里放你的视频 Embed 链接 -->
+            <div class="video-card" onclick="openModal(this)" 
+                 data-video="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                 data-title="示例视频：Rick Roll">
+                <div class="thumbnail">
+                    <!-- 替换下面的 src 为你的视频封面图 -->
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="封面">
+                    <div class="play-icon"></div>
+                </div>
+                <div class="card-info">
+                    <h3>商业宣传片 Demo</h3>
+                    <p>2023 年 | 导演/剪辑</p>
+                </div>
+            </div>
+
+            <!-- 作品卡片 2 -->
+            <div class="video-card" onclick="openModal(this)" 
+                 data-video="https://www.youtube.com/embed/LXb3EKWsInQ" 
+                 data-title="示例视频：4K Nature">
+                <div class="thumbnail">
+                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="封面">
+                    <div class="play-icon"></div>
+                </div>
+                <div class="card-info">
+                    <h3>旅行 Vlog：冰岛之旅</h3>
+                    <p>2024 年 | 摄影/后期</p>
+                </div>
+            </div>
+
+            <!-- 作品卡片 3 -->
+            <div class="video-card" onclick="openModal(this)" 
+                 data-video="https://www.youtube.com/embed/ScMzIvxBSi4" 
+                 data-title="示例视频：Cyberpunk">
+                <div class="thumbnail">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="封面">
+                    <div class="play-icon"></div>
+                </div>
+                <div class="card-info">
+                    <h3>概念短片：赛博朋克</h3>
+                    <p>2023 年 | 特效/合成</p>
+                </div>
+            </div>
+            
+            <!-- 复制上面的 div 块来添加更多作品 -->
+
+        </div>
+    </section>
+
+    <!-- 视频播放弹窗 (无需修改) -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <iframe id="modalIframe" src="" allowfullscreen></iframe>
+        </div>
+        <div class="modal-title" id="modalTitle"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 [你的名字]. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // --- 简单的 JS 逻辑 ---
+        const modal = document.getElementById('videoModal');
+        const iframe = document.getElementById('modalIframe');
+        const modalTitle = document.getElementById('modalTitle');
+
+        // 打开视频
+        function openModal(element) {
+            const videoUrl = element.getAttribute('data-video');
+            const title = element.getAttribute('data-title');
+            
+            // 添加 autoplay 参数，让视频自动播放
+            // 注意：YouTube 需要 ?autoplay=1, Bilibili 需要 &autoplay=1
+            let finalUrl = videoUrl;
+            if(videoUrl.includes('youtube')) {
+                finalUrl += '?autoplay=1&rel=0'; 
+            } else if (videoUrl.includes('bilibili')) {
+                // Bilibili 的 iframe 链接通常是 //player.bilibili.com/player.html?bvid=xxx
+                finalUrl += '&autoplay=1';
+            }
+
+            iframe.src = finalUrl;
+            modalTitle.innerText = title;
+            modal.style.display = 'flex';
+        }
+
+        // 关闭视频
+        function closeModal() {
+            modal.style.display = 'none';
+            iframe.src = ''; // 清空 src 以停止播放声音
+        }
+
+        // 点击背景关闭
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
