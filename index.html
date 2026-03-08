@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的视频作品集 | Video Portfolio</title>
+    <title>黄梓冠 Ziko | 视频创作者</title>
     <style>
         * {
             margin: 0;
@@ -32,7 +32,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.8;
             overflow-x: hidden;
         }
 
@@ -182,8 +182,8 @@
             margin: 0 auto;
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
             align-items: center;
         }
 
@@ -194,17 +194,17 @@
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--accent);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-weight: 600;
             letter-spacing: 2px;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
-            margin-bottom: 25px;
-            line-height: 1.1;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
 
         .hero h1 span {
@@ -215,25 +215,27 @@
         }
 
         .hero-description {
-            font-size: 1.3rem;
+            font-size: 1.05rem;
             color: var(--text-secondary);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             line-height: 1.8;
         }
 
         .hero-stats {
             display: flex;
-            gap: 40px;
+            gap: 30px;
             margin-top: 40px;
+            flex-wrap: wrap;
         }
 
         .stat-item {
             text-align: center;
-            padding: 20px;
+            padding: 20px 30px;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
+            min-width: 140px;
         }
 
         .stat-number {
@@ -244,12 +246,13 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             display: block;
+            line-height: 1;
+            margin-bottom: 8px;
         }
 
         .stat-label {
             color: var(--text-secondary);
             font-size: 0.9rem;
-            margin-top: 5px;
         }
 
         .hero-image {
@@ -257,6 +260,9 @@
             opacity: 0;
             transform: translateX(50px);
             animation: fadeInRight 1s ease 0.6s forwards;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         @keyframes fadeInRight {
@@ -271,6 +277,8 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
         }
 
         .hero-image img {
@@ -292,23 +300,25 @@
 
         .hero-image-badge {
             position: absolute;
-            bottom: 30px;
-            left: -30px;
-            background: var(--bg-card);
-            padding: 20px 30px;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(26, 26, 26, 0.95);
+            padding: 15px 25px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
         }
 
         .hero-image-badge h3 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+            color: var(--text-primary);
         }
 
         .hero-image-badge p {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         @keyframes fadeInUp {
@@ -643,13 +653,7 @@
                 order: -1;
             }
 
-            .hero-image-badge {
-                left: 20px;
-                bottom: 20px;
-            }
-
             .hero-stats {
-                flex-wrap: wrap;
                 gap: 20px;
             }
 
@@ -708,11 +712,11 @@
             }
             
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
             .hero-description {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
             
             .hero-stats {
@@ -720,7 +724,7 @@
             }
             
             .stat-item {
-                padding: 15px;
+                padding: 15px 20px;
                 min-width: 100px;
             }
             
@@ -734,9 +738,17 @@
             }
             
             .hero-image-badge {
-                left: 20px !important;
-                bottom: 20px !important;
-                padding: 15px 20px;
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 18px;
+            }
+            
+            .hero-image-badge h3 {
+                font-size: 1rem;
+            }
+            
+            .hero-image-badge p {
+                font-size: 0.8rem;
             }
 
             .skills {
@@ -762,7 +774,7 @@
             }
             
             .hero-subtitle {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
             
             .section-title {
@@ -770,12 +782,12 @@
             }
             
             .stat-item {
-                min-width: 80px;
-                padding: 12px;
+                min-width: 90px;
+                padding: 12px 15px;
             }
             
             .stat-number {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             
             .stat-label {
@@ -836,7 +848,7 @@
 
     <!-- 导航栏 -->
     <nav>
-        <div class="logo">PORTFOLIO.</div>
+        <div class="logo">ZIKO.</div>
         <div class="menu-toggle" onclick="toggleMenu()">
             <span></span>
             <span></span>
@@ -855,29 +867,26 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-subtitle">你好，我是</div>
-                <h1>视频<span>创作者</span></h1>
+                <h1>黄梓冠 <span>Ziko</span></h1>
                 <p class="hero-description">
-                    专注于创作高质量的视频内容，用镜头讲述故事，用画面传递情感。
-                    拥有5年以上的专业视频制作经验，擅长商业宣传片、纪录片、MV等多种类型的视频制作。
+                    24年6月毕业于深圳职业技术大学，广播影视节目制作（后期特效）专业。擅长摄影&剪辑（不会剪辑的摄影不是好导演）。拥有3+年工作经历，交付中短各类视频项目30+，完成多个商业纪录片、宣传片、公益中视频、微电影、产品视频以及各类短视频。能够快速适应不同环境以及项目。
                 </p>
                 <p class="hero-description">
-                    我相信每一个视频都有其独特的故事，我的使命是通过专业的技术和创意的视角，
-                    将这些故事以最动人的方式呈现给观众。从前期策划到后期制作，我注重每一个细节，
-                    力求为每一个项目带来超出预期的效果。
+                    毕业后，仍持续保持学习，不断进步。工作之外的业余时间会创作短片以更新作品集和跟进时代技术。
                 </p>
                 
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <span class="stat-number" data-target="50">0</span>
+                        <span class="stat-number" data-target="30">0</span>
                         <div class="stat-label">完成项目</div>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" data-target="5">0</span>
-                        <div class="stat-label">年经验</div>
+                        <span class="stat-number" data-target="3">0</span>
+                        <div class="stat-label">工作经验</div>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" data-target="100">0</span>
-                        <div class="stat-label">满意客户</div>
+                        <span class="stat-number" data-target="2">0</span>
+                        <div class="stat-label">双重技能</div>
                     </div>
                 </div>
             </div>
@@ -1090,7 +1099,7 @@
 
     <!-- 页脚 -->
     <footer>
-        <p>&copy; 2024 Video Portfolio. All rights reserved.</p>
+        <p>&copy; 2024 Ziko Huang. All rights reserved.</p>
     </footer>
 
     <!-- 视频弹窗 -->
