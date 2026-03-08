@@ -588,107 +588,127 @@ border-radius: 20px;
 font-size: 0.85rem;
 font-weight: 500;
 }
-/* 静帧作品网格 - 可滚动区域 */
+
+/* --- 静帧作品网格 - 不规则拼贴风格 (修改部分) --- */
 .photo-gallery {
-display: none;
-max-width: 1400px;
-margin: 0 auto;
+    display: none;
+    max-width: 1400px;
+    margin: 0 auto;
 }
+
 .photo-gallery.active {
-display: block;
+    display: block;
 }
+
 /* 可滚动的图片容器 */
 .photo-scroll-container {
-height: 800px;
-overflow-y: auto;
-overflow-x: hidden;
-padding: 10px;
-border-radius: 16px;
-background: var(--bg-card);
-border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 800px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 4px;
+    border-radius: 4px;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
-.photo-scroll-container::-webkit-scrollbar {
-width: 8px;
-}
-.photo-scroll-container::-webkit-scrollbar-track {
-background: var(--bg-secondary);
-border-radius: 4px;
-}
-.photo-scroll-container::-webkit-scrollbar-thumb {
-background: var(--accent);
-border-radius: 4px;
-}
-.photo-scroll-container::-webkit-scrollbar-thumb:hover {
-background: var(--accent-hover);
-}
-/* 图片网格 - 密集布局 */
+
+/* 图片网格 - 不规则布局 */
 .photo-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-gap: 10px;
+    display: grid;
+    /* 基础列宽 220px，自动填充 */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-auto-rows: 220px;
+    /* 关键：密集排列，自动填充空隙 */
+    grid-auto-flow: dense; 
+    gap: 4px;
 }
+
 .photo-item {
-position: relative;
-overflow: hidden;
-border-radius: 8px;
-cursor: pointer;
-opacity: 0;
-transform: scale(0.8);
-transition: all 0.5s ease;
-aspect-ratio: 16/9;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0; /* 直角边框 */
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.5s ease;
+    background: #000;
 }
+
 .photo-item.visible {
-opacity: 1;
-transform: scale(1);
+    opacity: 1;
+    transform: scale(1);
 }
+
+/* 不同尺寸的图片类 */
+.photo-item.wide {
+    grid-column: span 2;
+}
+.photo-item.tall {
+    grid-row: span 2;
+}
+.photo-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
 .photo-item img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: block;
 }
+
 /* 悬停放大效果 */
 .photo-item:hover {
-z-index: 10;
-box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    box-shadow: 0 0 0 2px var(--accent); /* 悬停时高亮边框 */
 }
+
 .photo-item:hover img {
-transform: scale(1.2);
+    transform: scale(1.1);
 }
+
 /* 图片遮罩层 */
 .photo-overlay {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
-opacity: 0;
-transition: opacity 0.3s ease;
-display: flex;
-flex-direction: column;
-justify-content: flex-end;
-padding: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 15px;
+    pointer-events: none; /* 让点击穿透到下层 */
 }
+
 .photo-item:hover .photo-overlay {
-opacity: 1;
+    opacity: 1;
 }
+
 .photo-overlay h4 {
-font-size: 1rem;
-margin-bottom: 5px;
-transform: translateY(20px);
-transition: transform 0.3s ease;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+    color: #fff;
 }
+
 .photo-overlay p {
-font-size: 0.85rem;
-color: var(--text-secondary);
-transform: translateY(20px);
-transition: transform 0.3s ease 0.1s;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    transform: translateY(10px);
+    transition: transform 0.3s ease 0.1s;
 }
+
 .photo-item:hover .photo-overlay h4,
 .photo-item:hover .photo-overlay p {
-transform: translateY(0);
+    transform: translateY(0);
 }
+
 /* 图片查看器 */
 .image-viewer {
 display: none;
@@ -712,7 +732,7 @@ opacity: 1;
 max-width: 90%;
 max-height: 90%;
 object-fit: contain;
-border-radius: 8px;
+border-radius: 4px; /* 查看器也改为微圆角或直角 */
 transform: scale(0.9);
 transition: transform 0.3s ease;
 }
@@ -851,8 +871,10 @@ min-width: 120px;
 .skills-container {
 grid-template-columns: 1fr;
 }
+/* 平板调整网格基础大小 */
 .photo-grid {
-grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-auto-rows: 180px;
 }
 }
 @media (max-width: 768px) {
@@ -944,9 +966,11 @@ gap: 20px;
 .photo-scroll-container {
 height: 600px;
 }
+/* 手机调整网格 */
 .photo-grid {
-grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: 150px;
+    gap: 2px;
 }
 .contact {
 padding: 80px 5%;
@@ -989,10 +1013,6 @@ grid-template-columns: 1fr;
 }
 .photo-scroll-container {
 height: 500px;
-}
-.photo-grid {
-grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-gap: 6px;
 }
 }
 /* 加载动画 */
@@ -1282,122 +1302,139 @@ data-title="产品演示">
 </div>
 </div>
 </div>
-<!-- 静帧作品网格 - 可滚动区域 -->
+
+<!-- 静帧作品网格 - 不规则拼贴风格 -->
 <div class="photo-gallery" id="photoGrid">
 <div class="photo-scroll-container">
 <div class="photo-grid">
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>城市夜景</h4>
-<p>商业摄影</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>人物特写</h4>
-<p>人像摄影</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>自然风光</h4>
-<p>风景摄影</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>产品拍摄</h4>
-<p>商业摄影</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>街头纪实</h4>
-<p>纪实摄影</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>建筑空间</h4>
-<p>建筑摄影</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>生活记录</h4>
-<p>日常摄影</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>时尚大片</h4>
-<p>时尚摄影</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>相机设备</h4>
-<p>产品摄影</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1517404215738-15263e9f9178?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>电影感画面</h4>
-<p>影视摄影</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>影院场景</h4>
-<p>场景摄影</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>影视制作</h4>
-<p>幕后花絮</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>电影场景</h4>
-<p>影视摄影</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1512070800540-0d4192faa0e0?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>创意摄影</h4>
-<p>艺术创作</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>影视拍摄</h4>
-<p>幕后记录</p>
-</div>
-</div>
-<div class="photo-item" onclick="openImageViewer(this)">
-<img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=600" alt="静帧作品">
-<div class="photo-overlay">
-<h4>摄影器材</h4>
-<p>设备展示</p>
-</div>
-</div>
+    <!-- 大图 (2x2) -->
+    <div class="photo-item large" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>城市夜景</h4>
+            <p>商业摄影</p>
+        </div>
+    </div>
+    <!-- 普通图 (1x1) -->
+    <div class="photo-item" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>人物特写</h4>
+            <p>人像摄影</p>
+        </div>
+    </div>
+    <!-- 宽图 (2x1) -->
+    <div class="photo-item wide" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>自然风光</h4>
+            <p>风景摄影</p>
+        </div>
+    </div>
+    <!-- 高图 (1x2) -->
+    <div class="photo-item tall" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>产品拍摄</h4>
+            <p>商业摄影</p>
+        </div>
+    </div>
+    <!-- 普通图 (1x1) -->
+    <div class="photo-item" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>街头纪实</h4>
+            <p>纪实摄影</p>
+        </div>
+    </div>
+    <!-- 宽图 (2x1) -->
+    <div class="photo-item wide" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=800" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>建筑空间</h4>
+            <p>建筑摄影</p>
+        </div>
+    </div>
+    <!-- 普通图 (1x1) -->
+    <div class="photo-item" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>生活记录</h4>
+            <p>日常摄影</p>
+        </div>
+    </div>
+    <!-- 高图 (1x2) -->
+    <div class="photo-item tall" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>时尚大片</h4>
+            <p>时尚摄影</p>
+        </div>
+    </div>
+    <!-- 普通图 (1x1) -->
+    <div class="photo-item" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>相机设备</h4>
+            <p>产品摄影</p>
+        </div>
+    </div>
+    <!-- 大图 (2x2) -->
+    <div class="photo-item large" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1517404215738-15263e9f9178?w=800" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>电影感画面</h4>
+            <p>影视摄影</p>
+        </div>
+    </div>
+    <!-- 普通图 (1x1) -->
+    <div class="photo-item" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>影院场景</h4>
+            <p>场景摄影</p>
+        </div>
+    </div>
+    <!-- 宽图 (2x1) -->
+    <div class="photo-item wide" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>影视制作</h4>
+            <p>幕后花絮</p>
+        </div>
+    </div>
+    <!-- 普通图 (1x1) -->
+    <div class="photo-item" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>电影场景</h4>
+            <p>影视摄影</p>
+        </div>
+    </div>
+    <!-- 高图 (1x2) -->
+    <div class="photo-item tall" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1512070800540-0d4192faa0e0?w=600" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>创意摄影</h4>
+            <p>艺术创作</p>
+        </div>
+    </div>
+    <!-- 普通图 (1x1) -->
+    <div class="photo-item" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>影视拍摄</h4>
+            <p>幕后记录</p>
+        </div>
+    </div>
+    <!-- 宽图 (2x1) -->
+    <div class="photo-item wide" onclick="openImageViewer(this)">
+        <img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=800" alt="静帧作品">
+        <div class="photo-overlay">
+            <h4>摄影器材</h4>
+            <p>设备展示</p>
+        </div>
+    </div>
 </div>
 </div>
 </div>
@@ -1495,7 +1532,7 @@ setTimeout(() => {
 photoGrid.querySelectorAll('.photo-item').forEach((item, index) => {
 setTimeout(() => {
 item.classList.add('visible');
-}, index * 100);
+}, index * 50); // 图片加载更快一点
 });
 }, 100);
 }
