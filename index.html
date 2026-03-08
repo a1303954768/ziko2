@@ -221,6 +221,13 @@
             line-height: 1.8;
         }
 
+        /* 下划线样式 */
+        .highlight-text {
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 2px;
+        }
+
         .hero-stats {
             display: flex;
             gap: 30px;
@@ -869,7 +876,7 @@
                 <div class="hero-subtitle">你好，我是</div>
                 <h1>黄梓冠 <span>Ziko</span></h1>
                 <p class="hero-description">
-                    24年6月毕业于深圳职业技术大学，广播影视节目制作（后期特效）专业。擅长摄影&剪辑（不会剪辑的摄影不是好导演）。拥有3+年工作经历，交付中短各类视频项目30+，完成多个商业纪录片、宣传片、公益中视频、微电影、产品视频以及各类短视频。能够快速适应不同环境以及项目。
+                    24 年 6 月毕业于深圳职业技术大学，广播影视节目制作（后期特效）专业。<span class="highlight-text">擅长摄影&剪辑</span>（不会剪辑的摄影不是好导演）。拥有 3+ 年工作经历，交付中短各类视频项目 30+，完成多个商业纪录片、宣传片、公益中视频、微电影、产品视频以及各类短视频。能够快速适应不同环境以及项目。
                 </p>
                 <p class="hero-description">
                     毕业后，仍持续保持学习，不断进步。工作之外的业余时间会创作短片以更新作品集和跟进时代技术。
@@ -877,15 +884,15 @@
                 
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <span class="stat-number" data-target="30">0</span>
+                        <span class="stat-number" data-target="30" data-suffix="+">0</span>
                         <div class="stat-label">完成项目</div>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" data-target="3">0</span>
+                        <span class="stat-number" data-target="3" data-suffix="+">0</span>
                         <div class="stat-label">工作经验</div>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number" data-target="2">0</span>
+                        <span class="stat-number" data-target="2" data-suffix="X">0</span>
                         <div class="stat-label">双重技能</div>
                     </div>
                 </div>
@@ -897,8 +904,8 @@
                     <div class="hero-image-overlay"></div>
                 </div>
                 <div class="hero-image-badge">
-                    <h3>专业视频制作</h3>
-                    <p>用心打造每一帧</p>
+                    <h3>总有些东西</h3>
+                    <p>值得全力以赴</p>
                 </div>
             </div>
         </div>
@@ -1005,14 +1012,14 @@
             <!-- 作品卡片 3 -->
             <div class="video-card" onclick="openModal(this)" 
                  data-video="https://www.youtube.com/embed/ScMzIvxBSi4" 
-                 data-title="MV制作">
+                 data-title="MV 制作">
                 <div class="thumbnail">
                     <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800" alt="作品封面">
                     <div class="play-button"></div>
                 </div>
                 <div class="video-info">
-                    <h3>音乐MV制作</h3>
-                    <p>独立音乐人的原创MV，融合多种视觉元素和特效</p>
+                    <h3>音乐 MV 制作</h3>
+                    <p>独立音乐人的原创 MV，融合多种视觉元素和特效</p>
                     <div class="video-tags">
                         <span class="tag">MV</span>
                         <span class="tag">音乐</span>
@@ -1125,6 +1132,7 @@
             
             stats.forEach(stat => {
                 const target = parseInt(stat.getAttribute('data-target'));
+                const suffix = stat.getAttribute('data-suffix') || '+';
                 const duration = 2000;
                 const step = target / (duration / 16);
                 let current = 0;
@@ -1132,7 +1140,7 @@
                 const timer = setInterval(() => {
                     current += step;
                     if (current >= target) {
-                        stat.textContent = target + '+';
+                        stat.textContent = target + suffix;
                         clearInterval(timer);
                     } else {
                         stat.textContent = Math.floor(current);
@@ -1166,7 +1174,7 @@
             observer.observe(el);
         });
 
-        // 当hero区域进入视口时触发数字动画
+        // 当 hero 区域进入视口时触发数字动画
         const heroObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1209,7 +1217,7 @@
             }
         });
 
-        // ESC键关闭弹窗
+        // ESC 键关闭弹窗
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeModal();
