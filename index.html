@@ -73,7 +73,14 @@ animation: pulse 10s ease-in-out infinite reverse;
 .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 20px; line-height: 1.2; }
 .hero h1 span { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .hero-description { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.8; }
-.highlight-text { color: var(--text-primary); border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+/* 加大加粗下划线样式 */
+.highlight-text {
+color: var(--text-primary);
+font-size: 1.2rem;
+font-weight: 700;
+border-bottom: 3px solid var(--accent);
+padding-bottom: 3px;
+}
 .hero-stats { display: flex; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
 .stat-item { text-align: center; padding: 20px 30px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); min-width: 140px; }
 .stat-number { font-size: 2.5rem; font-weight: 700; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; line-height: 1; margin-bottom: 8px; }
@@ -302,8 +309,12 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 <div class="hero-content">
 <div class="hero-subtitle">你好，我是</div>
 <h1>黄梓冠 <span>Ziko</span></h1>
-<p class="hero-description">24 年 6 月毕业于深圳职业技术大学，广播影视节目制作（后期特效）专业。<span class="highlight-text">擅长摄影&剪辑</span>（不会剪辑的摄影不是好导演）。拥有 3+ 年工作经历，交付中短各类视频项目 30+，完成多个商业纪录片、宣传片、公益中视频、微电影、产品视频以及各类短视频。能够快速适应不同环境以及项目。</p>
-<p class="hero-description">毕业后，仍持续保持学习，不断进步。工作之外的业余时间会创作短片以更新作品集和跟进时代技术。</p>
+<p class="hero-description">
+<span class="highlight-text">擅长摄影&剪辑</span><span class="highlight-text">（后期特效）</span>。24 年毕业于深圳职业技术大学，广播影视节目制作专业。拥有 3+ 年工作经历。交付中短各类视频项目 30+，完成多个商业纪录片、宣传片、公益中视频、微电影、产品视频以及各类短视频。能够快速适应不同环境以及项目。
+</p>
+<p class="hero-description">
+热爱影视行业，毕业后仍持续保持学习，不断进步。工作之外的业余时间会创作个人短片以更新作品和跟进时代技术。
+</p>
 <div class="hero-stats">
 <div class="stat-item"><span class="stat-number" data-target="30" data-suffix="+">0</span><div class="stat-label">完成项目</div></div>
 <div class="stat-item"><span class="stat-number" data-target="3" data-suffix="+">0</span><div class="stat-label">工作经验</div></div>
@@ -326,7 +337,7 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 <li class="skill-list-item"><div class="skill-list-icon">🎬</div><div class="skill-list-content"><h4>视频剪辑</h4><p>最常用的软件——达芬奇，从短视频到宣传片纪录片，均在达芬奇内剪辑和调色，熟练度较高</p></div></li>
 <li class="skill-list-item"><div class="skill-list-icon">📷</div><div class="skill-list-content"><h4>摄影摄像</h4><p>熟悉各类拍摄器材（包括索尼松下大疆影石），擅长使用 Ronin 给视频运镜拍摄，熟练在混乱复杂环境捕捉好看画面。熟练度较高</p></div></li>
 <li class="skill-list-item"><div class="skill-list-icon">✨</div><div class="skill-list-content"><h4>后期特效</h4><p>常用 AE（达芬奇的 Fusion 用不来）和 PS 以及 blender 去完成各类动效和其他特效内容。熟练度适中</p></div></li>
-<li class="skill-list-item"><div class="skill-list-icon">🤖</div><div class="skill-list-content"><h4>其他技能</h4><p>持续学习 AI 中...，保证自己跟上时代脚步。</p></div></li>
+<li class="skill-list-item"><div class="skill-list-icon">🤖</div><div class="skill-list-content"><h4>其他技能</h4><p>除了各大闭源 AI 的使用，还会额外学习开源 AI 辅助或制作视频项目，例如：通过 Comfyui 使用 Ltx2.3、wan2.2，Z-images 等等。（截止时间 26/03/10）</p></div></li>
 </ul>
 <div class="skill-tags"><span class="skill-tag">商业宣传片</span><span class="skill-tag">纪录片</span><span class="skill-tag">微电影</span><span class="skill-tag">产品视频</span><span class="skill-tag">短视频</span></div>
 </div>
@@ -478,8 +489,6 @@ document.querySelectorAll('.filter-btn').forEach(btn => { btn.classList.remove('
 if (type === 'videos') { videoGrid.style.display = 'grid'; photoGrid.classList.remove('active'); setTimeout(() => videoGrid.querySelectorAll('.video-card').forEach((c,i) => setTimeout(() => c.classList.add('visible'), i*100)), 100); }
 else { videoGrid.style.display = 'none'; photoGrid.classList.add('active'); setTimeout(() => photoGrid.querySelectorAll('.photo-item').forEach((c,i) => setTimeout(() => c.classList.add('visible'), i*50)), 100); }
 }
-// 滚动触发动画 - 元素进入视口时显示，离开时隐藏
-const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
 const observer = new IntersectionObserver(entries => {
 entries.forEach(entry => {
 if (entry.isIntersecting) {
@@ -489,11 +498,10 @@ const idx = Array.from(entry.target.parentNode.children).indexOf(entry.target);
 entry.target.style.transitionDelay = `${entry.target.classList.contains('skill-list-item') ? idx*0.1 : idx*0.05}s`;
 }
 } else {
-// 离开视口时移除 visible 类，实现出场动画
 entry.target.classList.remove('visible');
 }
 });
-}, observerOptions);
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 document.querySelectorAll('.video-card, .skill-card, .skill-list-item, .tool-item, .photo-item').forEach(el => observer.observe(el));
 const heroObserver = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { animateNumbers(); heroObserver.unobserve(entry.target); } }); }, { threshold: 0.5 });
 heroObserver.observe(document.querySelector('.hero-stats'));
@@ -506,24 +514,18 @@ document.getElementById('videoModal').classList.add('active'); document.body.sty
 function closeModal() { document.getElementById('videoModal').classList.remove('active'); document.getElementById('modalIframe').src = ''; document.body.style.overflow = 'auto'; }
 function openImageViewer(el) { const img = el.querySelector('img'); document.getElementById('viewerImage').src = img.src; document.getElementById('imageViewer').classList.add('active'); document.body.style.overflow = 'hidden'; }
 function closeImageViewer() { document.getElementById('imageViewer').classList.remove('active'); document.body.style.overflow = 'auto'; }
-// Toast 提示函数 - 按钮上方居中显示
 function showToast(btn, content) {
-// 移除所有按钮上的 toast
 document.querySelectorAll('.contact-btn .toast').forEach(t => t.remove());
-// 创建新的 toast
 const toast = document.createElement('div');
 toast.className = 'toast';
 toast.innerHTML = `<span class="toast-icon">✅</span><span class="toast-text"><strong>${content}</strong> 已复制到剪贴板</span>`;
 btn.appendChild(toast);
-// 显示 toast
 setTimeout(() => toast.classList.add('show'), 10);
-// 2.5 秒后移除
 setTimeout(() => {
 toast.classList.remove('show');
 setTimeout(() => toast.remove(), 300);
 }, 2500);
 }
-// 复制并改变按钮文字
 async function copyAndChange(btn, text, originalContent) {
 try { await navigator.clipboard.writeText(text); const originalHTML = btn.innerHTML; btn.innerHTML = `<span>✅</span> ${text}`; btn.style.background = 'var(--accent-hover)'; showToast(btn, text); setTimeout(() => { btn.innerHTML = originalHTML; btn.style.background = ''; }, 2000); }
 catch (err) { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); const originalHTML = btn.innerHTML; btn.innerHTML = `<span>✅</span> ${text}`; btn.style.background = 'var(--accent-hover)'; showToast(btn, text); setTimeout(() => { btn.innerHTML = originalHTML; btn.style.background = ''; }, 2000); }
