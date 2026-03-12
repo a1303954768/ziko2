@@ -42,26 +42,20 @@ opacity: 0; transform: translateY(-20px); animation: slideDown 0.8s ease forward
 .hero { min-height: 100vh; padding: 150px 5% 100px; position: relative; overflow: hidden; display: flex; align-items: center; }
 .hero-video {
 position: absolute;
-top: 50%;
-left: 50%;
-min-width: 100%;
-min-height: 100%;
+top: 50%; left: 50%;
+min-width: 100%; min-height: 100%;
 transform: translate(-50%, -50%);
 z-index: 0;
 object-fit: cover;
 }
 .hero::before {
-content: '';
-position: absolute;
-top: 0; left: 0;
+content: ''; position: absolute; top: 0; left: 0;
 width: 100%; height: 100%;
 background: rgba(0, 0, 0, 0.6);
 z-index: 1;
 }
 .hero::after {
-content: '';
-position: absolute;
-bottom: -30%; right: -20%;
+content: ''; position: absolute; bottom: -30%; right: -20%;
 width: 100%; height: 100%;
 background: radial-gradient(circle, rgba(240, 147, 251, 0.1) 0%, transparent 60%);
 animation: pulse 10s ease-in-out infinite reverse;
@@ -73,14 +67,7 @@ animation: pulse 10s ease-in-out infinite reverse;
 .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 20px; line-height: 1.2; }
 .hero h1 span { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .hero-description { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.8; }
-/* 加大加粗下划线样式 */
-.highlight-text {
-color: var(--text-primary);
-font-size: 1.2rem;
-font-weight: 700;
-border-bottom: 3px solid var(--accent);
-padding-bottom: 3px;
-}
+.highlight-text { color: var(--text-primary); font-size: 1.2rem; font-weight: 700; border-bottom: 3px solid var(--accent); padding-bottom: 3px; }
 .hero-stats { display: flex; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
 .stat-item { text-align: center; padding: 20px 30px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); min-width: 140px; }
 .stat-number { font-size: 2.5rem; font-weight: 700; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; line-height: 1; margin-bottom: 8px; }
@@ -120,6 +107,38 @@ padding-bottom: 3px;
 .tool-item span { font-size: 1.5rem; font-weight: 700; }
 .tools-description { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
 .tools-description strong { color: var(--text-primary); }
+
+/* 经历页面样式 */
+.experience { padding: 120px 5%; background: var(--bg-primary); }
+.experience-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.experience-card { background: var(--bg-card); border-radius: 24px; padding: 40px; border: 1px solid rgba(255, 255, 255, 0.05); opacity: 0; transform: translateY(50px); transition: all 0.6s ease; }
+.experience-card.visible { opacity: 1; transform: translateY(0); }
+.experience-card:hover { border-color: rgba(99, 102, 241, 0.3); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1); }
+.experience-card-label { font-size: 0.9rem; color: var(--accent); margin-bottom: 10px; font-weight: 600; letter-spacing: 1px; }
+.experience-card-title { font-size: 2rem; margin-bottom: 30px; line-height: 1.2; }
+/* 项目经历滚动容器 */
+.project-scroll-container { height: 400px; overflow-y: auto; position: relative; }
+.project-scroll-container::-webkit-scrollbar { width: 6px; }
+.project-scroll-container::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 3px; }
+.project-scroll-container::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+.project-item { padding: 25px; background: rgba(255, 255, 255, 0.03); border-radius: 12px; margin-bottom: 20px; border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; cursor: pointer; }
+.project-item:hover { background: rgba(99, 102, 241, 0.1); border-color: var(--accent); }
+.project-item h4 { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-primary); }
+.project-item .project-date { font-size: 0.85rem; color: var(--accent); margin-bottom: 10px; }
+.project-item p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+.project-item.active { background: rgba(99, 102, 241, 0.2); border-color: var(--accent); }
+/* 图片循环滚动 */
+.image-carousel { height: 400px; overflow: hidden; position: relative; border-radius: 12px; }
+.carousel-track { display: flex; gap: 15px; animation: scroll 30s linear infinite; }
+.carousel-track:hover { animation-play-state: paused; }
+.carousel-item { min-width: 300px; height: 380px; border-radius: 12px; overflow: hidden; transition: all 0.5s ease; cursor: pointer; }
+.carousel-item:hover { transform: scale(2); z-index: 10; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8); }
+.carousel-item img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes scroll {
+0% { transform: translateX(0); }
+100% { transform: translateX(-50%); }
+}
+
 .portfolio { padding: 120px 5%; background: var(--bg-primary); }
 .portfolio-filter { display: flex; justify-content: center; gap: 20px; margin-bottom: 50px; flex-wrap: wrap; }
 .filter-btn { padding: 12px 30px; background: transparent; border: 2px solid var(--accent); color: var(--text-primary); border-radius: 25px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.3s ease; }
@@ -166,55 +185,19 @@ padding-bottom: 3px;
 .image-viewer.active img { transform: scale(1); }
 .image-viewer-close { position: absolute; top: 30px; right: 40px; font-size: 3rem; color: white; cursor: pointer; transition: transform 0.3s ease; }
 .image-viewer-close:hover { transform: rotate(90deg); }
-.contact { padding: 120px 5%; background: var(--bg-secondary); text-align: center; position: relative; overflow: hidden; }
+.contact { padding: 120px 5%; background: var(--bg-secondary); text-align: center; }
 .contact-description { max-width: 600px; margin: 0 auto 40px; color: var(--text-secondary); font-size: 1.1rem; }
-.contact-buttons { display: flex; justify-content: center; gap: 20px; margin-top: 40px; flex-wrap: wrap; position: relative; z-index: 10; }
+.contact-buttons { display: flex; justify-content: center; gap: 20px; margin-top: 40px; flex-wrap: wrap; }
 .contact-btn { padding: 18px 40px; background: var(--gradient-1); color: white; border: none; border-radius: 30px; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; position: relative; }
 .contact-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4); }
-/* GIF 装饰元素 */
-.contact-gif {
-position: absolute;
-width: 150px;
-height: 150px;
-object-fit: cover;
-border-radius: 12px;
-opacity: 0.8;
-transition: all 0.3s ease;
-z-index: 1;
-}
-.contact-gif:hover {
-opacity: 1;
-transform: scale(1.05);
-}
+.contact-gif { position: absolute; width: 150px; height: 150px; object-fit: cover; border-radius: 12px; opacity: 0.8; transition: all 0.3s ease; z-index: 1; }
+.contact-gif:hover { opacity: 1; transform: scale(1.05); }
 .contact-gif-1 { top: 80px; left: 15%; }
 .contact-gif-2 { top: 80px; right: 15%; }
 .contact-gif-3 { bottom: 80px; left: 10%; }
 .contact-gif-4 { bottom: 80px; right: 10%; }
-/* Toast 提示框 - 按钮上方居中显示 */
-.toast {
-position: absolute;
-top: -60px;
-left: 50%;
-transform: translateX(-50%) translateY(-10px);
-background: var(--bg-card);
-color: var(--text-primary);
-padding: 12px 24px;
-border-radius: 8px;
-border: 1px solid var(--accent);
-box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-z-index: 100;
-opacity: 0;
-transition: all 0.3s ease;
-display: flex;
-align-items: center;
-gap: 8px;
-white-space: nowrap;
-font-size: 0.9rem;
-}
-.toast.show {
-transform: translateX(-50%) translateY(0);
-opacity: 1;
-}
+.toast { position: absolute; top: -60px; left: 50%; transform: translateX(-50%) translateY(-10px); background: var(--bg-card); color: var(--text-primary); padding: 12px 24px; border-radius: 8px; border: 1px solid var(--accent); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); z-index: 100; opacity: 0; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 0.9rem; }
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 .toast-icon { font-size: 1rem; }
 .toast-text { font-size: 0.9rem; }
 .toast-text strong { color: var(--accent); }
@@ -233,6 +216,7 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 .hero-stats { gap: 20px; }
 .stat-item { flex: 1; min-width: 120px; }
 .skills-container { grid-template-columns: 1fr; }
+.experience-container { grid-template-columns: 1fr; }
 .photo-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); grid-auto-rows: 180px; }
 .contact-gif { width: 120px; height: 120px; }
 .contact-gif-1 { top: 60px; left: 5%; }
@@ -262,6 +246,11 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 .skills { padding: 80px 5%; }
 .skill-card { padding: 30px; }
 .tools-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.experience { padding: 80px 5%; }
+.experience-card { padding: 30px; }
+.project-scroll-container { height: 300px; }
+.image-carousel { height: 300px; }
+.carousel-item { min-width: 200px; height: 280px; }
 .portfolio { padding: 80px 5%; }
 .portfolio-grid { gap: 20px; }
 .photo-scroll-container { height: 600px; }
@@ -296,12 +285,12 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 <div class="nav-links" id="navLinks">
 <a href="#home" onclick="toggleMenu()">首页</a>
 <a href="#skills" onclick="toggleMenu()">技能</a>
+<a href="#experience" onclick="toggleMenu()">经历</a>
 <a href="#works" onclick="toggleMenu()">作品</a>
 <a href="#contact" onclick="toggleMenu()">联系</a>
 </div>
 </nav>
 <section class="hero" id="home">
-<!-- 视频背景 -->
 <video class="hero-video" autoplay loop muted playsinline>
 <source src="images/bgvideo.mp4" type="video/mp4">
 </video>
@@ -355,6 +344,63 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 <div class="tool-item"><img src="images/edit.png" alt="edit"></div>
 </div>
 <div class="tools-description"><p>个人最常用熟练的设备是<strong>松下 S52+DJI RS 3</strong>，<strong>达芬奇、AE 和 PS</strong>，完成了大多数个人创作</p><p style="margin-top:10px;">在工作中，多数使用<strong>索尼 A7M4、A7S3、FX30</strong>等等设备，软件仍然最常用<strong>达芬奇、AE 和 PS</strong>。</p></div>
+</div>
+</div>
+</section>
+<!-- 经历页面 -->
+<section class="experience" id="experience">
+<h2 class="section-title">经历</h2>
+<div class="experience-container">
+<!-- 左侧：项目经历 -->
+<div class="experience-card">
+<div class="experience-card-label">Project</div>
+<h3 class="experience-card-title">项目经历</h3>
+<div class="project-scroll-container">
+<div class="project-item active">
+<h4>商业宣传片制作</h4>
+<div class="project-date">2023.06 - 2023.09</div>
+<p>负责某知名品牌的年度宣传片全流程制作，包括前期策划、分镜设计、现场拍摄及后期剪辑调色。最终成片获得客户高度认可，全网播放量突破 500 万。</p>
+</div>
+<div class="project-item">
+<h4>纪录片《匠心传承》</h4>
+<div class="project-date">2023.10 - 2024.01</div>
+<p>独立拍摄制作的人文纪录片，记录传统手工艺人的日常工作和生活。历时 3 个月跟拍，累计素材 200+ 小时，最终成片 30 分钟，入围多个电影节。</p>
+</div>
+<div class="project-item">
+<h4>产品发布会视频</h4>
+<div class="project-date">2024.02 - 2024.03</div>
+<p>为某科技公司新品发布会制作开场视频及产品展示视频。运用 AE 制作大量动态图形和特效，现场播放效果震撼，获得主办方好评。</p>
+</div>
+<div class="project-item">
+<h4>微电影《归途》</h4>
+<div class="project-date">2024.04 - 2024.06</div>
+<p>自编自导自剪的原创微电影，讲述游子归乡的故事。从剧本创作到后期制作全程独立完成，时长 15 分钟，在多个平台获得良好反响。</p>
+</div>
+<div class="project-item">
+<h4>短视频系列运营</h4>
+<div class="project-date">2024.07 - 至今</div>
+<p>负责某品牌抖音/小红书账号的短视频内容创作，累计制作视频 50+ 条，单条最高播放量 300 万+，帮助账号粉丝增长 10 万+。</p>
+</div>
+</div>
+</div>
+<!-- 右侧：循环滚动图片 -->
+<div class="experience-card">
+<div class="experience-card-label">Gallery</div>
+<h3 class="experience-card-title">工作花絮</h3>
+<div class="image-carousel">
+<div class="carousel-track">
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=600" alt="工作花絮 1"></div>
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600" alt="工作花絮 2"></div>
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600" alt="工作花絮 3"></div>
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600" alt="工作花絮 4"></div>
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1512070800540-0d4192faa0e0?w=600" alt="工作花絮 5"></div>
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=600" alt="工作花絮 1"></div>
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600" alt="工作花絮 2"></div>
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600" alt="工作花絮 3"></div>
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600" alt="工作花絮 4"></div>
+<div class="carousel-item"><img src="https://images.unsplash.com/photo-1512070800540-0d4192faa0e0?w=600" alt="工作花絮 5"></div>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -460,7 +506,6 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 <section class="contact" id="contact">
 <h2 class="section-title">联系我</h2>
 <p class="contact-description">有项目合作意向？让我们一起创造精彩！无论是商业宣传片、纪录片还是其他视频项目，我都期待与您合作。</p>
-<!-- GIF 装饰元素 -->
 <img src="images/GIF/head2.gif" alt="GIF 装饰 1" class="contact-gif contact-gif-1">
 <img src="images/GIF/head3.gif" alt="GIF 装饰 2" class="contact-gif contact-gif-2">
 <img src="images/GIF/head4.gif" alt="GIF 装饰 3" class="contact-gif contact-gif-3">
@@ -502,7 +547,7 @@ entry.target.classList.remove('visible');
 }
 });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.video-card, .skill-card, .skill-list-item, .tool-item, .photo-item').forEach(el => observer.observe(el));
+document.querySelectorAll('.video-card, .skill-card, .skill-list-item, .tool-item, .photo-item, .experience-card').forEach(el => observer.observe(el));
 const heroObserver = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { animateNumbers(); heroObserver.unobserve(entry.target); } }); }, { threshold: 0.5 });
 heroObserver.observe(document.querySelector('.hero-stats'));
 function openModal(el) {
