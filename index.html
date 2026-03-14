@@ -23,7 +23,7 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .hero::after{content:'';position:absolute;bottom:-30%;right:-20%;width:100%;height:100%;background:radial-gradient(circle,rgba(240,147,251,0.1) 0%,transparent 60%);animation:pulse 10s ease-in-out infinite reverse}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:0.5}50%{transform:scale(1.1);opacity:0.8}}
 .hero-container{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center}
-.hero-content{opacity:0;transform:translateY(30px);animation:fadeInUp 1s ease 0.3s forwards}
+.hero-content{opacity:0;transform:translateY(30px);animation:fadeInUp 1s ease 0.3s forwards;background:rgba(10,10,10,0.85);backdrop-filter:blur(10px);padding:40px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 60px rgba(0,0,0,0.5)}
 .hero-subtitle{font-size:1.1rem;color:var(--accent);margin-bottom:10px;font-weight:600;letter-spacing:2px}
 .hero h1{font-size:clamp(2.5rem,5vw,4rem);margin-bottom:20px;line-height:1.2}
 .hero h1 span{background:var(--gradient-1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -223,10 +223,10 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 </div>
 </section>
 <section class="experience" id="experience">
-<h2 class="section-title">个人学习和工作经历</h2>
+<h2 class="section-title">个人经历</h2>
 <div class="experience-container">
 <div class="experience-card">
-<div class="experience-card-label">Experience</div>
+<div class="experience-card-label" style="color:#6366f1">Experience</div>
 <h3 class="experience-card-title">个人学习和工作经历</h3>
 <div class="experience-text-section">
 <div class="experience-text-container" id="experienceTextContainer">
@@ -278,6 +278,58 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 <div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg8.jpg"><div class="photo-overlay"><h4>作品 08</h4><p>摄影作品</p></div></div>
 <div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg9.jpg"><div class="photo-overlay"><h4>作品 09</h4><p>摄影作品</p></div></div>
 <div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg10.jpg"><div class="photo-overlay"><h4>作品 10</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg11.jpg"><div class="photo-overlay"><h4>作品 11</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg12.jpg"><div class="photo-overlay"><h4>作品 12</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg13.jpg"><div class="photo-overlay"><h4>作品 13</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg14.jpg"><div class="photo-overlay"><h4>作品 14</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg15.jpg"><div class="photo-overlay"><h4>作品 15</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg16.jpg"><div class="photo-overlay"><h4>作品 16</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg17.jpg"><div class="photo-overlay"><h4>作品 17</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg18.jpg"><div class="photo-overlay"><h4>作品 18</h4><p>摄影作品</p></div></div>
+<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg19.jpg"><div class="photo-overlay"><h4>作品 19</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg20.jpg"><div class="photo-overlay"><h4>作品 20</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg21.jpg"><div class="photo-overlay"><h4>作品 21</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg22.jpg"><div class="photo-overlay"><h4>作品 22</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg23.jpg"><div class="photo-overlay"><h4>作品 23</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg24.jpg"><div class="photo-overlay"><h4>作品 24</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg25.jpg"><div class="photo-overlay"><h4>作品 25</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg26.jpg"><div class="photo-overlay"><h4>作品 26</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg27.jpg"><div class="photo-overlay"><h4>作品 27</h4><p>摄影作品</p></div></div>
+<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg28.jpg"><div class="photo-overlay"><h4>作品 28</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg29.jpg"><div class="photo-overlay"><h4>作品 29</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg30.jpg"><div class="photo-overlay"><h4>作品 30</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg31.jpg"><div class="photo-overlay"><h4>作品 31</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg32.jpg"><div class="photo-overlay"><h4>作品 32</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg33.jpg"><div class="photo-overlay"><h4>作品 33</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg34.jpg"><div class="photo-overlay"><h4>作品 34</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg35.jpg"><div class="photo-overlay"><h4>作品 35</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg36.jpg"><div class="photo-overlay"><h4>作品 36</h4><p>摄影作品</p></div></div>
+<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg37.jpg"><div class="photo-overlay"><h4>作品 37</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg38.jpg"><div class="photo-overlay"><h4>作品 38</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg39.jpg"><div class="photo-overlay"><h4>作品 39</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg40.jpg"><div class="photo-overlay"><h4>作品 40</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg41.jpg"><div class="photo-overlay"><h4>作品 41</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg42.jpg"><div class="photo-overlay"><h4>作品 42</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg43.jpg"><div class="photo-overlay"><h4>作品 43</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg44.jpg"><div class="photo-overlay"><h4>作品 44</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg45.jpg"><div class="photo-overlay"><h4>作品 45</h4><p>摄影作品</p></div></div>
+<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg46.jpg"><div class="photo-overlay"><h4>作品 46</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg47.jpg"><div class="photo-overlay"><h4>作品 47</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg48.jpg"><div class="photo-overlay"><h4>作品 48</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg49.jpg"><div class="photo-overlay"><h4>作品 49</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg50.jpg"><div class="photo-overlay"><h4>作品 50</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg51.jpg"><div class="photo-overlay"><h4>作品 51</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg52.jpg"><div class="photo-overlay"><h4>作品 52</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg53.jpg"><div class="photo-overlay"><h4>作品 53</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg54.jpg"><div class="photo-overlay"><h4>作品 54</h4><p>摄影作品</p></div></div>
+<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg55.jpg"><div class="photo-overlay"><h4>作品 55</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg56.jpg"><div class="photo-overlay"><h4>作品 56</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg57.jpg"><div class="photo-overlay"><h4>作品 57</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg58.jpg"><div class="photo-overlay"><h4>作品 58</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg59.jpg"><div class="photo-overlay"><h4>作品 59</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg60.jpg"><div class="photo-overlay"><h4>作品 60</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg61.jpg"><div class="photo-overlay"><h4>作品 61</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg62.jpg"><div class="photo-overlay"><h4>作品 62</h4><p>摄影作品</p></div></div>
 </div></div>
 </div>
 </section>
