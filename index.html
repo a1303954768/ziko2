@@ -108,18 +108,16 @@ animation: pulse 10s ease-in-out infinite reverse;
 .tools-description { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
 .tools-description strong { color: var(--text-primary); }
 
-/* 经历页面样式 */
+/* 经历页面样式 - 全屏设计 */
 .experience { 
-padding: 120px 5%; 
+padding: 120px 5% 60px; 
 background: var(--bg-primary); 
 min-height: 100vh;
 }
 .experience-container { 
-max-width: 1400px; 
+max-width: 1600px; 
 margin: 0 auto; 
-display: grid; 
-grid-template-columns: 1fr 1fr; 
-gap: 60px;
+width: 100%;
 }
 .experience-card { 
 background: var(--bg-card); 
@@ -134,65 +132,94 @@ transition: all 0.6s ease;
 .experience-card:hover { border-color: rgba(99, 102, 241, 0.3); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1); }
 .experience-card-label { font-size: 0.9rem; color: var(--accent); margin-bottom: 10px; font-weight: 600; letter-spacing: 1px; }
 .experience-card-title { font-size: 2rem; margin-bottom: 30px; line-height: 1.2; }
-/* 项目经历滚动容器 */
-.project-scroll-container { 
-height: 500px; 
-overflow-y: auto; 
+
+/* 上2/3 - 经历文字区域 */
+.experience-text-section {
+height: 65vh;
+margin-bottom: 30px;
 position: relative;
-border: 2px solid #ff4444;
-border-radius: 12px;
-padding: 20px;
+overflow: hidden;
+border: 2px solid rgba(99, 102, 241, 0.3);
+border-radius: 16px;
 }
-.project-scroll-container::-webkit-scrollbar { width: 6px; }
-.project-scroll-container::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 3px; }
-.project-scroll-container::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
-.project-item { 
-padding: 25px; 
-background: rgba(255, 255, 255, 0.03); 
-border-radius: 12px; 
-margin-bottom: 20px; 
-border: 1px solid rgba(255, 255, 255, 0.05); 
-transition: all 0.3s ease; 
-cursor: pointer; 
+.experience-text-container {
+height: 100%;
+overflow-y: auto;
+scroll-snap-type: y mandatory;
+scroll-behavior: smooth;
 }
-.project-item:hover { background: rgba(99, 102, 241, 0.1); border-color: var(--accent); }
-.project-item h4 { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-primary); }
-.project-item .project-date { font-size: 0.85rem; color: var(--accent); margin-bottom: 10px; }
-.project-item p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
-.project-item.active { background: rgba(99, 102, 241, 0.2); border-color: var(--accent); }
-/* 图片循环滚动 */
-.image-carousel { 
-height: 500px; 
-overflow: hidden; 
-position: relative; 
-border-radius: 12px;
-border: 2px solid #ffd700;
-}
-.carousel-track { 
-display: flex; 
+.experience-text-container::-webkit-scrollbar { width: 8px; }
+.experience-text-container::-webkit-scrollbar-track { background: var(--bg-secondary); }
+.experience-text-container::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+.experience-item {
+height: 100%;
+min-height: 100%;
+scroll-snap-align: start;
+padding: 60px;
+display: flex;
 flex-direction: column;
-gap: 15px; 
-animation: scrollUp 20s linear infinite;
-padding: 15px;
+justify-content: center;
+border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+transition: all 0.5s ease;
 }
-.carousel-track:hover { animation-play-state: paused; }
-.carousel-item { 
-min-height: 200px; 
-border-radius: 12px; 
-overflow: hidden; 
-transition: all 0.5s ease; 
-cursor: pointer;
+.experience-item h3 {
+font-size: 2.5rem;
+margin-bottom: 15px;
+background: var(--gradient-1);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
 }
-.carousel-item:hover { 
-transform: scale(2); 
-z-index: 10; 
-box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+.experience-item .experience-date {
+font-size: 1.1rem;
+color: var(--accent);
+margin-bottom: 25px;
+font-weight: 600;
+}
+.experience-item p {
+font-size: 1.15rem;
+color: var(--text-secondary);
+line-height: 2;
+max-width: 900px;
+}
+.experience-item.active {
+background: rgba(99, 102, 241, 0.05);
+}
+
+/* 下1/3 - 照片滚动区域 */
+.experience-photo-section {
+height: 30vh;
+min-height: 250px;
 position: relative;
+overflow: hidden;
+border: 2px solid rgba(99, 102, 241, 0.3);
+border-radius: 16px;
 }
-.carousel-item img { width: 100%; height: 100%; object-fit: cover; }
-@keyframes scrollUp {
-0% { transform: translateY(0); }
-100% { transform: translateY(-50%); }
+.photo-carousel-track {
+display: flex;
+gap: 20px;
+padding: 20px;
+height: 100%;
+transition: transform 0.3s ease;
+}
+.photo-carousel-item {
+min-width: 280px;
+height: 100%;
+border-radius: 12px;
+overflow: hidden;
+transition: all 0.5s ease;
+cursor: pointer;
+flex-shrink: 0;
+}
+.photo-carousel-item:hover {
+transform: scale(1.5);
+z-index: 100;
+box-shadow: 0 20px 60px rgba(99, 102, 241, 0.5);
+}
+.photo-carousel-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
 }
 
 .portfolio { padding: 120px 5%; background: var(--bg-primary); }
@@ -246,50 +273,14 @@ position: relative;
 .contact-buttons { display: flex; justify-content: center; gap: 20px; margin-top: 40px; flex-wrap: wrap; position: relative; z-index: 10; }
 .contact-btn { padding: 18px 40px; background: var(--gradient-1); color: white; border: none; border-radius: 30px; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; position: relative; }
 .contact-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4); }
-/* GIF 装饰元素 */
-.contact-gif {
-position: absolute;
-width: 150px;
-height: 150px;
-object-fit: cover;
-border-radius: 12px;
-opacity: 0.8;
-transition: all 0.3s ease;
-z-index: 1;
-}
-.contact-gif:hover {
-opacity: 1;
-transform: scale(1.05);
-}
+.contact-gif { position: absolute; width: 150px; height: 150px; object-fit: cover; border-radius: 12px; opacity: 0.8; transition: all 0.3s ease; z-index: 1; }
+.contact-gif:hover { opacity: 1; transform: scale(1.05); }
 .contact-gif-1 { top: 80px; left: 15%; }
 .contact-gif-2 { top: 80px; right: 15%; }
 .contact-gif-3 { bottom: 80px; left: 10%; }
 .contact-gif-4 { bottom: 80px; right: 10%; }
-/* Toast 提示框 - 按钮上方居中显示 */
-.toast {
-position: absolute;
-top: -60px;
-left: 50%;
-transform: translateX(-50%) translateY(-10px);
-background: var(--bg-card);
-color: var(--text-primary);
-padding: 12px 24px;
-border-radius: 8px;
-border: 1px solid var(--accent);
-box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-z-index: 100;
-opacity: 0;
-transition: all 0.3s ease;
-display: flex;
-align-items: center;
-gap: 8px;
-white-space: nowrap;
-font-size: 0.9rem;
-}
-.toast.show {
-transform: translateX(-50%) translateY(0);
-opacity: 1;
-}
+.toast { position: absolute; top: -60px; left: 50%; transform: translateX(-50%) translateY(-10px); background: var(--bg-card); color: var(--text-primary); padding: 12px 24px; border-radius: 8px; border: 1px solid var(--accent); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); z-index: 100; opacity: 0; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 0.9rem; }
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 .toast-icon { font-size: 1rem; }
 .toast-text { font-size: 0.9rem; }
 .toast-text strong { color: var(--accent); }
@@ -308,7 +299,6 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 .hero-stats { gap: 20px; }
 .stat-item { flex: 1; min-width: 120px; }
 .skills-container { grid-template-columns: 1fr; }
-.experience-container { grid-template-columns: 1fr; }
 .photo-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); grid-auto-rows: 180px; }
 .contact-gif { width: 120px; height: 120px; }
 .contact-gif-1 { top: 60px; left: 5%; }
@@ -340,9 +330,12 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 .tools-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
 .experience { padding: 80px 5%; }
 .experience-card { padding: 30px; }
-.project-scroll-container { height: 300px; }
-.image-carousel { height: 300px; }
-.carousel-item { min-height: 150px; }
+.experience-text-section { height: 50vh; }
+.experience-item { padding: 30px; }
+.experience-item h3 { font-size: 1.8rem; }
+.experience-item p { font-size: 1rem; }
+.experience-photo-section { height: 25vh; min-height: 180px; }
+.photo-carousel-item { min-width: 200px; }
 .portfolio { padding: 80px 5%; }
 .portfolio-grid { gap: 20px; }
 .photo-scroll-container { height: 600px; }
@@ -439,58 +432,56 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 </div>
 </div>
 </section>
-<!-- 经历页面 -->
+<!-- 经历页面 - 全屏设计 -->
 <section class="experience" id="experience">
 <h2 class="section-title">经历</h2>
 <div class="experience-container">
-<!-- 左侧：项目经历 -->
 <div class="experience-card">
-<div class="experience-card-label">Project</div>
-<h3 class="experience-card-title">在校微电影经历</h3>
-<div class="project-scroll-container">
-<div class="project-item active">
-<h4>商业宣传片制作</h4>
-<div class="project-date">2023.06 - 2023.09</div>
-<p>负责某知名品牌的年度宣传片全流程制作，包括前期策划、分镜设计、现场拍摄及后期剪辑调色。最终成片获得客户高度认可，全网播放量突破 500 万。</p>
+<div class="experience-card-label">Experience</div>
+<h3 class="experience-card-title">个人经历</h3>
+<!-- 上 2/3 - 经历文字区域 -->
+<div class="experience-text-section">
+<div class="experience-text-container" id="experienceTextContainer">
+<div class="experience-item active">
+<h3>商业宣传片制作</h3>
+<div class="experience-date">2023.06 - 2023.09</div>
+<p>负责某知名品牌的年度宣传片全流程制作，包括前期策划、分镜设计、现场拍摄及后期剪辑调色。使用达芬奇完成剪辑和调色，AE 制作动态图形。最终成片获得客户高度认可，全网播放量突破 500 万，成为品牌年度代表作。</p>
 </div>
-<div class="project-item">
-<h4>纪录片《匠心传承》</h4>
-<div class="project-date">2023.10 - 2024.01</div>
-<p>独立拍摄制作的人文纪录片，记录传统手工艺人的日常工作和生活。历时 3 个月跟拍，累计素材 200+ 小时，最终成片 30 分钟，入围多个电影节。</p>
+<div class="experience-item">
+<h3>纪录片《匠心传承》</h3>
+<div class="experience-date">2023.10 - 2024.01</div>
+<p>独立拍摄制作的人文纪录片，记录传统手工艺人的日常工作和生活。历时 3 个月跟拍，累计素材 200+ 小时，最终成片 30 分钟。运用 Sony A7S3 拍摄，达芬奇调色，入围多个电影节，获得最佳纪录片提名。</p>
 </div>
-<div class="project-item">
-<h4>产品发布会视频</h4>
-<div class="project-date">2024.02 - 2024.03</div>
-<p>为某科技公司新品发布会制作开场视频及产品展示视频。运用 AE 制作大量动态图形和特效，现场播放效果震撼，获得主办方好评。</p>
+<div class="experience-item">
+<h3>产品发布会视频</h3>
+<div class="experience-date">2024.02 - 2024.03</div>
+<p>为某科技公司新品发布会制作开场视频及产品展示视频。运用 AE 制作大量动态图形和特效，Blender 制作 3D 产品展示。现场播放效果震撼，获得主办方好评，视频在社交媒体获得 100 万 + 播放。</p>
 </div>
-<div class="project-item">
-<h4>微电影《归途》</h4>
-<div class="project-date">2024.04 - 2024.06</div>
-<p>自编自导自剪的原创微电影，讲述游子归乡的故事。从剧本创作到后期制作全程独立完成，时长 15 分钟，在多个平台获得良好反响。</p>
+<div class="experience-item">
+<h3>微电影《归途》</h3>
+<div class="experience-date">2024.04 - 2024.06</div>
+<p>自编自导自剪的原创微电影，讲述游子归乡的故事。从剧本创作到后期制作全程独立完成，时长 15 分钟。使用 Panasonic S52 拍摄，达芬奇调色，在多个平台获得良好反响，累计播放 80 万+。</p>
 </div>
-<div class="project-item">
-<h4>短视频系列运营</h4>
-<div class="project-date">2024.07 - 至今</div>
-<p>负责某品牌抖音/小红书账号的短视频内容创作，累计制作视频 50+ 条，单条最高播放量 300 万+，帮助账号粉丝增长 10 万+。</p>
+<div class="experience-item">
+<h3>短视频系列运营</h3>
+<div class="experience-date">2024.07 - 至今</div>
+<p>负责某品牌抖音/小红书账号的短视频内容创作，累计制作视频 50+ 条，单条最高播放量 300 万+，帮助账号粉丝增长 10 万+。运用 AI 工具辅助创作，提高内容产出效率和质量。</p>
 </div>
 </div>
 </div>
-<!-- 右侧：循环滚动图片 -->
-<div class="experience-card">
-<div class="experience-card-label">Gallery</div>
-<h3 class="experience-card-title">工作花絮</h3>
-<div class="image-carousel">
-<div class="carousel-track">
-<div class="carousel-item"><img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=600" alt="工作花絮 1"></div>
-<div class="carousel-item"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600" alt="工作花絮 2"></div>
-<div class="carousel-item"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600" alt="工作花絮 3"></div>
-<div class="carousel-item"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600" alt="工作花絮 4"></div>
-<div class="carousel-item"><img src="https://images.unsplash.com/photo-1512070800540-0d4192faa0e0?w=600" alt="工作花絮 5"></div>
-<div class="carousel-item"><img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=600" alt="工作花絮 1"></div>
-<div class="carousel-item"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600" alt="工作花絮 2"></div>
-<div class="carousel-item"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600" alt="工作花絮 3"></div>
-<div class="carousel-item"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600" alt="工作花絮 4"></div>
-<div class="carousel-item"><img src="https://images.unsplash.com/photo-1512070800540-0d4192faa0e0?w=600" alt="工作花絮 5"></div>
+<!-- 下 1/3 - 照片滚动区域 -->
+<div class="experience-photo-section">
+<div class="photo-carousel-track" id="photoCarouselTrack">
+<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=600" alt="工作花絮 1"></div>
+<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600" alt="工作花絮 2"></div>
+<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600" alt="工作花絮 3"></div>
+<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600" alt="工作花絮 4"></div>
+<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1512070800540-0d4192faa0e0?w=600" alt="工作花絮 5"></div>
+<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600" alt="工作花絮 6"></div>
+<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600" alt="工作花絮 7"></div>
+<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=600" alt="工作花絮 1"></div>
+<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600" alt="工作花絮 2"></div>
+<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600" alt="工作花絮 3"></div>
 </div>
 </div>
 </div>
@@ -540,65 +531,12 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 <div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg8.jpg"><div class="photo-overlay"><h4>作品 08</h4><p>摄影作品</p></div></div>
 <div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg9.jpg"><div class="photo-overlay"><h4>作品 09</h4><p>摄影作品</p></div></div>
 <div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg10.jpg"><div class="photo-overlay"><h4>作品 10</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg11.jpg"><div class="photo-overlay"><h4>作品 11</h4><p>摄影作品</p></div></div>
-<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg12.jpg"><div class="photo-overlay"><h4>作品 12</h4><p>摄影作品</p></div></div>
-<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg13.jpg"><div class="photo-overlay"><h4>作品 13</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg14.jpg"><div class="photo-overlay"><h4>作品 14</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg15.jpg"><div class="photo-overlay"><h4>作品 15</h4><p>摄影作品</p></div></div>
-<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg16.jpg"><div class="photo-overlay"><h4>作品 16</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg17.jpg"><div class="photo-overlay"><h4>作品 17</h4><p>摄影作品</p></div></div>
-<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg18.jpg"><div class="photo-overlay"><h4>作品 18</h4><p>摄影作品</p></div></div>
-<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg19.jpg"><div class="photo-overlay"><h4>作品 19</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg20.jpg"><div class="photo-overlay"><h4>作品 20</h4><p>摄影作品</p></div></div>
-<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg21.jpg"><div class="photo-overlay"><h4>作品 21</h4><p>摄影作品</p></div></div>
-<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg22.jpg"><div class="photo-overlay"><h4>作品 22</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg23.jpg"><div class="photo-overlay"><h4>作品 23</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg24.jpg"><div class="photo-overlay"><h4>作品 24</h4><p>摄影作品</p></div></div>
-<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg25.jpg"><div class="photo-overlay"><h4>作品 25</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg26.jpg"><div class="photo-overlay"><h4>作品 26</h4><p>摄影作品</p></div></div>
-<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg27.jpg"><div class="photo-overlay"><h4>作品 27</h4><p>摄影作品</p></div></div>
-<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg28.jpg"><div class="photo-overlay"><h4>作品 28</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg29.jpg"><div class="photo-overlay"><h4>作品 29</h4><p>摄影作品</p></div></div>
-<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg30.jpg"><div class="photo-overlay"><h4>作品 30</h4><p>摄影作品</p></div></div>
-<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg31.jpg"><div class="photo-overlay"><h4>作品 31</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg32.jpg"><div class="photo-overlay"><h4>作品 32</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg33.jpg"><div class="photo-overlay"><h4>作品 33</h4><p>摄影作品</p></div></div>
-<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg34.jpg"><div class="photo-overlay"><h4>作品 34</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg35.jpg"><div class="photo-overlay"><h4>作品 35</h4><p>摄影作品</p></div></div>
-<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg36.jpg"><div class="photo-overlay"><h4>作品 36</h4><p>摄影作品</p></div></div>
-<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg37.jpg"><div class="photo-overlay"><h4>作品 37</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg38.jpg"><div class="photo-overlay"><h4>作品 38</h4><p>摄影作品</p></div></div>
-<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg39.jpg"><div class="photo-overlay"><h4>作品 39</h4><p>摄影作品</p></div></div>
-<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg40.jpg"><div class="photo-overlay"><h4>作品 40</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg41.jpg"><div class="photo-overlay"><h4>作品 41</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg42.jpg"><div class="photo-overlay"><h4>作品 42</h4><p>摄影作品</p></div></div>
-<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg43.jpg"><div class="photo-overlay"><h4>作品 43</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg44.jpg"><div class="photo-overlay"><h4>作品 44</h4><p>摄影作品</p></div></div>
-<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg45.jpg"><div class="photo-overlay"><h4>作品 45</h4><p>摄影作品</p></div></div>
-<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg46.jpg"><div class="photo-overlay"><h4>作品 46</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg47.jpg"><div class="photo-overlay"><h4>作品 47</h4><p>摄影作品</p></div></div>
-<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg48.jpg"><div class="photo-overlay"><h4>作品 48</h4><p>摄影作品</p></div></div>
-<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg49.jpg"><div class="photo-overlay"><h4>作品 49</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg50.jpg"><div class="photo-overlay"><h4>作品 50</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg51.jpg"><div class="photo-overlay"><h4>作品 51</h4><p>摄影作品</p></div></div>
-<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg52.jpg"><div class="photo-overlay"><h4>作品 52</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg53.jpg"><div class="photo-overlay"><h4>作品 53</h4><p>摄影作品</p></div></div>
-<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg54.jpg"><div class="photo-overlay"><h4>作品 54</h4><p>摄影作品</p></div></div>
-<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg55.jpg"><div class="photo-overlay"><h4>作品 55</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg56.jpg"><div class="photo-overlay"><h4>作品 56</h4><p>摄影作品</p></div></div>
-<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg57.jpg"><div class="photo-overlay"><h4>作品 57</h4><p>摄影作品</p></div></div>
-<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg58.jpg"><div class="photo-overlay"><h4>作品 58</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg59.jpg"><div class="photo-overlay"><h4>作品 59</h4><p>摄影作品</p></div></div>
-<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg60.jpg"><div class="photo-overlay"><h4>作品 60</h4><p>摄影作品</p></div></div>
-<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg61.jpg"><div class="photo-overlay"><h4>作品 61</h4><p>摄影作品</p></div></div>
-<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg62.jpg"><div class="photo-overlay"><h4>作品 62</h4><p>摄影作品</p></div></div>
 </div></div>
 </div>
 </section>
 <section class="contact" id="contact">
 <h2 class="section-title">联系我</h2>
 <p class="contact-description">非常感谢您在百忙之中浏览完我的个人网站，如果您对我的经历和作品感兴趣，快点击下方按钮吧!</p>
-<!-- GIF 装饰元素 -->
 <img src="images/GIF/head2.gif" alt="GIF 装饰 1" class="contact-gif contact-gif-1">
 <img src="images/GIF/head3.gif" alt="GIF 装饰 2" class="contact-gif contact-gif-2">
 <img src="images/GIF/head4.gif" alt="GIF 装饰 3" class="contact-gif contact-gif-3">
@@ -675,6 +613,84 @@ let lastScroll = 0; window.addEventListener('scroll', () => { const nav = docume
 function toggleMenu() { const nav = document.getElementById('navLinks'), toggle = document.querySelector('.menu-toggle'); nav.classList.toggle('active'); toggle.classList.toggle('active'); }
 document.addEventListener('click', e => { const nav = document.getElementById('navLinks'), toggle = document.querySelector('.menu-toggle'); if (!nav.contains(e.target) && !toggle.contains(e.target)) { nav.classList.remove('active'); toggle.classList.remove('active'); } });
 document.addEventListener('DOMContentLoaded', () => { setTimeout(() => document.querySelectorAll('.video-card').forEach((c,i) => setTimeout(() => c.classList.add('visible'), i*100)), 300); });
+
+// 经历页面 - 文字区域滚动切换
+const textContainer = document.getElementById('experienceTextContainer');
+const experienceItems = document.querySelectorAll('.experience-item');
+let currentExperienceIndex = 0;
+
+textContainer.addEventListener('wheel', (e) => {
+e.preventDefault();
+if (e.deltaY > 0) {
+currentExperienceIndex = (currentExperienceIndex + 1) % experienceItems.length;
+} else {
+currentExperienceIndex = (currentExperienceIndex - 1 + experienceItems.length) % experienceItems.length;
+}
+updateExperienceDisplay();
+}, { passive: false });
+
+function updateExperienceDisplay() {
+experienceItems.forEach((item, index) => {
+if (index === currentExperienceIndex) {
+item.classList.add('active');
+textContainer.scrollTo({
+top: item.offsetTop,
+behavior: 'smooth'
+});
+} else {
+item.classList.remove('active');
+}
+});
+}
+
+// 经历页面 - 照片滚动区域
+const photoTrack = document.getElementById('photoCarouselTrack');
+let photoScrollPosition = 0;
+let isPhotoHovered = false;
+let autoScrollInterval;
+
+// 自动滚动
+function startAutoScroll() {
+autoScrollInterval = setInterval(() => {
+if (!isPhotoHovered) {
+photoScrollPosition += 2;
+const maxScroll = photoTrack.scrollWidth / 2;
+if (photoScrollPosition >= maxScroll) {
+photoScrollPosition = 0;
+}
+photoTrack.style.transform = `translateX(-${photoScrollPosition}px)`;
+}
+}, 30);
+}
+
+// 鼠标悬停停止滚动并放大
+photoTrack.addEventListener('mouseenter', () => {
+isPhotoHovered = true;
+clearInterval(autoScrollInterval);
+});
+
+photoTrack.addEventListener('mouseleave', () => {
+isPhotoHovered = false;
+startAutoScroll();
+});
+
+// 滚轮控制左右滚动
+photoTrack.addEventListener('wheel', (e) => {
+e.preventDefault();
+photoScrollPosition += e.deltaX || e.deltaY;
+const maxScroll = photoTrack.scrollWidth - photoTrack.parentElement.clientWidth;
+photoScrollPosition = Math.max(0, Math.min(photoScrollPosition, maxScroll));
+photoTrack.style.transform = `translateX(-${photoScrollPosition}px)`;
+}, { passive: false });
+
+// 复制图片实现无缝滚动
+const originalPhotos = photoTrack.querySelectorAll('.photo-carousel-item');
+originalPhotos.forEach(photo => {
+const clone = photo.cloneNode(true);
+photoTrack.appendChild(clone);
+});
+
+startAutoScroll();
 </script>
 </body>
 </html>
