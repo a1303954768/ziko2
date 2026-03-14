@@ -110,7 +110,7 @@ animation: pulse 10s ease-in-out infinite reverse;
 
 /* 经历页面样式 - 全屏设计 */
 .experience { 
-padding: 120px 2% 60px; 
+padding: 100px 2% 40px; 
 background: var(--bg-primary); 
 min-height: 100vh;
 }
@@ -133,10 +133,10 @@ transition: all 0.6s ease;
 .experience-card-label { font-size: 0.9rem; color: var(--accent); margin-bottom: 10px; font-weight: 600; letter-spacing: 1px; }
 .experience-card-title { font-size: 2rem; margin-bottom: 30px; line-height: 1.2; }
 
-/* 上 2/3 - 经历文字区域 */
+/* 上 2/3 - 经历文字区域 - 调整高度 */
 .experience-text-section {
-height: 50vh;
-margin-bottom: 30px;
+height: 45vh;
+margin-bottom: 20px;
 position: relative;
 overflow: hidden;
 border: 2px solid rgba(99, 102, 241, 0.3);
@@ -332,7 +332,7 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 .tools-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
 .experience { padding: 80px 2%; }
 .experience-card { padding: 30px; }
-.experience-text-section { height: 45vh; }
+.experience-text-section { height: 40vh; }
 .experience-item { padding: 30px; }
 .experience-item h3 { font-size: 1.8rem; }
 .experience-item p { font-size: 1rem; }
@@ -436,7 +436,7 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 </section>
 <!-- 经历页面 - 全屏设计 -->
 <section class="experience" id="experience">
-<h2 class="section-title">经历</h2>
+<h2 class="section-title">个人经历</h2>
 <div class="experience-container">
 <div class="experience-card">
 <div class="experience-card-label">Experience</div>
@@ -481,9 +481,6 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 <div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1512070800540-0d4192faa0e0?w=600" alt="工作花絮 5"></div>
 <div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600" alt="工作花絮 6"></div>
 <div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600" alt="工作花絮 7"></div>
-<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=600" alt="工作花絮 1"></div>
-<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600" alt="工作花絮 2"></div>
-<div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600" alt="工作花絮 3"></div>
 </div>
 </div>
 </div>
@@ -660,17 +657,30 @@ item.classList.remove('active');
 });
 }
 
-// 经历页面 - 照片滚动区域
+// 经历页面 - 照片滚动区域（无缝循环）
 const photoTrack = document.getElementById('photoCarouselTrack');
 let photoScrollPosition = 0;
 let isPhotoHovered = false;
 let autoScrollInterval;
+let photoItems = [];
+let cloneItems = [];
+
+// 初始化照片滚动
+function initPhotoCarousel() {
+photoItems = Array.from(photoTrack.querySelectorAll('.photo-carousel-item'));
+// 克隆所有图片实现无缝滚动
+photoItems.forEach((item, index) => {
+const clone = item.cloneNode(true);
+cloneItems.push(clone);
+photoTrack.appendChild(clone);
+});
+}
 
 // 自动滚动
 function startAutoScroll() {
 autoScrollInterval = setInterval(() => {
 if (!isPhotoHovered) {
-photoScrollPosition += 2;
+photoScrollPosition += 1;
 const maxScroll = photoTrack.scrollWidth / 2;
 if (photoScrollPosition >= maxScroll) {
 photoScrollPosition = 0;
@@ -695,18 +705,17 @@ startAutoScroll();
 photoTrack.addEventListener('wheel', (e) => {
 e.preventDefault();
 photoScrollPosition += e.deltaX || e.deltaY;
-const maxScroll = photoTrack.scrollWidth - photoTrack.parentElement.clientWidth;
-photoScrollPosition = Math.max(0, Math.min(photoScrollPosition, maxScroll));
+const maxScroll = photoTrack.scrollWidth / 2;
+if (photoScrollPosition >= maxScroll) {
+photoScrollPosition = 0;
+} else if (photoScrollPosition < 0) {
+photoScrollPosition = maxScroll;
+}
 photoTrack.style.transform = `translateX(-${photoScrollPosition}px)`;
 }, { passive: false });
 
-// 复制图片实现无缝滚动
-const originalPhotos = photoTrack.querySelectorAll('.photo-carousel-item');
-originalPhotos.forEach(photo => {
-const clone = photo.cloneNode(true);
-photoTrack.appendChild(clone);
-});
-
+// 初始化
+initPhotoCarousel();
 startAutoScroll();
 </script>
 </body>
