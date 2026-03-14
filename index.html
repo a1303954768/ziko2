@@ -135,7 +135,7 @@ transition: all 0.6s ease;
 
 /* 上 2/3 - 经历文字区域 - 调整高度 */
 .experience-text-section {
-height: 45vh;
+height: 40vh;
 margin-bottom: 20px;
 position: relative;
 overflow: hidden;
@@ -436,11 +436,11 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 </section>
 <!-- 经历页面 - 全屏设计 -->
 <section class="experience" id="experience">
-<h2 class="section-title">个人经历</h2>
+<h2 class="section-title">经历</h2>
 <div class="experience-container">
 <div class="experience-card">
 <div class="experience-card-label">Experience</div>
-<h3 class="experience-card-title">个人经历</h3>
+<h3 class="experience-card-title">经历</h3>
 <!-- 上 2/3 - 经历文字区域 -->
 <div class="experience-text-section">
 <div class="experience-text-container" id="experienceTextContainer">
@@ -473,6 +473,7 @@ footer { padding: 30px 5%; background: var(--bg-primary); text-align: center; co
 </div>
 <!-- 下 1/3 - 照片滚动区域 -->
 <div class="experience-photo-section">
+<h3 style="font-size: 1.5rem; margin-bottom: 15px; color: var(--text-primary);">一些工作花絮照</h3>
 <div class="photo-carousel-track" id="photoCarouselTrack">
 <div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=600" alt="工作花絮 1"></div>
 <div class="photo-carousel-item"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600" alt="工作花絮 2"></div>
@@ -663,15 +664,13 @@ let photoScrollPosition = 0;
 let isPhotoHovered = false;
 let autoScrollInterval;
 let photoItems = [];
-let cloneItems = [];
 
 // 初始化照片滚动
 function initPhotoCarousel() {
 photoItems = Array.from(photoTrack.querySelectorAll('.photo-carousel-item'));
 // 克隆所有图片实现无缝滚动
-photoItems.forEach((item, index) => {
+photoItems.forEach((item) => {
 const clone = item.cloneNode(true);
-cloneItems.push(clone);
 photoTrack.appendChild(clone);
 });
 }
