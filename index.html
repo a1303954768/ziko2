@@ -6,6 +6,7 @@
 <title>黄梓冠 Ziko | 视频创作者</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+/* 将卡片背景微微透明 (0.85)，去掉毛玻璃，保证质感干净 */
 :root{--bg-primary:#0a0a0a;--bg-secondary:#111111;--bg-card:rgba(26,26,26,0.85);--text-primary:#fff;--text-secondary:#a0a0a0;--accent:#6366f1;--accent-hover:#4f46e5;--gradient-1:linear-gradient(135deg,#667eea 0%,#764ba2 100%);--gradient-2:linear-gradient(135deg,#f093fb 0%,#f5576c 100%)}
 html{scroll-behavior:smooth}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.8;overflow-x:hidden}
@@ -83,7 +84,10 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .experience-item p{font-size:1.1rem;color:var(--text-secondary);line-height:1.8;max-width:900px}
 .experience-item.active{background:rgba(99,102,241,0.05)}
 .experience-photo-section{height:25vh;min-height:200px;position:relative;overflow:visible;border-radius:16px}
-.photo-carousel-track{display:flex;gap:20px;padding:20px;height:100%;transition:transform 0.3s}
+
+/* ===== 核心修改：移除 transition 以便 JS 进行瞬时肉眼不可见的无缝切换 ===== */
+.photo-carousel-track{display:flex;gap:20px;padding:20px;height:100%;will-change:transform;} 
+
 .photo-carousel-item{min-width:220px;height:100%;border-radius:12px;overflow:visible;transition:all 0.5s;cursor:pointer;flex-shrink:0;position:relative;z-index:1}
 .photo-carousel-item:hover{transform:scale(1.5);z-index:1000;box-shadow:0 20px 60px rgba(99,102,241,0.5)}
 .photo-carousel-item img{width:100%;height:100%;object-fit:cover;border-radius:12px}
@@ -183,7 +187,6 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
     mix-blend-mode: screen; 
     opacity: 0.6; 
     will-change: transform; 
-    /* 强制开启 GPU 硬件加速，防止在低端设备卡顿 */
     transform: translateZ(0); 
 }
 
@@ -209,23 +212,19 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 }
 
 .spot-1 {
-    width: 40vw; 
-    height: 40vw;
-    /* 用边缘逐渐透明来代替高斯模糊，性能提升极多 */
+    width: 40vw; height: 40vw;
     background: radial-gradient(circle, rgba(13, 202, 240, 0.7) 0%, rgba(13, 202, 240, 0.2) 40%, transparent 70%); 
     animation: floatSpot1 26.7s ease-in-out infinite; 
 }
 
 .spot-2 {
-    width: 45vw; 
-    height: 45vw;
+    width: 45vw; height: 45vw;
     background: radial-gradient(circle, rgba(100, 102, 241, 0.7) 0%, rgba(100, 102, 241, 0.2) 40%, transparent 70%); 
     animation: floatSpot2 33.3s ease-in-out infinite; 
 }
 
 .spot-3 {
-    width: 38vw; 
-    height: 38vw;
+    width: 38vw; height: 38vw;
     background: radial-gradient(circle, rgba(255, 0, 255, 0.6) 0%, rgba(255, 0, 255, 0.15) 40%, transparent 70%); 
     animation: floatSpot3 30s ease-in-out infinite;
 }
@@ -320,34 +319,34 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 <div class="experience-photo-section">
 <h3 style="font-size:1.5rem;margin-bottom:15px;color:var(--text-primary)">一些工作花絮照</h3>
 <div class="photo-carousel-track" id="photoCarouselTrack">
-<div class="photo-carousel-item"><img src="images/bts/bts01.jpg" alt="工作花絮 1"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts02.jpg" alt="工作花絮 2"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts03.jpg" alt="工作花絮 3"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts04.jpg" alt="工作花絮 4"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts05.jpg" alt="工作花絮 5"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts06.jpg" alt="工作花絮 6"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts07.jpg" alt="工作花絮 7"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts08.jpg" alt="工作花絮 8"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts09.jpg" alt="工作花絮 9"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts10.jpg" alt="工作花絮 10"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts11.jpg" alt="工作花絮 11"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts12.jpg" alt="工作花絮 12"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts13.jpg" alt="工作花絮 13"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts14.jpg" alt="工作花絮 14"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts15.jpg" alt="工作花絮 15"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts16.jpg" alt="工作花絮 16"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts17.jpg" alt="工作花絮 17"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts18.jpg" alt="工作花絮 18"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts19.jpg" alt="工作花絮 19"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts20.jpg" alt="工作花絮 20"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts21.jpg" alt="工作花絮 21"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts22.jpg" alt="工作花絮 22"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts23.jpg" alt="工作花絮 23"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts24.jpg" alt="工作花絮 24"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts25.jpg" alt="工作花絮 25"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts26.jpg" alt="工作花絮 26"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts27.jpg" alt="工作花絮 27"></div>
-<div class="photo-carousel-item"><img src="images/bts/bts28.jpg" alt="工作花絮 28"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts01.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts02.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts03.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts04.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts05.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts06.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts07.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts08.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts09.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts10.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts11.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts12.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts13.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts14.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts15.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts16.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts17.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts18.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts19.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts20.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts21.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts22.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts23.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts24.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts25.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts26.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts27.jpg" alt="工作花絮"></div>
+<div class="photo-carousel-item"><img src="images/bts/bts28.jpg" alt="工作花絮"></div>
 </div>
 </div>
 </div>
@@ -573,13 +572,81 @@ document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>document.queryS
 const textContainer=document.getElementById('experienceTextContainer'),experienceItems=document.querySelectorAll('.experience-item');let currentExperienceIndex=0,isScrolling=false,scrollTimeout;
 textContainer.addEventListener('wheel',(e)=>{e.preventDefault();if(isScrolling)return;isScrolling=true;clearTimeout(scrollTimeout);if(e.deltaY>0){currentExperienceIndex=(currentExperienceIndex+1)%experienceItems.length}else{currentExperienceIndex=(currentExperienceIndex-1+experienceItems.length)%experienceItems.length}updateExperienceDisplay();scrollTimeout=setTimeout(()=>{isScrolling=false},500)},{passive:false});
 function updateExperienceDisplay(){experienceItems.forEach((item,index)=>{if(index===currentExperienceIndex){item.classList.add('active');textContainer.scrollTo({top:item.offsetTop,behavior:'smooth'})}else{item.classList.remove('active')}})}
-const photoTrack=document.getElementById('photoCarouselTrack');let photoScrollPosition=0,isPhotoHovered=false,autoScrollInterval,photoItems=[];
-function initPhotoCarousel(){photoItems=Array.from(photoTrack.querySelectorAll('.photo-carousel-item'));photoItems.forEach((item)=>{const clone=item.cloneNode(true);photoTrack.appendChild(clone)})}
-function startAutoScroll(){autoScrollInterval=setInterval(()=>{if(!isPhotoHovered){photoScrollPosition+=1;const maxScroll=photoTrack.scrollWidth/2;if(photoScrollPosition>=maxScroll){photoScrollPosition=0}photoTrack.style.transform=`translateX(-${photoScrollPosition}px)`}},30)}
-photoTrack.addEventListener('mouseenter',()=>{isPhotoHovered=true;clearInterval(autoScrollInterval)});
-photoTrack.addEventListener('mouseleave',()=>{isPhotoHovered=false;startAutoScroll()});
-photoTrack.addEventListener('wheel',(e)=>{e.preventDefault();photoScrollPosition+=e.deltaX||e.deltaY;const maxScroll=photoTrack.scrollWidth/2;if(photoScrollPosition>=maxScroll){photoScrollPosition=0}else if(photoScrollPosition<0){photoScrollPosition=maxScroll}photoTrack.style.transform=`translateX(-${photoScrollPosition}px)`},{passive:false});
-initPhotoCarousel();startAutoScroll();
+
+// ===== 重写：专业级防穿透、绝对无缝衔接循环照片相册 =====
+const photoSection = document.querySelector('.experience-photo-section');
+const photoTrack = document.getElementById('photoCarouselTrack');
+let photoScrollPosition = 0;
+let isPhotoHovered = false;
+let autoScrollId;
+let originalItemsCount = 0;
+let exactMaxScroll = 0;
+
+function initPhotoCarousel() {
+    const items = Array.from(photoTrack.querySelectorAll('.photo-carousel-item'));
+    originalItemsCount = items.length;
+    
+    // 克隆节点以供循环使用
+    items.forEach(item => {
+        const clone = item.cloneNode(true);
+        photoTrack.appendChild(clone);
+    });
+
+    // 延迟获取精准的偏移像素 (防止缝隙误差导致首尾跳动)
+    setTimeout(() => {
+        const allItems = photoTrack.querySelectorAll('.photo-carousel-item');
+        if(allItems.length > originalItemsCount) {
+            // 计算原版第一张到克隆版第一张之间的精确像素距离
+            exactMaxScroll = allItems[originalItemsCount].offsetLeft - allItems[0].offsetLeft;
+        }
+    }, 300);
+}
+
+// 自动滚动 (使用 requestAnimationFrame 保证满帧丝滑)
+function animatePhotoCarousel() {
+    if (!isPhotoHovered && exactMaxScroll > 0) {
+        photoScrollPosition += 1;
+        if (photoScrollPosition >= exactMaxScroll) {
+            photoScrollPosition -= exactMaxScroll; // 精准无缝重置
+        }
+        photoTrack.style.transform = `translate3d(-${photoScrollPosition}px, 0, 0)`;
+    }
+    autoScrollId = requestAnimationFrame(animatePhotoCarousel);
+}
+
+// 扩大悬停识别范围：只要在这个区块内，就暂停自动滚动
+photoSection.addEventListener('mouseenter', () => { isPhotoHovered = true; });
+photoSection.addEventListener('mouseleave', () => { isPhotoHovered = false; });
+
+// 扩大滚动接管范围：在这个区块上下滚动滚轮，只会左右移动照片，并且绝对阻止网页跟着上下动！
+photoSection.addEventListener('wheel', (e) => {
+    if(exactMaxScroll === 0) return;
+    e.preventDefault(); // 关键！阻止浏览器默认滚动
+    
+    // 兼容横向与纵向滚轮
+    photoScrollPosition += e.deltaX || e.deltaY;
+    
+    // 无缝循环边界检测
+    if (photoScrollPosition >= exactMaxScroll) {
+        photoScrollPosition -= exactMaxScroll;
+    } else if (photoScrollPosition < 0) {
+        photoScrollPosition += exactMaxScroll;
+    }
+    
+    photoTrack.style.transform = `translate3d(-${photoScrollPosition}px, 0, 0)`;
+}, { passive: false }); // 必须开启 passive: false 才能让 preventDefault 生效
+
+// 响应窗口大小变化时，重新计算无缝边界距离
+window.addEventListener('resize', () => {
+    const allItems = photoTrack.querySelectorAll('.photo-carousel-item');
+    if(allItems.length > originalItemsCount) {
+        exactMaxScroll = allItems[originalItemsCount].offsetLeft - allItems[0].offsetLeft;
+    }
+});
+
+initPhotoCarousel();
+animatePhotoCarousel();
+
 
 // ===== 流光随鼠标视差互动特效 =====
 document.addEventListener('mousemove', (e) => {
