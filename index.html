@@ -83,10 +83,13 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .experience-item p{font-size:1.1rem;color:var(--text-secondary);line-height:1.8;max-width:900px}
 .experience-item.active{background:rgba(99,102,241,0.05)}
 
-/* 全宽花絮照板块 */
+/* ===== 核心修复1：将 overflow:hidden 改为 visible，允许照片放大突破边界 ===== */
+.experience-photo-section{height:25vh;min-height:200px;position:relative;overflow:visible;border-radius:16px}
+
 .full-width-photo-carousel {
     width: 100vw; position: relative; left: 50%; transform: translateX(-50%);
     background: transparent; padding: 60px 0; margin-top: 40px; box-sizing: border-box;
+    overflow: visible; /* 确保全宽容器也能允许放大溢出 */
 }
 .full-width-photo-carousel h3 {
     max-width: 1800px; margin: 0 auto 30px; padding: 0 40px; font-size: 1.5rem;
@@ -95,11 +98,11 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .photo-carousel-track{display:flex;gap:20px;padding:20px;height:100%;will-change:transform;}
 .photo-carousel-item{min-width:220px;height:100%;border-radius:12px;overflow:visible;cursor:pointer;flex-shrink:0;position:relative;z-index:1;transition:transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;}
 
-/* ===== 核心修改：鼠标悬停放大两倍 (scale(2))，并增加阴影深度 ===== */
-.photo-carousel-item:hover{
-    transform:scale(2); 
-    z-index:1000; 
-    box-shadow:0 30px 80px rgba(99,102,241,0.6);
+/* ===== 核心修复2：悬停时真正放大两倍，并拥有巨大层级(z-index)防止被其他内容遮挡 ===== */
+.photo-carousel-item:hover {
+    transform: scale(2); /* 悬停时放大到两倍 */
+    z-index: 2000; /* 极高层级，保证盖在网页最上面 */
+    box-shadow: 0 30px 80px rgba(99,102,241,0.6);
 }
 
 .photo-carousel-item img{width:100%;height:100%;object-fit:cover;border-radius:12px;pointer-events:none;}
@@ -352,7 +355,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 <button class="filter-btn" onclick="filterPortfolio('photos')">静帧作品</button>
 </div>
 <div class="portfolio-grid" id="videoGrid">
-<div class="video-row">
+<div class="video-row visible">
 <div class="video-content">
 <h3>记录潮汕——年</h3>
 <p>春节期间，我来到潮汕，看到了这片土地特有的年味。通过镜头记录下传统习俗与现代生活的交融，展现了潮汕地区独特的文化魅力和浓厚的人情味。</p>
