@@ -87,7 +87,6 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 }
 .cultivator-img {
     width: 320px; 
-    /* 核心修复：将修仙者的层级降到 1，确保他在所有技能球和视频展开页的下方 */
     z-index: 1; 
     position: relative;
     pointer-events: none;
@@ -100,10 +99,9 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
     height: 350px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10; /* 技能球区域层级提升 */
+    z-index: 10;
 }
 
-/* --- 能量球骨架与动画结构 --- */
 .sphere-wrapper {
     position: absolute;
     top: 50%; left: 50%;
@@ -125,12 +123,10 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 }
 .energy-sphere img { width: 35px; height: 35px; object-fit: contain; pointer-events: none; }
 
-/* 悬浮置顶：确保所有的能量球和展开的视频，拥有绝对高的显示层级 */
 .sphere-wrapper:hover {
     z-index: 9999;
 }
 
-/* --- 核心位置排列：中心 AI，周围 7 环 --- */
 .pos-center { transform: translate(-50%, -50%); z-index: 20; } 
 .pos-1 { transform: translate(-50%, -50%) translate(0px, -135px); }       
 .pos-2 { transform: translate(-50%, -50%) translate(105px, -84px); }      
@@ -140,7 +136,6 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .pos-6 { transform: translate(-50%, -50%) translate(-131px, 30px); }      
 .pos-7 { transform: translate(-50%, -50%) translate(-105px, -84px); }     
 
-/* 浮动动画分配 */
 .float-1 { animation: sFloat1 4.5s ease-in-out infinite; }
 .float-2 { animation: sFloat2 5.2s ease-in-out infinite 0.5s; }
 .float-3 { animation: sFloat3 4.8s ease-in-out infinite 1s; }
@@ -155,8 +150,6 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 @keyframes sFloat3 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(10px) translateX(8px); } }
 @keyframes sFloatCenter { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-/* === 核心修改：万物归一的“环绕吸附”特效 === */
-/* AI 球自身的强化悬停 */
 .pos-center .energy-sphere { width: 80px; height: 80px; border-color: var(--accent); } 
 .pos-center .energy-sphere img { width: 45px; height: 45px; }
 .pos-center:hover .energy-sphere {
@@ -165,7 +158,6 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
     box-shadow: 0 0 50px #00f2ff, inset 0 0 30px #00f2ff;
 }
 
-/* 当鼠标悬停在 AI 球上时，其他轨道球紧紧贴在其周围形成能量环 */
 .energy-spheres-area:has(.pos-center:hover) .orbit-wrapper { opacity: 0.95; }
 .energy-spheres-area:has(.pos-center:hover) .pos-1 { transform: translate(-50%, -50%) translate(0px, -75px) scale(0.65); }
 .energy-spheres-area:has(.pos-center:hover) .pos-2 { transform: translate(-50%, -50%) translate(58px, -47px) scale(0.65); }
@@ -175,15 +167,12 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .energy-spheres-area:has(.pos-center:hover) .pos-6 { transform: translate(-50%, -50%) translate(-73px, 17px) scale(0.65); }
 .energy-spheres-area:has(.pos-center:hover) .pos-7 { transform: translate(-50%, -50%) translate(-58px, -47px) scale(0.65); }
 
-/* 普通球的悬停效果 */
 .orbit-wrapper:hover .energy-sphere {
     transform: scale(1.2);
     border-color: #fff;
     box-shadow: 0 0 30px var(--accent), inset 0 0 15px var(--accent);
 }
 
-
-/* === 核心修改：2倍放大且绝对在最顶层的弹窗视频面板 === */
 .sphere-wrapper:hover .skill-popup {
     opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); pointer-events: auto;
 }
@@ -200,7 +189,7 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
     box-shadow: -20px 25px 80px rgba(0,0,0,0.95), 0 0 30px rgba(99,102,241,0.3);
     opacity: 0; visibility: hidden; pointer-events: none;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 99999; /* 宇宙第一高的显示层级，彻底避免修仙者或文字遮挡 */
+    z-index: 99999; 
 }
 .skill-popup video { 
     width: 100%; border-radius: 10px; margin-bottom: 15px; 
@@ -316,11 +305,11 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 .modal-close{position:absolute;top:-50px;right:0;color:#fff;font-size:2.5rem;cursor:pointer;transition:transform 0.3s}
 .modal-close:hover{transform:rotate(90deg)}
 .modal-title{color:#fff;font-size:1.5rem;margin-top:20px;text-align:center}
+
 @media(max-width:968px){
     .hero-container{grid-template-columns:1fr;gap:50px}.hero-image{order:-1}.hero-stats{gap:20px}.stat-item{flex:1;min-width:120px}
     .photo-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));grid-auto-rows:180px}.contact-gif{width:120px;height:120px}.contact-gif-1{top:60px;left:5%}.contact-gif-2{top:60px;right:5%}.contact-gif-3{bottom:60px;left:2%}.contact-gif-4{bottom:60px;right:2%}.video-row{grid-template-columns:1fr;gap:40px}.video-row.reverse{direction:ltr}.video-content h3{font-size:1.5rem}
     
-    /* 移动端调整布局 */
     .skills-layout { grid-template-columns: 1fr; gap: 60px; }
     .skill-item-new p { padding-left: 0; margin-top: 10px; }
     .skills-visual-side { height: 600px; }
@@ -427,8 +416,8 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                         <div class="skill-popup">
                             <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
                             <div class="popup-info">
-                                <h4>AI 辅助创作</h4>
-                                <p>灵活运用各类 AI 模型，打破传统后期壁垒，大幅提升画面修复与生成效率。</p>
+                                <h4>AI</h4>
+                                <p>如今，AI能够做到事情越来越多，AI也从以前辅助其他软件工作逐渐到其他专业软件来辅助AI，修复AI的BUG。通过使用AI超低成本也可慢慢获得曾经看似“精良”的质感和画面。</p>
                             </div>
                         </div>
                     </div>
@@ -439,7 +428,10 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                         <div class="energy-sphere"><img src="images/davinci.png" alt="DaVinci"></div>
                         <div class="skill-popup">
                             <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                            <div class="popup-info"><h4>达芬奇剪辑</h4><p>节点调色、多机位剪辑与高级时间线工程管理。</p></div>
+                            <div class="popup-info">
+                                <h4>剪辑</h4>
+                                <p>剪辑工作中，闲时经常各种类型的优秀案例，以备后续参考，在剪辑某个类型的片子时也会搜寻大量相同案例，参考优秀部分融入到剪辑当中。</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -449,7 +441,10 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                         <div class="energy-sphere"><img src="images/Adobe Ae.png" alt="AE"></div>
                         <div class="skill-popup">
                             <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                            <div class="popup-info"><h4>After Effects</h4><p>复杂动效制作、特效合成与穿帮镜头修复。</p></div>
+                            <div class="popup-info">
+                                <h4>AE</h4>
+                                <p>AE和PS更多情况下是辅助剪辑，删改不需要的画面，添加各种小动效等等</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -459,7 +454,10 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                         <div class="energy-sphere"><img src="images/blender.png" alt="Blender"></div>
                         <div class="skill-popup">
                             <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                            <div class="popup-info"><h4>Blender 3D</h4><p>产品建模展示与三维场景搭建渲染。</p></div>
+                            <div class="popup-info">
+                                <h4>Blender</h4>
+                                <p>作为后期特效专业出身的学生，本应会使用三维软件，但当我在校的课程到三维阶段时，AI绘画已经出现，当时非常焦虑是否要继续学习传统三维，故而三维技能被搁置。直到进入电商产品公司接收了大量产品动画的需求，才开始学习更详细的三维动画制作，所以三维作品基本为产品相关。</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -469,7 +467,10 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                         <div class="energy-sphere"><img src="images/photo.png" alt="photo"></div>
                         <div class="skill-popup">
                             <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                            <div class="popup-info"><h4>影视摄影</h4><p>精通稳定器大范围运镜与复杂的现场光影控制。</p></div>
+                            <div class="popup-info">
+                                <h4>摄影摄像</h4>
+                                <p>在商业拍摄中，经常受限于时间和成本问题，所以会在前期详细策划脚本，拍摄时也是大量使用固定镜头从而在后期中有更大的调整空间。近期个人创作中受到Brandon Li和Andras Ra的影响很大，喜欢使用大范围的运镜和多线剪辑叙事去完成一个旅拍类型的片子...</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -479,7 +480,10 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                         <div class="energy-sphere"><img src="images/edit.png" alt="edit"></div>
                         <div class="skill-popup">
                             <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                            <div class="popup-info"><h4>全案制作</h4><p>从前期低成本策划到后期交付的全流程把控。</p></div>
+                            <div class="popup-info">
+                                <h4>剪辑</h4>
+                                <p>剪辑工作中，闲时经常各种类型的优秀案例，以备后续参考，在剪辑某个类型的片子时也会搜寻大量相同案例，参考优秀部分融入到剪辑当中。</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -489,7 +493,10 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                         <div class="energy-sphere"><img src="images/overwatch.png" alt="Overwatch"></div>
                         <div class="skill-popup">
                             <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                            <div class="popup-info"><h4>灵感源泉</h4><p>跨界汲取多元化的艺术灵感，保持审美敏锐度。</p></div>
+                            <div class="popup-info">
+                                <h4>Overwatch</h4>
+                                <p>....</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -499,7 +506,10 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                         <div class="energy-sphere"><img src="images/ps.png" alt="PS"></div>
                         <div class="skill-popup">
                             <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                            <div class="popup-info"><h4>Photoshop</h4><p>图像合成、调色排版，提供静态美术资产支持。</p></div>
+                            <div class="popup-info">
+                                <h4>PS</h4>
+                                <p>AE和PS更多情况下是辅助剪辑，删改不需要的画面，添加各种小动效等等</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -803,6 +813,7 @@ function initPhotoCarousel() {
     window.addEventListener('load', () => {
         const allItems = photoTrack.querySelectorAll('.photo-carousel-item');
         if(allItems.length > originalItemsCount) {
+            // 计算原版第一张到克隆版第一张之间的精确像素距离
             exactMaxScroll = allItems[originalItemsCount].offsetLeft - allItems[0].offsetLeft;
         }
     });
