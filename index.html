@@ -48,60 +48,73 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 
 
 /* ==========================================
-   修仙者与能量球专业技能板块 CSS
+   全新重构：修仙者与“众星拱月”能量球布局
 ========================================== */
 .skills{padding:120px 5%;background:transparent}
 .skills-layout {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr; /* 左边文字稍宽，右边空间足够容纳面板弹出 */
-    gap: 40px;
+    /* 调整布局比例：左边文字区域明显更宽，上下更舒展 */
+    grid-template-columns: 1.4fr 0.6fr; 
+    gap: 60px;
     max-width: 1400px;
     margin: 0 auto;
     align-items: center;
 }
 
-/* 左侧文字样式 */
+/* 左侧文字介绍样式强化 */
 .skill-list-new { list-style: none; }
-.skill-item-new { margin-bottom: 45px; opacity: 0; transform: translateX(-30px); transition: all 0.8s; }
+/* 上下间距增加到 65px，让文字内容拉开空隙更舒展 */
+.skill-item-new { margin-bottom: 65px; opacity: 0; transform: translateX(-30px); transition: all 0.8s; }
 .skill-item-new.visible { opacity: 1; transform: translateX(0); }
-.skill-header { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
+.skill-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
 .skill-header .icon { 
-    width: 40px; height: 40px; 
+    width: 45px; height: 45px; 
     background: rgba(99,102,241,0.15); 
-    border-radius: 10px; display: flex; align-items: center; justify-content: center; 
-    font-size: 1.2rem; border: 1px solid rgba(99,102,241,0.3); box-shadow: 0 0 10px rgba(99,102,241,0.2);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center; 
+    font-size: 1.3rem; border: 1px solid rgba(99,102,241,0.3); box-shadow: 0 0 10px rgba(99,102,241,0.2);
 }
-.skill-header h4 { font-size: 1.4rem; color: var(--text-primary); letter-spacing: 1px; }
+.skill-header h4 { font-size: 1.5rem; color: var(--text-primary); letter-spacing: 1px; font-weight: 700; }
 .skill-item-new p { 
-    color: var(--text-secondary); font-size: 0.95rem; line-height: 1.9; 
-    text-align: justify; padding-left: 55px; /* 让文字缩进对齐标题 */
+    color: var(--text-secondary); font-size: 1.05rem; line-height: 1.9; 
+    text-align: justify; padding-left: 60px;
 }
 
-/* 右侧修仙者及浮动球样式 */
+/* 右侧修仙者及浮动球区域 */
 .skills-visual-side {
     position: relative;
-    height: 600px;
+    height: 700px; /* 增加高度 */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    z-index: 10; /* 确保弹出层在最前 */
+    z-index: 10;
 }
 .cultivator-img {
-    width: 280px; /* 调整修仙者大小 */
+    width: 320px; /* 略微放大修仙者 */
     z-index: 5;
     position: relative;
-    pointer-events: none; /* 防止拖拽修仙者图片 */
+    pointer-events: none;
+    /* 核心修改：大幅度下沉修仙者的位置，避免挡住技能球 */
+    transform: translateY(80px); 
 }
 .energy-spheres-area {
     position: absolute;
-    bottom: 180px; /* 控制能量球在修仙者上方浮动的区域 */
-    width: 100%;
-    max-width: 500px;
-    height: 400px;
+    bottom: 260px; /* 技能球整体施法区域往下移，适配下沉的修仙者 */
+    width: 350px;
+    height: 350px;
+    left: 50%;
+    transform: translateX(-50%);
 }
+
+/* --- 能量球骨架与动画结构 --- */
 .sphere-wrapper {
     position: absolute;
+    top: 50%; left: 50%;
+    /* wrapper 用于定位基础坐标 */
+    transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.sphere-float {
+    /* inner float 用于独立的不规则浮动动画，防止和悬停缩放冲突 */
     will-change: transform;
 }
 .energy-sphere {
@@ -112,45 +125,70 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
     display: flex; justify-content: center; align-items: center;
     box-shadow: 0 0 20px rgba(99,102,241,0.5), inset 0 0 15px rgba(99,102,241,0.3);
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
 }
 .energy-sphere img { width: 35px; height: 35px; object-fit: contain; pointer-events: none; }
 
-/* 8 个球体的不规则分布与错落动画 */
-.pos-1 { top: 5%; left: 25%; animation: sFloat1 4.5s ease-in-out infinite; }
-.pos-2 { top: 0%; left: 65%; animation: sFloat2 5.2s ease-in-out infinite 0.5s; }
-.pos-3 { top: 35%; left: 10%; animation: sFloat3 4.8s ease-in-out infinite 1s; }
-.pos-4 { top: 25%; left: 80%; animation: sFloat1 5.5s ease-in-out infinite 1.5s; }
-.pos-5 { top: 65%; left: 15%; animation: sFloat2 4s ease-in-out infinite 2s; }
-.pos-6 { top: 55%; left: 75%; animation: sFloat3 4.2s ease-in-out infinite 0.2s; }
-.pos-7 { top: 30%; left: 45%; animation: sFloat1 6s ease-in-out infinite 0.8s; } /* 中心靠上 */
-.pos-8 { top: 75%; left: 45%; animation: sFloat2 5s ease-in-out infinite 1.2s; } /* 中心靠下 */
+/* --- 核心位置排列：中心 AI，周围 7 环 --- */
+/* 半径 135px 的圆环计算位置 */
+.pos-center { transform: translate(-50%, -50%); z-index: 20; } /* AI球居中 */
+.pos-1 { transform: translate(-50%, -50%) translate(0px, -135px); }       /* 顶 */
+.pos-2 { transform: translate(-50%, -50%) translate(105px, -84px); }      /* 右上 */
+.pos-3 { transform: translate(-50%, -50%) translate(131px, 30px); }       /* 右下 */
+.pos-4 { transform: translate(-50%, -50%) translate(58px, 122px); }       /* 底部偏右 */
+.pos-5 { transform: translate(-50%, -50%) translate(-58px, 122px); }      /* 底部偏左 */
+.pos-6 { transform: translate(-50%, -50%) translate(-131px, 30px); }      /* 左下 */
+.pos-7 { transform: translate(-50%, -50%) translate(-105px, -84px); }     /* 左上 */
 
-@keyframes sFloat1 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-18px) translateX(10px); } }
-@keyframes sFloat2 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-12px) translateX(-15px); } }
-@keyframes sFloat3 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(15px) translateX(12px); } }
+/* 浮动动画分配 */
+.float-1 { animation: sFloat1 4.5s ease-in-out infinite; }
+.float-2 { animation: sFloat2 5.2s ease-in-out infinite 0.5s; }
+.float-3 { animation: sFloat3 4.8s ease-in-out infinite 1s; }
+.float-4 { animation: sFloat1 5.5s ease-in-out infinite 1.5s; }
+.float-5 { animation: sFloat2 4.0s ease-in-out infinite 2s; }
+.float-6 { animation: sFloat3 4.2s ease-in-out infinite 0.2s; }
+.float-7 { animation: sFloat1 6.0s ease-in-out infinite 0.8s; }
+.float-ai { animation: sFloatCenter 5s ease-in-out infinite; }
 
-/* 悬停停止漂浮，并放大发光 */
-.sphere-wrapper:hover {
-    animation-play-state: paused;
-    z-index: 100;
+@keyframes sFloat1 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-12px) translateX(6px); } }
+@keyframes sFloat2 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-8px) translateX(-10px); } }
+@keyframes sFloat3 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(10px) translateX(8px); } }
+@keyframes sFloatCenter { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+/* === 核心交互：万物归一的“吸附”特效 === */
+/* 当鼠标悬停在 AI (pos-center) 球上时，接管其他轨道球的位置！ */
+.energy-spheres-area:has(.pos-center:hover) .orbit-wrapper {
+    /* 强制重置坐标到正中心 (0,0)，并缩小变透明，模拟吸入效果 */
+    transform: translate(-50%, -50%) translate(0px, 0px) scale(0.3);
+    opacity: 0;
 }
-.sphere-wrapper:hover .energy-sphere {
-    transform: scale(1.15);
+/* AI 球自身的强化悬停 */
+.pos-center .energy-sphere { width: 80px; height: 80px; border-color: var(--accent); } /* AI球本身大一点 */
+.pos-center .energy-sphere img { width: 45px; height: 45px; }
+.pos-center:hover .energy-sphere {
+    transform: scale(1.3);
+    border-color: #00f2ff;
+    box-shadow: 0 0 50px #00f2ff, inset 0 0 30px #00f2ff;
+}
+
+/* 普通球的悬停效果 */
+.orbit-wrapper:hover .energy-sphere {
+    transform: scale(1.2);
     border-color: #fff;
-    box-shadow: 0 0 35px var(--accent), inset 0 0 20px var(--accent);
+    box-shadow: 0 0 30px var(--accent), inset 0 0 15px var(--accent);
 }
 
-/* 技能球左侧弹出的视频详情面板 */
+/* 技能弹窗面板 */
 .sphere-wrapper:hover .skill-popup {
     opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); pointer-events: auto;
 }
 .skill-popup {
     position: absolute;
-    right: calc(100% + 25px); /* 在球体左侧显示 */
+    /* 弹窗统一从左侧伸出 */
+    right: calc(100% + 20px);
     top: 50%;
-    transform: translateY(-50%) translateX(20px); /* 初始位置略微偏右以实现滑出效果 */
-    width: 320px;
+    transform: translateY(-50%) translateX(20px); 
+    width: 340px;
     background: rgba(15,15,15,0.95);
     border: 1px solid rgba(99,102,241,0.5);
     border-radius: 14px;
@@ -185,7 +223,7 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .full-width-photo-carousel {
     width: 100vw; position: relative; left: 50%; transform: translateX(-50%);
     background: transparent; padding: 60px 0; margin-top: 40px; box-sizing: border-box;
-    overflow: visible;
+    overflow: visible; 
 }
 .full-width-photo-carousel h3 {
     max-width: 1800px; margin: 0 auto 30px; padding: 0 40px; font-size: 1.5rem;
@@ -194,8 +232,8 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .photo-carousel-track{display:flex;gap:20px;padding:20px;height:100%;will-change:transform;}
 .photo-carousel-item{min-width:220px;height:100%;border-radius:12px;overflow:visible;cursor:pointer;flex-shrink:0;position:relative;z-index:1;transition:transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;}
 .photo-carousel-item:hover {
-    transform: scale(2);
-    z-index: 2000;
+    transform: scale(2); 
+    z-index: 2000; 
     box-shadow: 0 30px 80px rgba(99,102,241,0.6);
 }
 .photo-carousel-item img{width:100%;height:100%;object-fit:cover;border-radius:12px;pointer-events:none;}
@@ -267,13 +305,14 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 .modal-close{position:absolute;top:-50px;right:0;color:#fff;font-size:2.5rem;cursor:pointer;transition:transform 0.3s}
 .modal-close:hover{transform:rotate(90deg)}
 .modal-title{color:#fff;font-size:1.5rem;margin-top:20px;text-align:center}
-
 @media(max-width:968px){
-    .hero-container{grid-template-columns:1fr;gap:50px}.hero-image{order:-1}.hero-stats{gap:20px}.stat-item{flex:1;min-width:120px}.skills-container{grid-template-columns:1fr}.photo-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));grid-auto-rows:180px}.contact-gif{width:120px;height:120px}.contact-gif-1{top:60px;left:5%}.contact-gif-2{top:60px;right:5%}.contact-gif-3{bottom:60px;left:2%}.contact-gif-4{bottom:60px;right:2%}.video-row{grid-template-columns:1fr;gap:40px}.video-row.reverse{direction:ltr}.video-content h3{font-size:1.5rem}
+    .hero-container{grid-template-columns:1fr;gap:50px}.hero-image{order:-1}.hero-stats{gap:20px}.stat-item{flex:1;min-width:120px}
+    .photo-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));grid-auto-rows:180px}.contact-gif{width:120px;height:120px}.contact-gif-1{top:60px;left:5%}.contact-gif-2{top:60px;right:5%}.contact-gif-3{bottom:60px;left:2%}.contact-gif-4{bottom:60px;right:2%}.video-row{grid-template-columns:1fr;gap:40px}.video-row.reverse{direction:ltr}.video-content h3{font-size:1.5rem}
+    
     /* 移动端调整修仙者布局 */
     .skills-layout { grid-template-columns: 1fr; gap: 60px; }
     .skill-item-new p { padding-left: 0; margin-top: 10px; }
-    .skills-visual-side { height: 500px; }
+    .skills-visual-side { height: 600px; }
     .skill-popup { right: auto; left: 50%; top: auto; bottom: calc(100% + 20px); transform: translateX(-50%) translateY(20px); }
     .sphere-wrapper:hover .skill-popup { transform: translateX(-50%) translateY(0); }
 }
@@ -284,7 +323,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 .loader-circle{width:60px;height:60px;border:4px solid var(--bg-card);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* 流体球体背景 */
+/* 流体球体背景优化 */
 .aurora-light {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     z-index: -1; overflow: hidden; background: #0a0a0a; pointer-events: none; 
@@ -293,39 +332,12 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
     position: absolute; border-radius: 50%; mix-blend-mode: screen; 
     opacity: 0.6; will-change: transform; transform: translateZ(0); 
 }
-@keyframes floatSpot1 {
-    0% { transform: translate(-10vw, -10vh) scale(1); }
-    33% { transform: translate(60vw, 40vh) scale(1.3); }
-    66% { transform: translate(10vw, 80vh) scale(0.8); }
-    100% { transform: translate(-10vw, -10vh) scale(1); }
-}
-@keyframes floatSpot2 {
-    0% { transform: translate(80vw, 80vh) scale(1); }
-    33% { transform: translate(10vw, 20vh) scale(0.9); }
-    66% { transform: translate(70vw, -10vh) scale(1.4); }
-    100% { transform: translate(80vw, 80vh) scale(1); }
-}
-@keyframes floatSpot3 {
-    0% { transform: translate(20vw, 90vh) scale(1.1); }
-    40% { transform: translate(90vw, 10vh) scale(0.7); }
-    70% { transform: translate(-10vw, 40vh) scale(1.2); }
-    100% { transform: translate(20vw, 90vh) scale(1.1); }
-}
-.spot-1 {
-    width: 40vw; height: 40vw;
-    background: radial-gradient(circle, rgba(13, 202, 240, 0.7) 0%, rgba(13, 202, 240, 0.2) 40%, transparent 70%); 
-    animation: floatSpot1 26.7s ease-in-out infinite; 
-}
-.spot-2 {
-    width: 45vw; height: 45vw;
-    background: radial-gradient(circle, rgba(100, 102, 241, 0.7) 0%, rgba(100, 102, 241, 0.2) 40%, transparent 70%); 
-    animation: floatSpot2 33.3s ease-in-out infinite; 
-}
-.spot-3 {
-    width: 38vw; height: 38vw;
-    background: radial-gradient(circle, rgba(255, 0, 255, 0.6) 0%, rgba(255, 0, 255, 0.15) 40%, transparent 70%); 
-    animation: floatSpot3 30s ease-in-out infinite;
-}
+@keyframes floatSpot1 { 0% { transform: translate(-10vw, -10vh) scale(1); } 33% { transform: translate(60vw, 40vh) scale(1.3); } 66% { transform: translate(10vw, 80vh) scale(0.8); } 100% { transform: translate(-10vw, -10vh) scale(1); } }
+@keyframes floatSpot2 { 0% { transform: translate(80vw, 80vh) scale(1); } 33% { transform: translate(10vw, 20vh) scale(0.9); } 66% { transform: translate(70vw, -10vh) scale(1.4); } 100% { transform: translate(80vw, 80vh) scale(1); } }
+@keyframes floatSpot3 { 0% { transform: translate(20vw, 90vh) scale(1.1); } 40% { transform: translate(90vw, 10vh) scale(0.7); } 70% { transform: translate(-10vw, 40vh) scale(1.2); } 100% { transform: translate(20vw, 90vh) scale(1.1); } }
+.spot-1 { width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(13, 202, 240, 0.7) 0%, rgba(13, 202, 240, 0.2) 40%, transparent 70%); animation: floatSpot1 26.7s ease-in-out infinite; }
+.spot-2 { width: 45vw; height: 45vw; background: radial-gradient(circle, rgba(100, 102, 241, 0.7) 0%, rgba(100, 102, 241, 0.2) 40%, transparent 70%); animation: floatSpot2 33.3s ease-in-out infinite; }
+.spot-3 { width: 38vw; height: 38vw; background: radial-gradient(circle, rgba(255, 0, 255, 0.6) 0%, rgba(255, 0, 255, 0.15) 40%, transparent 70%); animation: floatSpot3 30s ease-in-out infinite;}
 </style>
 </head>
 <body>
@@ -396,112 +408,93 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
         <div class="skills-visual-side">
             <div class="energy-spheres-area">
                 
-                <div class="sphere-wrapper pos-1">
-                    <div class="energy-sphere">
-                        <img src="images/davinci.png" alt="DaVinci">
-                    </div>
-                    <div class="skill-popup">
-                        <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                        <div class="popup-info">
-                            <h4>达芬奇剪辑</h4>
-                            <p>熟练掌握节点调色、多机位剪辑与高级时间线工程管理。</p>
+                <div class="sphere-wrapper pos-center">
+                    <div class="sphere-float float-ai">
+                        <div class="energy-sphere">
+                            <img src="images/AI.png" alt="AI">
+                        </div>
+                        <div class="skill-popup">
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <div class="popup-info">
+                                <h4>AI 辅助创作</h4>
+                                <p>灵活运用各类 AI 模型，打破传统后期壁垒，大幅提升画面修复与生成效率。</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="sphere-wrapper pos-2">
-                    <div class="energy-sphere">
-                        <img src="images/Adobe Ae.png" alt="AE">
-                    </div>
-                    <div class="skill-popup">
-                        <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                        <div class="popup-info">
-                            <h4>After Effects</h4>
-                            <p>各类动效制作、特效合成以及复杂镜头的穿帮修复。</p>
+                <div class="sphere-wrapper orbit-wrapper pos-1">
+                    <div class="sphere-float float-1">
+                        <div class="energy-sphere"><img src="images/davinci.png" alt="DaVinci"></div>
+                        <div class="skill-popup">
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <div class="popup-info"><h4>达芬奇剪辑</h4><p>节点调色、多机位剪辑与高级时间线工程管理。</p></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="sphere-wrapper pos-3">
-                    <div class="energy-sphere">
-                        <img src="images/ps.png" alt="PS">
-                    </div>
-                    <div class="skill-popup">
-                        <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                        <div class="popup-info">
-                            <h4>Photoshop</h4>
-                            <p>精通图像合成、调色排版，为视频提供高质量的静态美术资产支持。</p>
+                <div class="sphere-wrapper orbit-wrapper pos-2">
+                    <div class="sphere-float float-2">
+                        <div class="energy-sphere"><img src="images/Adobe Ae.png" alt="AE"></div>
+                        <div class="skill-popup">
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <div class="popup-info"><h4>After Effects</h4><p>复杂动效制作、特效合成与穿帮镜头修复。</p></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="sphere-wrapper pos-4">
-                    <div class="energy-sphere">
-                        <img src="images/blender.png" alt="Blender">
-                    </div>
-                    <div class="skill-popup">
-                        <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                        <div class="popup-info">
-                            <h4>Blender 3D</h4>
-                            <p>用于产品建模展示与三维场景搭建，打破实拍维度的视觉限制。</p>
+                <div class="sphere-wrapper orbit-wrapper pos-3">
+                    <div class="sphere-float float-3">
+                        <div class="energy-sphere"><img src="images/blender.png" alt="Blender"></div>
+                        <div class="skill-popup">
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <div class="popup-info"><h4>Blender 3D</h4><p>产品建模展示与三维场景搭建渲染。</p></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="sphere-wrapper pos-5">
-                    <div class="energy-sphere">
-                        <img src="images/AI.png" alt="AI">
-                    </div>
-                    <div class="skill-popup">
-                        <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                        <div class="popup-info">
-                            <h4>AI 辅助创作</h4>
-                            <p>灵活运用开源及闭源 AI 大模型，大幅提升画面修复与生成效率。</p>
+                <div class="sphere-wrapper orbit-wrapper pos-4">
+                    <div class="sphere-float float-4">
+                        <div class="energy-sphere"><img src="images/photo.png" alt="photo"></div>
+                        <div class="skill-popup">
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <div class="popup-info"><h4>影视摄影</h4><p>精通稳定器大范围运镜与复杂的现场光影控制。</p></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="sphere-wrapper pos-6">
-                    <div class="energy-sphere">
-                        <img src="images/photo.png" alt="photo">
-                    </div>
-                    <div class="skill-popup">
-                        <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                        <div class="popup-info">
-                            <h4>影视摄影</h4>
-                            <p>熟悉各大品牌设备，精通稳定器大范围运镜与复杂的现场光影控制。</p>
+                <div class="sphere-wrapper orbit-wrapper pos-5">
+                    <div class="sphere-float float-5">
+                        <div class="energy-sphere"><img src="images/edit.png" alt="edit"></div>
+                        <div class="skill-popup">
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <div class="popup-info"><h4>全案制作</h4><p>从前期低成本策划到后期交付的全流程把控。</p></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="sphere-wrapper pos-7">
-                    <div class="energy-sphere">
-                        <img src="images/overwatch.png" alt="Overwatch">
-                    </div>
-                    <div class="skill-popup">
-                        <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                        <div class="popup-info">
-                            <h4>创意灵感</h4>
-                            <p>劳逸结合，在不同领域中汲取多元化的艺术灵感。</p>
+                <div class="sphere-wrapper orbit-wrapper pos-6">
+                    <div class="sphere-float float-6">
+                        <div class="energy-sphere"><img src="images/overwatch.png" alt="Overwatch"></div>
+                        <div class="skill-popup">
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <div class="popup-info"><h4>灵感源泉</h4><p>跨界汲取多元化的艺术灵感，保持审美敏锐度。</p></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="sphere-wrapper pos-8">
-                    <div class="energy-sphere">
-                        <img src="images/edit.png" alt="edit">
-                    </div>
-                    <div class="skill-popup">
-                        <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
-                        <div class="popup-info">
-                            <h4>全案制作</h4>
-                            <p>从前期低成本策划到后期交付，独立把控影像落地的每一个环节。</p>
+                <div class="sphere-wrapper orbit-wrapper pos-7">
+                    <div class="sphere-float float-7">
+                        <div class="energy-sphere"><img src="images/ps.png" alt="PS"></div>
+                        <div class="skill-popup">
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <div class="popup-info"><h4>Photoshop</h4><p>图像合成、调色排版，提供静态美术资产支持。</p></div>
                         </div>
                     </div>
                 </div>
 
             </div>
-            <img src="images/cultivator.png" class="cultivator-img" alt="修仙者打坐图片">
+            <img src="images/cultivator.png" class="cultivator-img" alt="修仙者">
         </div>
     </div>
 </section>
@@ -808,7 +801,7 @@ function animatePhotoCarousel() {
     if (!isPhotoHovered && exactMaxScroll > 0) {
         photoScrollPosition += 1;
         if (photoScrollPosition >= exactMaxScroll) {
-            photoScrollPosition -= exactMaxScroll;
+            photoScrollPosition -= exactMaxScroll; 
         }
         photoTrack.style.transform = `translate3d(-${photoScrollPosition}px, 0, 0)`;
     }
@@ -820,7 +813,7 @@ photoSection.addEventListener('mouseleave', () => { isPhotoHovered = false; });
 
 photoSection.addEventListener('wheel', (e) => {
     if(exactMaxScroll === 0) return;
-    e.preventDefault();
+    e.preventDefault(); 
     photoScrollPosition += e.deltaX || e.deltaY;
     if (photoScrollPosition >= exactMaxScroll) {
         photoScrollPosition -= exactMaxScroll;
@@ -828,7 +821,7 @@ photoSection.addEventListener('wheel', (e) => {
         photoScrollPosition += exactMaxScroll;
     }
     photoTrack.style.transform = `translate3d(-${photoScrollPosition}px, 0, 0)`;
-}, { passive: false });
+}, { passive: false }); 
 
 window.addEventListener('resize', () => {
     const allItems = photoTrack.querySelectorAll('.photo-carousel-item');
