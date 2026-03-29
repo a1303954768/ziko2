@@ -53,7 +53,6 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .skills{padding:120px 5%;background:transparent}
 .skills-layout {
     display: grid;
-    /* 调整布局比例：左边文字区域明显更宽，上下更舒展 */
     grid-template-columns: 1.4fr 0.6fr; 
     gap: 60px;
     max-width: 1400px;
@@ -61,9 +60,7 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
     align-items: center;
 }
 
-/* 左侧文字介绍样式强化 */
 .skill-list-new { list-style: none; }
-/* 上下间距增加到 65px，让文字内容拉开空隙更舒展 */
 .skill-item-new { margin-bottom: 65px; opacity: 0; transform: translateX(-30px); transition: all 0.8s; }
 .skill-item-new.visible { opacity: 1; transform: translateX(0); }
 .skill-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
@@ -79,10 +76,9 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
     text-align: justify; padding-left: 60px;
 }
 
-/* 右侧修仙者及浮动球区域 */
 .skills-visual-side {
     position: relative;
-    height: 700px; /* 增加高度 */
+    height: 700px; 
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -90,16 +86,15 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
     z-index: 10;
 }
 .cultivator-img {
-    width: 320px; /* 略微放大修仙者 */
+    width: 320px; 
     z-index: 5;
     position: relative;
     pointer-events: none;
-    /* 核心修改：大幅度下沉修仙者的位置，避免挡住技能球 */
     transform: translateY(80px); 
 }
 .energy-spheres-area {
     position: absolute;
-    bottom: 260px; /* 技能球整体施法区域往下移，适配下沉的修仙者 */
+    bottom: 260px; 
     width: 350px;
     height: 350px;
     left: 50%;
@@ -110,11 +105,10 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .sphere-wrapper {
     position: absolute;
     top: 50%; left: 50%;
-    /* wrapper 用于定位基础坐标 */
-    transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .sphere-float {
-    /* inner float 用于独立的不规则浮动动画，防止和悬停缩放冲突 */
     will-change: transform;
 }
 .energy-sphere {
@@ -129,16 +123,20 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 }
 .energy-sphere img { width: 35px; height: 35px; object-fit: contain; pointer-events: none; }
 
+/* 悬浮置顶：确保所有的能量球和展开的视频，拥有绝对高的显示层级 */
+.sphere-wrapper:hover {
+    z-index: 9999;
+}
+
 /* --- 核心位置排列：中心 AI，周围 7 环 --- */
-/* 半径 135px 的圆环计算位置 */
-.pos-center { transform: translate(-50%, -50%); z-index: 20; } /* AI球居中 */
-.pos-1 { transform: translate(-50%, -50%) translate(0px, -135px); }       /* 顶 */
-.pos-2 { transform: translate(-50%, -50%) translate(105px, -84px); }      /* 右上 */
-.pos-3 { transform: translate(-50%, -50%) translate(131px, 30px); }       /* 右下 */
-.pos-4 { transform: translate(-50%, -50%) translate(58px, 122px); }       /* 底部偏右 */
-.pos-5 { transform: translate(-50%, -50%) translate(-58px, 122px); }      /* 底部偏左 */
-.pos-6 { transform: translate(-50%, -50%) translate(-131px, 30px); }      /* 左下 */
-.pos-7 { transform: translate(-50%, -50%) translate(-105px, -84px); }     /* 左上 */
+.pos-center { transform: translate(-50%, -50%); z-index: 20; } 
+.pos-1 { transform: translate(-50%, -50%) translate(0px, -135px); }       
+.pos-2 { transform: translate(-50%, -50%) translate(105px, -84px); }      
+.pos-3 { transform: translate(-50%, -50%) translate(131px, 30px); }       
+.pos-4 { transform: translate(-50%, -50%) translate(58px, 122px); }       
+.pos-5 { transform: translate(-50%, -50%) translate(-58px, 122px); }      
+.pos-6 { transform: translate(-50%, -50%) translate(-131px, 30px); }      
+.pos-7 { transform: translate(-50%, -50%) translate(-105px, -84px); }     
 
 /* 浮动动画分配 */
 .float-1 { animation: sFloat1 4.5s ease-in-out infinite; }
@@ -155,21 +153,25 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 @keyframes sFloat3 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(10px) translateX(8px); } }
 @keyframes sFloatCenter { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-/* === 核心交互：万物归一的“吸附”特效 === */
-/* 当鼠标悬停在 AI (pos-center) 球上时，接管其他轨道球的位置！ */
-.energy-spheres-area:has(.pos-center:hover) .orbit-wrapper {
-    /* 强制重置坐标到正中心 (0,0)，并缩小变透明，模拟吸入效果 */
-    transform: translate(-50%, -50%) translate(0px, 0px) scale(0.3);
-    opacity: 0;
-}
+/* === 核心修改：万物归一的“环绕吸附”特效 === */
 /* AI 球自身的强化悬停 */
-.pos-center .energy-sphere { width: 80px; height: 80px; border-color: var(--accent); } /* AI球本身大一点 */
+.pos-center .energy-sphere { width: 80px; height: 80px; border-color: var(--accent); } 
 .pos-center .energy-sphere img { width: 45px; height: 45px; }
 .pos-center:hover .energy-sphere {
     transform: scale(1.3);
     border-color: #00f2ff;
     box-shadow: 0 0 50px #00f2ff, inset 0 0 30px #00f2ff;
 }
+
+/* 当鼠标悬停在 AI 球上时，其他轨道球紧紧贴在其周围形成能量环 */
+.energy-spheres-area:has(.pos-center:hover) .orbit-wrapper { opacity: 0.95; }
+.energy-spheres-area:has(.pos-center:hover) .pos-1 { transform: translate(-50%, -50%) translate(0px, -75px) scale(0.65); }
+.energy-spheres-area:has(.pos-center:hover) .pos-2 { transform: translate(-50%, -50%) translate(58px, -47px) scale(0.65); }
+.energy-spheres-area:has(.pos-center:hover) .pos-3 { transform: translate(-50%, -50%) translate(73px, 17px) scale(0.65); }
+.energy-spheres-area:has(.pos-center:hover) .pos-4 { transform: translate(-50%, -50%) translate(32px, 68px) scale(0.65); }
+.energy-spheres-area:has(.pos-center:hover) .pos-5 { transform: translate(-50%, -50%) translate(-32px, 68px) scale(0.65); }
+.energy-spheres-area:has(.pos-center:hover) .pos-6 { transform: translate(-50%, -50%) translate(-73px, 17px) scale(0.65); }
+.energy-spheres-area:has(.pos-center:hover) .pos-7 { transform: translate(-50%, -50%) translate(-58px, -47px) scale(0.65); }
 
 /* 普通球的悬停效果 */
 .orbit-wrapper:hover .energy-sphere {
@@ -178,29 +180,38 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
     box-shadow: 0 0 30px var(--accent), inset 0 0 15px var(--accent);
 }
 
-/* 技能弹窗面板 */
+
+/* === 核心修改：2倍放大且绝对在最顶层的弹窗视频面板 === */
 .sphere-wrapper:hover .skill-popup {
     opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); pointer-events: auto;
 }
 .skill-popup {
     position: absolute;
-    /* 弹窗统一从左侧伸出 */
-    right: calc(100% + 20px);
+    /* 调整弹窗位置向左移，留出更宽裕的空间 */
+    right: calc(100% + 35px); 
     top: 50%;
-    transform: translateY(-50%) translateX(20px); 
-    width: 340px;
-    background: rgba(15,15,15,0.95);
-    border: 1px solid rgba(99,102,241,0.5);
-    border-radius: 14px;
-    padding: 15px;
-    box-shadow: -15px 15px 50px rgba(0,0,0,0.9);
+    transform: translateY(-50%) translateX(30px); 
+    width: 650px; /* 两倍巨大的宽度 */
+    background: rgba(10,10,10,0.98); /* 颜色加深，避免透底字 */
+    border: 2px solid rgba(99,102,241,0.6);
+    border-radius: 18px;
+    padding: 25px; /* 增加内边距 */
+    /* 强烈的阴影强调它的漂浮状态 */
+    box-shadow: -20px 25px 80px rgba(0,0,0,0.95), 0 0 30px rgba(99,102,241,0.3);
     opacity: 0; visibility: hidden; pointer-events: none;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 200;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 99999; /* 宇宙第一高的显示层级，任何东西都挡不住它 */
 }
-.skill-popup video { width: 100%; border-radius: 8px; margin-bottom: 10px; background: #000; aspect-ratio: 16/9; object-fit: cover; }
-.popup-info h4 { color: var(--text-primary); font-size: 1.1rem; margin-bottom: 5px; }
-.popup-info p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; }
+.skill-popup video { 
+    width: 100%; border-radius: 10px; margin-bottom: 15px; 
+    background: #000; aspect-ratio: 16/9; object-fit: cover; 
+}
+.popup-info h4 { 
+    color: var(--text-primary); font-size: 1.5rem; margin-bottom: 8px; font-weight: bold; 
+}
+.popup-info p { 
+    color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; 
+}
 /* ========================================== */
 
 .experience{padding:100px 2% 40px;background:transparent;min-height:100vh}
@@ -305,15 +316,17 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 .modal-close{position:absolute;top:-50px;right:0;color:#fff;font-size:2.5rem;cursor:pointer;transition:transform 0.3s}
 .modal-close:hover{transform:rotate(90deg)}
 .modal-title{color:#fff;font-size:1.5rem;margin-top:20px;text-align:center}
+
 @media(max-width:968px){
     .hero-container{grid-template-columns:1fr;gap:50px}.hero-image{order:-1}.hero-stats{gap:20px}.stat-item{flex:1;min-width:120px}
     .photo-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));grid-auto-rows:180px}.contact-gif{width:120px;height:120px}.contact-gif-1{top:60px;left:5%}.contact-gif-2{top:60px;right:5%}.contact-gif-3{bottom:60px;left:2%}.contact-gif-4{bottom:60px;right:2%}.video-row{grid-template-columns:1fr;gap:40px}.video-row.reverse{direction:ltr}.video-content h3{font-size:1.5rem}
     
-    /* 移动端调整修仙者布局 */
+    /* 移动端调整布局 */
     .skills-layout { grid-template-columns: 1fr; gap: 60px; }
     .skill-item-new p { padding-left: 0; margin-top: 10px; }
     .skills-visual-side { height: 600px; }
-    .skill-popup { right: auto; left: 50%; top: auto; bottom: calc(100% + 20px); transform: translateX(-50%) translateY(20px); }
+    /* 移动端弹窗特殊处理，防止横向撑爆屏幕 */
+    .skill-popup { right: auto; left: 50%; top: auto; bottom: calc(100% + 20px); transform: translateX(-50%) translateY(20px); width: 90vw; max-width: 600px; }
     .sphere-wrapper:hover .skill-popup { transform: translateX(-50%) translateY(0); }
 }
 @media(max-width:768px){.menu-toggle{display:flex}.nav-links{position:fixed;top:0;right:-100%;width:70%;max-width:300px;height:100vh;background:var(--bg-secondary);flex-direction:column;padding:100px 40px;gap:30px;transition:right 0.3s;box-shadow:-5px 0 20px rgba(0,0,0,0.5)}.nav-links.active{right:0}.nav-links a{font-size:1.2rem}.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.menu-toggle.active span:nth-child(2){opacity:0}.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}.hero{padding:100px 5% 60px}.hero-container{gap:40px}.hero h1{font-size:2rem}.hero-description{font-size:0.95rem}.hero-stats{gap:15px}.stat-item{padding:15px 20px;min-width:100px}.stat-number{font-size:2rem}.hero-image{max-width:400px;margin:0 auto}.hero-image-badge{bottom:15px;right:15px;padding:12px 18px}.hero-image-badge h3{font-size:1rem}.hero-image-badge p{font-size:0.8rem}.skills{padding:80px 5%}.skill-card{padding:30px}.tools-grid{grid-template-columns:repeat(3,1fr);gap:15px}.experience{padding:80px 2%}.experience-card{padding:30px}.experience-text-section{height:40vh}.experience-item{padding:30px}.experience-item h3{font-size:1.8rem}.experience-item p{font-size:1rem}.portfolio{padding:80px 5%}.portfolio-grid{gap:60px}.photo-scroll-container{height:600px}.photo-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));grid-auto-rows:150px;gap:2px}.contact{padding:80px 5%}.contact-gif{display:none}.video-content h3{font-size:1.3rem}.video-content p{font-size:1rem}.play-button{width:70px;height:70px}}
