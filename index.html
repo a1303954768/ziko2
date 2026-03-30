@@ -46,6 +46,10 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .section-title{font-size:2.5rem;margin-bottom:50px;text-align:center;position:relative;display:block;width:100%}
 .section-title::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:60px;height:4px;background:var(--gradient-1);border-radius:2px}
 
+
+/* ==========================================
+   修仙者与能量球专业技能版块 CSS
+========================================== */
 .skills{padding:120px 5%;background:transparent}
 .skills-layout {
     display: grid;
@@ -197,6 +201,7 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .popup-info p { 
     color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; 
 }
+/* ========================================== */
 
 .experience{padding:100px 2% 40px;background:transparent;min-height:100vh}
 .experience-container{max-width:1800px;margin:0 auto;width:100%}
@@ -292,6 +297,53 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 .toast-icon{font-size:1.2rem}.toast-text{font-size:1rem}.toast-text strong{color:var(--accent)}
 footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(--text-secondary);border-top:1px solid rgba(255,255,255,0.05)}
+
+/* ===== 新增：百度网盘弹窗样式 ===== */
+.baidu-modal-content {
+    background: rgba(15,15,15,0.98);
+    border: 1px solid rgba(99,102,241,0.5);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 700px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+.baidu-modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+.baidu-text-side {
+    flex: 1;
+}
+.baidu-text-side h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+.baidu-text-side p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+}
+.baidu-qr-side {
+    width: 180px;
+    height: 180px;
+    background: #fff;
+    padding: 12px;
+    border-radius: 16px;
+    flex-shrink: 0;
+}
+.baidu-qr-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+/* ================================ */
+
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:2000;justify-content:center;align-items:center;opacity:0;transition:opacity 0.3s}
 .modal.active{display:flex;opacity:1}
 .modal-content{width:90%;max-width:1000px;position:relative;transform:scale(0.8);transition:transform 0.3s}
@@ -300,6 +352,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 .modal-close{position:absolute;top:-50px;right:0;color:#fff;font-size:2.5rem;cursor:pointer;transition:transform 0.3s}
 .modal-close:hover{transform:rotate(90deg)}
 .modal-title{color:#fff;font-size:1.5rem;margin-top:20px;text-align:center}
+
 @media(max-width:968px){
     .hero-container{grid-template-columns:1fr;gap:50px}.hero-image{order:-1}.hero-stats{gap:20px}.stat-item{flex:1;min-width:120px}
     .photo-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));grid-auto-rows:180px}.contact-gif{width:120px;height:120px}.contact-gif-1{top:60px;left:5%}.contact-gif-2{top:60px;right:5%}.contact-gif-3{bottom:60px;left:2%}.contact-gif-4{bottom:60px;right:2%}.video-row{grid-template-columns:1fr;gap:40px}.video-row.reverse{direction:ltr}.video-content h3{font-size:1.5rem}
@@ -310,7 +363,12 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
     .skill-popup { right: auto; left: 50%; top: auto; bottom: calc(100% + 20px); transform: translateX(-50%) translateY(20px); width: 90vw; max-width: 600px; }
     .sphere-wrapper:hover .skill-popup { transform: translateX(-50%) translateY(0); }
 }
-@media(max-width:768px){.menu-toggle{display:flex}.nav-links{position:fixed;top:0;right:-100%;width:70%;max-width:300px;height:100vh;background:var(--bg-secondary);flex-direction:column;padding:100px 40px;gap:30px;transition:right 0.3s;box-shadow:-5px 0 20px rgba(0,0,0,0.5)}.nav-links.active{right:0}.nav-links a{font-size:1.2rem}.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.menu-toggle.active span:nth-child(2){opacity:0}.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}.hero{padding:100px 5% 60px}.hero-container{gap:40px}.hero h1{font-size:2rem}.hero-description{font-size:0.95rem}.hero-stats{gap:15px}.stat-item{padding:15px 20px;min-width:100px}.stat-number{font-size:2rem}.hero-image{max-width:400px;margin:0 auto}.hero-image-badge{bottom:15px;right:15px;padding:12px 18px}.hero-image-badge h3{font-size:1rem}.hero-image-badge p{font-size:0.8rem}.skills{padding:80px 5%}.skill-card{padding:30px}.tools-grid{grid-template-columns:repeat(3,1fr);gap:15px}.experience{padding:80px 2%}.experience-card{padding:30px}.experience-text-section{height:40vh}.experience-item{padding:30px}.experience-item h3{font-size:1.8rem}.experience-item p{font-size:1rem}.portfolio{padding:80px 5%}.portfolio-grid{gap:60px}.photo-scroll-container{height:600px}.photo-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));grid-auto-rows:150px;gap:2px}.contact{padding:80px 5%}.contact-gif{display:none}.video-content h3{font-size:1.3rem}.video-content p{font-size:1rem}.play-button{width:70px;height:70px}}
+@media(max-width:768px){
+    .menu-toggle{display:flex}.nav-links{position:fixed;top:0;right:-100%;width:70%;max-width:300px;height:100vh;background:var(--bg-secondary);flex-direction:column;padding:100px 40px;gap:30px;transition:right 0.3s;box-shadow:-5px 0 20px rgba(0,0,0,0.5)}.nav-links.active{right:0}.nav-links a{font-size:1.2rem}.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.menu-toggle.active span:nth-child(2){opacity:0}.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}.hero{padding:100px 5% 60px}.hero-container{gap:40px}.hero h1{font-size:2rem}.hero-description{font-size:0.95rem}.hero-stats{gap:15px}.stat-item{padding:15px 20px;min-width:100px}.stat-number{font-size:2rem}.hero-image{max-width:400px;margin:0 auto}.hero-image-badge{bottom:15px;right:15px;padding:12px 18px}.hero-image-badge h3{font-size:1rem}.hero-image-badge p{font-size:0.8rem}.skills{padding:80px 5%}.skill-card{padding:30px}.tools-grid{grid-template-columns:repeat(3,1fr);gap:15px}.experience{padding:80px 2%}.experience-card{padding:30px}.experience-text-section{height:40vh}.experience-item{padding:30px}.experience-item h3{font-size:1.8rem}.experience-item p{font-size:1rem}.portfolio{padding:80px 5%}.portfolio-grid{gap:60px}.photo-scroll-container{height:600px}.photo-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));grid-auto-rows:150px;gap:2px}.contact{padding:80px 5%}.contact-gif{display:none}.video-content h3{font-size:1.3rem}.video-content p{font-size:1rem}.play-button{width:70px;height:70px}
+    /* 百度弹窗手机端纵向排列 */
+    .baidu-modal-body { flex-direction: column; text-align: center; }
+    .baidu-qr-side { margin: 0 auto; }
+}
 @media(max-width:480px){.hero h1{font-size:1.8rem}.hero-subtitle{font-size:0.95rem}.section-title{font-size:1.8rem}.stat-item{min-width:90px;padding:12px 15px}.stat-number{font-size:1.6rem}.stat-label{font-size:0.8rem}.nav-links{width:80%;padding:80px 30px}.contact-btn{width:100%;max-width:280px;justify-content:center}.tools-grid{grid-template-columns:repeat(3,1fr)}.portfolio-grid{gap:50px}.photo-scroll-container{height:500px}.video-content h3{font-size:1.2rem}}
 .loader{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--bg-primary);display:flex;justify-content:center;align-items:center;z-index:9999;transition:opacity 0.5s}
 .loader.hidden{opacity:0;pointer-events:none}
@@ -436,7 +494,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                         <div class="skill-popup">
                             <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
                             <div class="popup-info">
-                                <h4>AE</h4>
+                                <h4>AE & PS</h4>
                                 <p>AE和PS更多情况下是辅助剪辑，删改不需要的画面，添加各种小动效等等</p>
                             </div>
                         </div>
@@ -501,7 +559,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                         <div class="skill-popup">
                             <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
                             <div class="popup-info">
-                                <h4>PS</h4>
+                                <h4>AE & PS</h4>
                                 <p>AE和PS更多情况下是辅助剪辑，删改不需要的画面，添加各种小动效等等</p>
                             </div>
                         </div>
@@ -513,6 +571,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
         </div>
     </div>
 </section>
+
 <section class="experience" id="experience">
 <h2 class="section-title">个人经历</h2>
 <div class="experience-container">
@@ -584,11 +643,13 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 </div>
 </div>
 </section>
+
 <section class="portfolio" id="works">
 <h2 class="section-title">我的作品</h2>
 <div class="portfolio-filter">
 <button class="filter-btn active" onclick="filterPortfolio('videos')">视频作品</button>
 <button class="filter-btn" onclick="filterPortfolio('photos')">静帧作品</button>
+<button class="filter-btn" onclick="openBaiduPanModal()">更多作品</button>
 </div>
 <div class="portfolio-grid" id="videoGrid">
 <div class="video-row visible">
@@ -778,13 +839,38 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 </div>
 </section>
 <footer><p>&copy; 2024 Ziko Huang. All rights reserved.</p></footer>
+
 <div class="modal" id="videoModal"><div class="modal-content"><span class="modal-close" onclick="closeModal()">&times;</span><iframe id="modalIframe" src="" allowfullscreen></iframe><div class="modal-title" id="modalTitle"></div></div></div>
 <div class="image-viewer" id="imageViewer"><span class="image-viewer-close" onclick="closeImageViewer()">&times;</span><img src="" alt="大图预览" id="viewerImage"></div>
 <div class="toast" id="toast"><span class="toast-icon">✅</span><span class="toast-text"><strong id="toastContent"></strong> 已复制到剪贴板</span></div>
+
+<div class="modal" id="baiduPanModal">
+    <div class="baidu-modal-content">
+        <span class="modal-close" onclick="closeBaiduPanModal()">&times;</span>
+        <div class="baidu-modal-body">
+            <div class="baidu-text-side">
+                <h3>高清视频网盘链接</h3>
+                <p>
+                    通过网盘分享的文件：视觉作品集<br>
+                    链接: https://pan.baidu.com/s/1UXFaeMftiApQdqKOg6nP3A?pwd=v64w<br>
+                    提取码: v64w<br>
+                    --来自百度网盘超级会员v6的分享
+                </p>
+                <button class="contact-btn baidu-copy-btn" onclick="copyAndChange(this, 'https://pan.baidu.com/s/1UXFaeMftiApQdqKOg6nP3A?pwd=v64w', '<span>🔗</span> 点击复制链接')">
+                    <span>🔗</span> 点击复制链接
+                </button>
+            </div>
+            <div class="baidu-qr-side">
+                <img src="images/二维码.png" alt="百度网盘二维码">
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 window.addEventListener('load',()=>{setTimeout(()=>document.querySelector('.loader').classList.add('hidden'),500)});
 function animateNumbers(){document.querySelectorAll('.stat-number').forEach(stat=>{const target=parseInt(stat.getAttribute('data-target')),suffix=stat.getAttribute('data-suffix')||'+';let current=0,step=target/125;const timer=setInterval(()=>{current+=step;if(current>=target){stat.textContent=target+suffix;clearInterval(timer)}else{stat.textContent=Math.floor(current)}},16)})}
-function filterPortfolio(type){const videoGrid=document.getElementById('videoGrid'),photoGrid=document.getElementById('photoGrid');document.querySelectorAll('.filter-btn').forEach(btn=>{btn.classList.remove('active');if(btn.textContent.includes(type==='videos'?'视频':'静帧'))btn.classList.add('active')});if(type==='videos'){videoGrid.style.display='flex';photoGrid.classList.remove('active');setTimeout(()=>videoGrid.querySelectorAll('.video-row').forEach((row,i)=>setTimeout(()=>row.classList.add('visible'),i*200)),100)}else{videoGrid.style.display='none';photoGrid.classList.add('active');setTimeout(()=>photoGrid.querySelectorAll('.photo-item').forEach((c,i)=>setTimeout(()=>c.classList.add('visible'),i*50)),100)}}
+function filterPortfolio(type){const videoGrid=document.getElementById('videoGrid'),photoGrid=document.getElementById('photoGrid');document.querySelectorAll('.filter-btn:not(.special-btn)').forEach(btn=>{btn.classList.remove('active');if(btn.textContent.includes(type==='videos'?'视频':'静帧'))btn.classList.add('active')});if(type==='videos'){videoGrid.style.display='flex';photoGrid.classList.remove('active');setTimeout(()=>videoGrid.querySelectorAll('.video-row').forEach((row,i)=>setTimeout(()=>row.classList.add('visible'),i*200)),100)}else{videoGrid.style.display='none';photoGrid.classList.add('active');setTimeout(()=>photoGrid.querySelectorAll('.photo-item').forEach((c,i)=>setTimeout(()=>c.classList.add('visible'),i*50)),100)}}
 const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');if(entry.target.classList.contains('skill-list-item')||entry.target.classList.contains('tool-item')||entry.target.classList.contains('skill-item-new')){const idx=Array.from(entry.target.parentNode.children).indexOf(entry.target);entry.target.style.transitionDelay=`${(entry.target.classList.contains('skill-list-item')||entry.target.classList.contains('skill-item-new'))?idx*0.1:idx*0.05}s`}}else{entry.target.classList.remove('visible')}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.video-row,.skill-card,.skill-list-item,.tool-item,.photo-item,.experience-card,.skill-item-new').forEach(el=>observer.observe(el));
 const heroObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){animateNumbers();heroObserver.unobserve(entry.target)}})},{threshold:0.5});heroObserver.observe(document.querySelector('.hero-stats'));
@@ -792,11 +878,20 @@ function openModal(el){const url=el.getAttribute('data-video'),title=el.getAttri
 function closeModal(){document.getElementById('videoModal').classList.remove('active');document.getElementById('modalIframe').src='';document.body.style.overflow='auto'}
 function openImageViewer(el){const img=el.querySelector('img');document.getElementById('viewerImage').src=img.src;document.getElementById('imageViewer').classList.add('active');document.body.style.overflow='hidden'}
 function closeImageViewer(){document.getElementById('imageViewer').classList.remove('active');document.body.style.overflow='auto'}
+
+/* === 新增：百度网盘弹窗的 JS === */
+function openBaiduPanModal(){document.getElementById('baiduPanModal').classList.add('active');document.body.style.overflow='hidden'}
+function closeBaiduPanModal(){document.getElementById('baiduPanModal').classList.remove('active');document.body.style.overflow='auto'}
+
 function showToast(content){const toast=document.getElementById('toast');document.getElementById('toastContent').textContent=content;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2500)}
 async function copyAndChange(btn,text,originalContent){try{await navigator.clipboard.writeText(text);const originalHTML=btn.innerHTML;btn.innerHTML=`<span>✅</span> ${text}`;btn.style.background='var(--accent-hover)';showToast(text);setTimeout(()=>{btn.innerHTML=originalHTML;btn.style.background=''},2000)}catch(err){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);const originalHTML=btn.innerHTML;btn.innerHTML=`<span>✅</span> ${text}`;btn.style.background='var(--accent-hover)';showToast(text);setTimeout(()=>{btn.innerHTML=originalHTML;btn.style.background=''},2000)}}
+
+/* 修改了点击空白和按Esc键的事件，将新弹窗加进去 */
 document.getElementById('videoModal').addEventListener('click',e=>{if(e.target.id==='videoModal')closeModal()});
 document.getElementById('imageViewer').addEventListener('click',e=>{if(e.target.id==='imageViewer')closeImageViewer()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeImageViewer()}});
+document.getElementById('baiduPanModal').addEventListener('click',e=>{if(e.target.id==='baiduPanModal')closeBaiduPanModal()});
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeImageViewer();closeBaiduPanModal()}});
 let lastScroll=0;window.addEventListener('scroll',()=>{const nav=document.querySelector('nav');if(window.pageYOffset>100)nav.style.boxShadow='0 4px 20px rgba(0,0,0,0.3)';else nav.style.boxShadow='none';lastScroll=window.pageYOffset});
 function toggleMenu(){const nav=document.getElementById('navLinks'),toggle=document.querySelector('.menu-toggle');nav.classList.toggle('active');toggle.classList.toggle('active')}
 document.addEventListener('click',e=>{const nav=document.getElementById('navLinks'),toggle=document.querySelector('.menu-toggle');if(!nav.contains(e.target)&&!toggle.contains(e.target)){nav.classList.remove('active');toggle.classList.remove('active')}});
@@ -805,7 +900,6 @@ const textContainer=document.getElementById('experienceTextContainer'),experienc
 textContainer.addEventListener('wheel',(e)=>{e.preventDefault();if(isScrolling)return;isScrolling=true;clearTimeout(scrollTimeout);if(e.deltaY>0){currentExperienceIndex=(currentExperienceIndex+1)%experienceItems.length}else{currentExperienceIndex=(currentExperienceIndex-1+experienceItems.length)%experienceItems.length}updateExperienceDisplay();scrollTimeout=setTimeout(()=>{isScrolling=false},500)},{passive:false});
 function updateExperienceDisplay(){experienceItems.forEach((item,index)=>{if(index===currentExperienceIndex){item.classList.add('active');textContainer.scrollTo({top:item.offsetTop,behavior:'smooth'})}else{item.classList.remove('active')}})}
 
-// ===== 重写：专业级防穿透、绝对无缝衔接循环照片相册 =====
 const photoSection = document.querySelector('.full-width-photo-carousel');
 const photoTrack = document.getElementById('photoCarouselTrack');
 let photoScrollPosition = 0;
@@ -817,8 +911,6 @@ let exactMaxScroll = 0;
 function initPhotoCarousel() {
     const items = Array.from(photoTrack.querySelectorAll('.photo-carousel-item'));
     originalItemsCount = items.length;
-    
-    // 克隆节点以供循环使用
     items.forEach(item => {
         const clone = item.cloneNode(true);
         photoTrack.appendChild(clone);
@@ -868,8 +960,6 @@ window.addEventListener('resize', () => {
 initPhotoCarousel();
 animatePhotoCarousel();
 
-
-// ===== 流光随鼠标视差互动特效 =====
 document.addEventListener('mousemove', (e) => {
     requestAnimationFrame(() => {
         const auroraContainer = document.querySelector('.aurora-container');
