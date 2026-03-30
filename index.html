@@ -298,7 +298,7 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .toast-icon{font-size:1.2rem}.toast-text{font-size:1rem}.toast-text strong{color:var(--accent)}
 footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(--text-secondary);border-top:1px solid rgba(255,255,255,0.05)}
 
-/* ===== 新增：更多作品（百度网盘）悬浮气泡弹窗 CSS ===== */
+/* ===== 修改：网盘悬浮气泡弹窗 CSS ===== */
 .more-works-wrapper {
     position: relative;
     display: inline-block;
@@ -308,7 +308,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
     top: calc(100% + 15px); /* 在按钮正下方 */
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    width: 480px; /* 适当的小窗宽度 */
+    width: 580px; /* 增加宽度，使排版更宽敞 */
     background: rgba(15,15,15,0.98);
     border: 1px solid rgba(99,102,241,0.5);
     border-radius: 16px;
@@ -349,19 +349,22 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 }
 .baidu-popup-body {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* 顶部对齐 */
     gap: 20px;
 }
 .baidu-popup-text { flex: 1; text-align: left; }
+
+/* 核心修复：添加 word-break 防止长链接撑爆容器 */
 .baidu-popup-text p { 
     color: var(--text-secondary); 
     font-size: 0.95rem; 
     line-height: 1.6; 
     margin-bottom: 15px; 
+    word-break: break-all; /* 强制网址换行，防止挤出二维码 */
 }
 .baidu-popup-text strong { color: var(--text-primary); font-size: 1.1rem;}
 .baidu-popup-qr { 
-    width: 110px; height: 110px; 
+    width: 120px; height: 120px; /* 二维码稍作放大 */
     background: #fff; padding: 5px; 
     border-radius: 10px; flex-shrink: 0; 
 }
@@ -379,6 +382,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    margin-top: 5px;
 }
 .copy-link-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(99,102,241,0.4); }
 /* =================================================== */
@@ -698,6 +702,9 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
     <div class="baidu-popup" id="baiduPanPopup">
         <div class="baidu-popup-body">
             <div class="baidu-popup-text">
+                <p style="color:var(--text-primary); font-size:1.05rem; font-weight:600; margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    如果网站内的视频不够清晰，或者需要更多视频作品可点击下方链接或扫描二维码进入百度网盘。
+                </p>
                 <p><strong>视觉作品集</strong><br>
                 链接: https://pan.baidu.com/s/1UXFaeMftiApQdqKOg6nP3A?pwd=v64w<br>
                 提取码: v64w<br>
@@ -920,14 +927,13 @@ async function copyAndChange(btn,text,originalContent){try{await navigator.clipb
 
 /* ===== 新增交互：切换和关闭气泡弹窗 ===== */
 function toggleBaiduPanPopup(event) {
-    event.stopPropagation(); // 阻止事件冒泡到 document
+    event.stopPropagation(); 
     const popup = document.getElementById('baiduPanPopup');
     popup.classList.toggle('show');
 }
 document.addEventListener('click', (e) => {
     const popup = document.getElementById('baiduPanPopup');
     const wrapper = document.querySelector('.more-works-wrapper');
-    // 如果点击在气泡外，则隐藏气泡
     if (popup && popup.classList.contains('show') && !wrapper.contains(e.target)) {
         popup.classList.remove('show');
     }
@@ -939,7 +945,6 @@ document.getElementById('imageViewer').addEventListener('click',e=>{if(e.target.
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){
     closeModal();
     closeImageViewer();
-    // 监听 ESC 键关闭气泡
     const popup = document.getElementById('baiduPanPopup');
     if(popup) popup.classList.remove('show');
 }});
