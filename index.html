@@ -46,6 +46,7 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .section-title{font-size:2.5rem;margin-bottom:50px;text-align:center;position:relative;display:block;width:100%}
 .section-title::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:60px;height:4px;background:var(--gradient-1);border-radius:2px}
 
+
 /* ==========================================
    修仙者与能量球专业技能版块 CSS
 ========================================== */
@@ -175,7 +176,6 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .sphere-wrapper:hover .skill-popup {
     opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); pointer-events: auto;
 }
-
 .skill-popup {
     position: absolute;
     right: calc(100% + 35px); 
@@ -191,19 +191,15 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 99999; 
 }
-
-/* ===== 核心优化：为弹出面板添加透明伪元素桥接区域，防止鼠标移开球体时弹窗消失 ===== */
 .skill-popup::before {
     content: '';
     position: absolute;
     top: 0;
-    right: -40px; /* 覆盖球体与弹窗之间的 35px 缝隙 */
+    right: -40px; 
     width: 40px;
     height: 100%;
     background: transparent;
 }
-
-/* 赋予视频控件 */
 .skill-popup video { 
     width: 100%; border-radius: 10px; margin-bottom: 15px; 
     background: #000; aspect-ratio: 16/9; object-fit: cover; 
@@ -473,7 +469,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                             <img src="images/AI.png" alt="AI">
                         </div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
+                            <video src="images/video/AI技能球展示.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>AI</h4>
                                 <p>如今，AI能够做到事情越来越多，AI也从以前辅助其他软件工作逐渐到其他专业软件来辅助AI，修复AI的BUG。通过使用AI超低成本也可慢慢获得曾经看似“精良”的质感和画面。</p>
@@ -486,7 +482,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-1">
                         <div class="energy-sphere"><img src="images/davinci.png" alt="DaVinci"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
+                            <video src="images/video/剪辑技能球展示.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>剪辑</h4>
                                 <p>剪辑工作中，闲时经常各种类型的优秀案例，以备后续参考，在剪辑某个类型的片子时也会搜寻大量相同案例，参考优秀部分融入到剪辑当中。</p>
@@ -499,7 +495,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-2">
                         <div class="energy-sphere"><img src="images/Adobe Ae.png" alt="AE"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
+                            <video src="images/video/AEPS技能球展示.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>AE & PS</h4>
                                 <p>AE和PS更多情况下是辅助剪辑，删改不需要的画面，添加各种小动效等等</p>
@@ -512,7 +508,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-3">
                         <div class="energy-sphere"><img src="images/blender.png" alt="Blender"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
+                            <video src="images/video/Blender技能球展示.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>Blender</h4>
                                 <p>作为后期特效专业出身的学生，本应会使用三维软件，但当我在校的课程到三维阶段时，AI绘画已经出现，当时非常焦虑是否要继续学习传统三维，故而三维技能被搁置。直到进入电商产品公司接收了大量产品动画的需求，才开始学习更详细的三维动画制作，所以三维作品基本为产品相关。</p>
@@ -525,7 +521,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-4">
                         <div class="energy-sphere"><img src="images/photo.png" alt="photo"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
+                            <video src="images/video/摄影技能球展示.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>摄影摄像</h4>
                                 <p>在商业拍摄中，经常受限于时间和成本问题，所以会在前期详细策划脚本，拍摄时也是大量使用固定镜头从而在后期中有更大的调整空间。近期个人创作中受到Brandon Li和Andras Ra的影响很大，喜欢使用大范围的运镜和多线剪辑叙事去完成一个旅拍类型的片子...</p>
@@ -538,7 +534,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-5">
                         <div class="energy-sphere"><img src="images/edit.png" alt="edit"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
+                            <video src="images/video/剪辑技能球展示.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>剪辑</h4>
                                 <p>剪辑工作中，闲时经常各种类型的优秀案例，以备后续参考，在剪辑某个类型的片子时也会搜寻大量相同案例，参考优秀部分融入到剪辑当中。</p>
@@ -551,7 +547,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-6">
                         <div class="energy-sphere"><img src="images/overwatch.png" alt="Overwatch"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
+                            <video src="images/video/游戏技能球展示.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>Overwatch</h4>
                                 <p>....</p>
@@ -564,7 +560,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-7">
                         <div class="energy-sphere"><img src="images/ps.png" alt="PS"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
+                            <video src="images/video/AEPS技能球展示.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>AE & PS</h4>
                                 <p>AE和PS更多情况下是辅助剪辑，删改不需要的画面，添加各种小动效等等</p>
