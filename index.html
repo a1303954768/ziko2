@@ -46,7 +46,6 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .section-title{font-size:2.5rem;margin-bottom:50px;text-align:center;position:relative;display:block;width:100%}
 .section-title::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:60px;height:4px;background:var(--gradient-1);border-radius:2px}
 
-
 /* ==========================================
    修仙者与能量球专业技能版块 CSS
 ========================================== */
@@ -123,7 +122,9 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 }
 .energy-sphere img { width: 35px; height: 35px; object-fit: contain; pointer-events: none; }
 
-.sphere-wrapper:hover { z-index: 9999; }
+.sphere-wrapper:hover {
+    z-index: 9999;
+}
 
 .pos-center { transform: translate(-50%, -50%); z-index: 20; } 
 .pos-1 { transform: translate(-50%, -50%) translate(0px, -135px); }       
@@ -174,6 +175,7 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .sphere-wrapper:hover .skill-popup {
     opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); pointer-events: auto;
 }
+
 .skill-popup {
     position: absolute;
     right: calc(100% + 35px); 
@@ -189,9 +191,29 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 99999; 
 }
-.skill-popup video { width: 100%; border-radius: 10px; margin-bottom: 15px; background: #000; aspect-ratio: 16/9; object-fit: cover; }
-.popup-info h4 { color: var(--text-primary); font-size: 1.5rem; margin-bottom: 8px; font-weight: bold; }
-.popup-info p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; }
+
+/* ===== 核心优化：为弹出面板添加透明伪元素桥接区域，防止鼠标移开球体时弹窗消失 ===== */
+.skill-popup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -40px; /* 覆盖球体与弹窗之间的 35px 缝隙 */
+    width: 40px;
+    height: 100%;
+    background: transparent;
+}
+
+/* 赋予视频控件 */
+.skill-popup video { 
+    width: 100%; border-radius: 10px; margin-bottom: 15px; 
+    background: #000; aspect-ratio: 16/9; object-fit: cover; 
+}
+.popup-info h4 { 
+    color: var(--text-primary); font-size: 1.5rem; margin-bottom: 8px; font-weight: bold; 
+}
+.popup-info p { 
+    color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; 
+}
 /* ========================================== */
 
 .experience{padding:100px 2% 40px;background:transparent;min-height:100vh}
@@ -209,62 +231,28 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .experience-item p{font-size:1.1rem;color:var(--text-secondary);line-height:1.8;max-width:900px}
 .experience-item.active{background:rgba(99,102,241,0.05)}
 
+.experience-photo-section{height:25vh;min-height:200px;position:relative;overflow:visible;border-radius:16px}
 
-/* ==========================================
-   核心修复：完美阻止横向撑爆，确保网页居中
-========================================== */
 .full-width-photo-carousel {
-    width: 100%; /* 使用 100% 而不是 100vw，防止出现横向滚动条偏移 */
-    position: relative; 
-    background: transparent; 
-    padding: 60px 0 20px; 
-    margin-top: 40px; 
-    box-sizing: border-box;
+    width: 100%; position: relative; background: transparent; padding: 60px 0 20px; 
+    margin-top: 40px; box-sizing: border-box;
 }
 .full-width-photo-carousel h3 {
-    text-align: center; /* 标题居中 */
-    margin: 0 auto 30px; 
-    padding: 0 40px; 
-    font-size: 1.5rem;
-    color: var(--text-primary); 
-    position: relative;
+    text-align: center; margin: 0 auto 30px; padding: 0 40px; font-size: 1.5rem;
+    color: var(--text-primary); position: relative;
 }
 
-/* 抵消 Padding 法：用外层 overflow:hidden 切断超长相册，同时留出上下内边距供图片放大 */
 .photo-carousel-wrapper {
-    width: 100%;
-    overflow: hidden; /* 绝对阻止横向一万多像素撑爆网页！ */
-    padding: 150px 0; /* 在隐藏盒子里划出 150px 上下安全区 */
-    margin: -150px 0; /* 再用负 margin 拉回原位，不影响整体排版高度 */
-    position: relative;
+    width: 100%; overflow: hidden; padding: 150px 0; margin: -150px 0; position: relative;
 }
 
-.photo-carousel-track {
-    display: flex;
-    gap: 20px;
-    padding: 0 20px;
-    height: 220px; /* 固定一个基础高度 */
-    will-change: transform;
-}
+.photo-carousel-track { display: flex; gap: 20px; padding: 0 20px; height: 220px; will-change: transform; }
 .photo-carousel-item {
-    min-width: 220px;
-    height: 100%;
-    border-radius: 12px;
-    cursor: pointer;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+    min-width: 220px; height: 100%; border-radius: 12px; cursor: pointer; flex-shrink: 0;
+    position: relative; z-index: 1; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
 }
-.photo-carousel-item:hover {
-    transform: scale(2); /* 放心放大，上下有 150px 的 padding 保护它不被切掉 */
-    z-index: 2000; 
-    box-shadow: 0 30px 80px rgba(99,102,241,0.6);
-}
-.photo-carousel-item img {
-    width: 100%; height: 100%; object-fit: cover; border-radius: 12px; pointer-events: none;
-}
-/* ========================================== */
+.photo-carousel-item:hover { transform: scale(2); z-index: 2000; box-shadow: 0 30px 80px rgba(99,102,241,0.6); }
+.photo-carousel-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; pointer-events: none; }
 
 .portfolio{padding:120px 5%;background:transparent}
 .portfolio-filter{display:flex;justify-content:center;gap:20px;margin-bottom:50px;flex-wrap:wrap}
@@ -370,7 +358,6 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 .modal-close{position:absolute;top:-50px;right:0;color:#fff;font-size:2.5rem;cursor:pointer;transition:transform 0.3s}
 .modal-close:hover{transform:rotate(90deg)}
 .modal-title{color:#fff;font-size:1.5rem;margin-top:20px;text-align:center}
-
 @media(max-width:968px){
     .hero-container{grid-template-columns:1fr;gap:50px}.hero-image{order:-1}.hero-stats{gap:20px}.stat-item{flex:1;min-width:120px}
     .photo-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));grid-auto-rows:180px}.contact-gif{width:120px;height:120px}.contact-gif-1{top:60px;left:5%}.contact-gif-2{top:60px;right:5%}.contact-gif-3{bottom:60px;left:2%}.contact-gif-4{bottom:60px;right:2%}.video-row{grid-template-columns:1fr;gap:40px}.video-row.reverse{direction:ltr}.video-content h3{font-size:1.5rem}
@@ -438,7 +425,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 <div class="hero-content">
 <div class="hero-subtitle">你好，我是</div>
 <h1>黄梓冠 <span>Ziko</span></h1>
-<p class="hero-description"><span class="highlight-text">擅长摄影&剪辑</span><span class="highlight-text">（后期特效）</span>。24 年毕业于深圳职业技术大学，广播影视节目制作专业。拥有 3+ 年工作经历。交付中短各类视频项目 30+，完成多个商业纪录片、宣传片、公益中视频、微电影、产品视频以及各类短视频。能够快速适应不同环境以及项目。</p>
+<p class="hero-description"><span class="highlight-text">擅长摄影&剪辑</span><span class="highlight-text">（后期包装）</span>。24 年毕业于深圳职业技术大学，广播影视节目制作专业。拥有 3+ 年工作经历。交付中短各类视频项目 30+，完成多个商业纪录片、宣传片、公益中视频、微电影、产品视频以及各类短视频。能够快速适应不同环境以及项目。</p>
 <p class="hero-description">热爱影视行业，毕业后仍持续保持学习，不断进步。工作之外的业余时间会创作个人短片以更新作品和跟进时代技术。</p>
 <div class="hero-stats">
 <div class="stat-item"><span class="stat-number" data-target="30" data-suffix="+">0</span><div class="stat-label">完成项目</div></div>
@@ -486,7 +473,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                             <img src="images/AI.png" alt="AI">
                         </div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>AI</h4>
                                 <p>如今，AI能够做到事情越来越多，AI也从以前辅助其他软件工作逐渐到其他专业软件来辅助AI，修复AI的BUG。通过使用AI超低成本也可慢慢获得曾经看似“精良”的质感和画面。</p>
@@ -499,7 +486,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-1">
                         <div class="energy-sphere"><img src="images/davinci.png" alt="DaVinci"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>剪辑</h4>
                                 <p>剪辑工作中，闲时经常各种类型的优秀案例，以备后续参考，在剪辑某个类型的片子时也会搜寻大量相同案例，参考优秀部分融入到剪辑当中。</p>
@@ -512,7 +499,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-2">
                         <div class="energy-sphere"><img src="images/Adobe Ae.png" alt="AE"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>AE & PS</h4>
                                 <p>AE和PS更多情况下是辅助剪辑，删改不需要的画面，添加各种小动效等等</p>
@@ -525,7 +512,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-3">
                         <div class="energy-sphere"><img src="images/blender.png" alt="Blender"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>Blender</h4>
                                 <p>作为后期特效专业出身的学生，本应会使用三维软件，但当我在校的课程到三维阶段时，AI绘画已经出现，当时非常焦虑是否要继续学习传统三维，故而三维技能被搁置。直到进入电商产品公司接收了大量产品动画的需求，才开始学习更详细的三维动画制作，所以三维作品基本为产品相关。</p>
@@ -538,7 +525,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-4">
                         <div class="energy-sphere"><img src="images/photo.png" alt="photo"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>摄影摄像</h4>
                                 <p>在商业拍摄中，经常受限于时间和成本问题，所以会在前期详细策划脚本，拍摄时也是大量使用固定镜头从而在后期中有更大的调整空间。近期个人创作中受到Brandon Li和Andras Ra的影响很大，喜欢使用大范围的运镜和多线剪辑叙事去完成一个旅拍类型的片子...</p>
@@ -551,7 +538,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-5">
                         <div class="energy-sphere"><img src="images/edit.png" alt="edit"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>剪辑</h4>
                                 <p>剪辑工作中，闲时经常各种类型的优秀案例，以备后续参考，在剪辑某个类型的片子时也会搜寻大量相同案例，参考优秀部分融入到剪辑当中。</p>
@@ -564,7 +551,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-6">
                         <div class="energy-sphere"><img src="images/overwatch.png" alt="Overwatch"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>Overwatch</h4>
                                 <p>....</p>
@@ -577,7 +564,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
                     <div class="sphere-float float-7">
                         <div class="energy-sphere"><img src="images/ps.png" alt="PS"></div>
                         <div class="skill-popup">
-                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline></video>
+                            <video src="images/bgvideo.mp4" autoplay loop muted playsinline controls></video>
                             <div class="popup-info">
                                 <h4>AE & PS</h4>
                                 <p>AE和PS更多情况下是辅助剪辑，删改不需要的画面，添加各种小动效等等</p>
@@ -801,6 +788,21 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 </div>
 <div class="video-thumbnail" onclick="openModal(this)" data-video="//player.bilibili.com/player.html?isOutside=true&aid=116244732838164&bvid=BV1G6wRzaEFo&cid=36770023428&p=1" data-title="亚马逊产品视频">
 <div class="thumbnail"><img src="images/吸尘器产品封面.png" alt="封面"><div class="play-button"></div></div>
+</div>
+</div>
+
+<div class="video-row reverse">
+<div class="video-thumbnail" onclick="openModal(this)" data-video="//player.bilibili.com/player.html?isOutside=true&aid=116329591998006&bvid=BV12f9EBPECB&cid=37153865958&p=1" data-title="2021-2023在校作品集（陈年老片）">
+<div class="thumbnail"><img src="images/在校作品集封面.jpg" alt="封面"><div class="play-button"></div></div>
+</div>
+<div class="video-content">
+<h3>2021-2023在校作品集（陈年老片）</h3>
+<p>在校期间零零散散的视频混剪，也是实习期间找工作用的作品集。</p>
+<div class="video-tags">
+<span class="tag">混剪</span>
+<span class="tag">学生作品</span>
+<span class="tag">推荐指数⭐️⭐️</span>
+</div>
 </div>
 </div>
 </div>
