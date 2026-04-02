@@ -19,6 +19,7 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .nav-links a:hover{color:var(--text-primary)}.nav-links a:hover::after{width:100%}
 .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001;padding:5px}
 .menu-toggle span{width:25px;height:3px;background:var(--text-primary);transition:all 0.3s;border-radius:3px}
+
 .hero{min-height:100vh;padding:150px 5% 100px;position:relative;overflow:hidden;display:flex;align-items:center}
 .hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(99,102,241,0.15) 0%,transparent 70%);animation:pulse 8s ease-in-out infinite}
 .hero::after{content:'';position:absolute;bottom:-30%;right:-20%;width:100%;height:100%;background:radial-gradient(circle,rgba(240,147,251,0.1) 0%,transparent 60%);animation:pulse 10s ease-in-out infinite reverse}
@@ -43,98 +44,69 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .hero-image-badge h3{font-size:1.1rem;margin-bottom:3px;color:var(--text-primary)}
 .hero-image-badge p{color:var(--text-secondary);font-size:0.85rem}
 @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
+
 .section-title{font-size:2.5rem;margin-bottom:50px;text-align:center;position:relative;display:block;width:100%}
 .section-title::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:60px;height:4px;background:var(--gradient-1);border-radius:2px}
 
-
 /* ==========================================
-   修仙者与能量球专业技能版块 CSS
+   专业技能版块 CSS (电脑端特效)
 ========================================== */
 .skills{padding:120px 5%;background:transparent}
 .skills-layout {
-    display: grid;
-    grid-template-columns: 1.4fr 0.6fr; 
-    gap: 60px;
-    max-width: 1400px;
-    margin: 0 auto;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr; 
+    gap: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: center;
 }
-
 .skill-list-new { list-style: none; }
 .skill-item-new { margin-bottom: 65px; opacity: 0; transform: translateX(-30px); transition: all 0.8s; }
 .skill-item-new.visible { opacity: 1; transform: translateX(0); }
 .skill-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-.skill-header .icon { 
-    width: 45px; height: 45px; 
-    background: rgba(99,102,241,0.15); 
-    border-radius: 12px; display: flex; align-items: center; justify-content: center; 
-    font-size: 1.3rem; border: 1px solid rgba(99,102,241,0.3); box-shadow: 0 0 10px rgba(99,102,241,0.2);
+.skill-header .icon { 
+    width: 45px; height: 45px; background: rgba(99,102,241,0.15); 
+    border-radius: 12px; display: flex; align-items: center; justify-content: center; 
+    font-size: 1.3rem; border: 1px solid rgba(99,102,241,0.3); box-shadow: 0 0 10px rgba(99,102,241,0.2);
 }
 .skill-header h4 { font-size: 1.5rem; color: var(--text-primary); letter-spacing: 1px; font-weight: 700; }
-.skill-item-new p { 
-    color: var(--text-secondary); font-size: 1.05rem; line-height: 1.9; 
-    text-align: justify; padding-left: 60px;
+.skill-item-new p { 
+    color: var(--text-secondary); font-size: 1.05rem; line-height: 1.9; 
+    text-align: justify; padding-left: 60px;
 }
 
+/* 电脑端视觉区 */
 .skills-visual-side {
-    position: relative;
-    height: 700px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    z-index: 10;
+    position: relative; height: 700px; display: flex; flex-direction: column;
+    justify-content: flex-end; align-items: center; z-index: 10;
 }
 .cultivator-img {
-    width: 320px; 
-    z-index: 1; 
-    position: relative;
-    pointer-events: none;
-    transform: translateY(80px); 
+    width: 320px; z-index: 1; position: relative; pointer-events: none; transform: translateY(80px); 
 }
 .energy-spheres-area {
-    position: absolute;
-    bottom: 260px; 
-    width: 350px;
-    height: 350px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
+    position: absolute; bottom: 260px; width: 350px; height: 350px;
+    left: 50%; transform: translateX(-50%); z-index: 10;
 }
-
 .sphere-wrapper {
-    position: absolute;
-    top: 50%; left: 50%;
-    z-index: 10;
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: absolute; top: 50%; left: 50%; z-index: 10; transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.sphere-float {
-    will-change: transform;
-}
+.sphere-float { will-change: transform; }
 .energy-sphere {
-    width: 65px; height: 65px;
-    background: rgba(15,15,15,0.8);
-    border: 2px solid rgba(99,102,241,0.6);
-    border-radius: 50%;
-    display: flex; justify-content: center; align-items: center;
-    box-shadow: 0 0 20px rgba(99,102,241,0.5), inset 0 0 15px rgba(99,102,241,0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
+    width: 65px; height: 65px; background: rgba(15,15,15,0.8);
+    border: 2px solid rgba(99,102,241,0.6); border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 0 20px rgba(99,102,241,0.5), inset 0 0 15px rgba(99,102,241,0.3); cursor: pointer; transition: all 0.3s ease;
 }
 .energy-sphere img { width: 35px; height: 35px; object-fit: contain; pointer-events: none; }
+.sphere-wrapper:hover { z-index: 9999; }
 
-.sphere-wrapper:hover {
-    z-index: 9999;
-}
-
-.pos-center { transform: translate(-50%, -50%); z-index: 20; } 
-.pos-1 { transform: translate(-50%, -50%) translate(0px, -135px); }       
-.pos-2 { transform: translate(-50%, -50%) translate(105px, -84px); }      
-.pos-3 { transform: translate(-50%, -50%) translate(131px, 30px); }       
-.pos-4 { transform: translate(-50%, -50%) translate(58px, 122px); }       
-.pos-5 { transform: translate(-50%, -50%) translate(-58px, 122px); }      
-.pos-6 { transform: translate(-50%, -50%) translate(-131px, 30px); }      
-.pos-7 { transform: translate(-50%, -50%) translate(-105px, -84px); }     
+.pos-center { transform: translate(-50%, -50%); z-index: 20; } 
+.pos-1 { transform: translate(-50%, -50%) translate(0px, -135px); }       
+.pos-2 { transform: translate(-50%, -50%) translate(105px, -84px); }      
+.pos-3 { transform: translate(-50%, -50%) translate(131px, 30px); }       
+.pos-4 { transform: translate(-50%, -50%) translate(58px, 122px); }       
+.pos-5 { transform: translate(-50%, -50%) translate(-58px, 122px); }      
+.pos-6 { transform: translate(-50%, -50%) translate(-131px, 30px); }      
+.pos-7 { transform: translate(-50%, -50%) translate(-105px, -84px); }     
 
 .float-1 { animation: sFloat1 4.5s ease-in-out infinite; }
 .float-2 { animation: sFloat2 5.2s ease-in-out infinite 0.5s; }
@@ -150,13 +122,9 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 @keyframes sFloat3 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(10px) translateX(8px); } }
 @keyframes sFloatCenter { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-.pos-center .energy-sphere { width: 80px; height: 80px; border-color: var(--accent); } 
+.pos-center .energy-sphere { width: 80px; height: 80px; border-color: var(--accent); } 
 .pos-center .energy-sphere img { width: 45px; height: 45px; }
-.pos-center:hover .energy-sphere {
-    transform: scale(1.3);
-    border-color: #00f2ff;
-    box-shadow: 0 0 50px #00f2ff, inset 0 0 30px #00f2ff;
-}
+.pos-center:hover .energy-sphere { transform: scale(1.3); border-color: #00f2ff; box-shadow: 0 0 50px #00f2ff, inset 0 0 30px #00f2ff; }
 
 .energy-spheres-area:has(.pos-center:hover) .orbit-wrapper { opacity: 0.95; }
 .energy-spheres-area:has(.pos-center:hover) .pos-1 { transform: translate(-50%, -50%) translate(0px, -75px) scale(0.65); }
@@ -167,57 +135,34 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .energy-spheres-area:has(.pos-center:hover) .pos-6 { transform: translate(-50%, -50%) translate(-73px, 17px) scale(0.65); }
 .energy-spheres-area:has(.pos-center:hover) .pos-7 { transform: translate(-50%, -50%) translate(-58px, -47px) scale(0.65); }
 
-.orbit-wrapper:hover .energy-sphere {
-    transform: scale(1.2);
-    border-color: #fff;
-    box-shadow: 0 0 30px var(--accent), inset 0 0 15px var(--accent);
-}
+.orbit-wrapper:hover .energy-sphere { transform: scale(1.2); border-color: #fff; box-shadow: 0 0 30px var(--accent), inset 0 0 15px var(--accent); }
 
-.sphere-wrapper:hover .skill-popup {
-    opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); pointer-events: auto;
-}
+.sphere-wrapper:hover .skill-popup { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); pointer-events: auto; }
 .skill-popup {
-    position: absolute;
-    right: calc(100% + 35px); 
-    top: 50%;
-    transform: translateY(-50%) translateX(30px); 
-    width: 650px; 
-    background: rgba(10,10,10,0.98); 
-    border: 2px solid rgba(99,102,241,0.6);
-    border-radius: 18px;
-    padding: 25px; 
-    box-shadow: -20px 25px 80px rgba(0,0,0,0.95), 0 0 30px rgba(99,102,241,0.3);
-    opacity: 0; visibility: hidden; pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 99999; 
+    position: absolute; right: calc(100% + 35px); top: 50%; transform: translateY(-50%) translateX(30px); 
+    width: 650px; background: rgba(10,10,10,0.98); border: 2px solid rgba(99,102,241,0.6); border-radius: 18px; padding: 25px; 
+    box-shadow: -20px 25px 80px rgba(0,0,0,0.95), 0 0 30px rgba(99,102,241,0.3); opacity: 0; visibility: hidden; pointer-events: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 99999; 
 }
-.skill-popup::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -40px; 
-    width: 40px;
-    height: 100%;
-    background: transparent;
-}
-.skill-popup video { 
-    width: 100%; border-radius: 10px; margin-bottom: 15px; 
-    background: #000; aspect-ratio: 16/9; object-fit: cover; 
-}
-.popup-info h4 { 
-    color: var(--text-primary); font-size: 1.5rem; margin-bottom: 8px; font-weight: bold; 
-}
-.popup-info p { 
-    color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; 
-}
-/* ========================================== */
+.skill-popup::before { content: ''; position: absolute; top: 0; right: -40px; width: 40px; height: 100%; background: transparent; }
+.skill-popup video { width: 100%; border-radius: 10px; margin-bottom: 15px; background: #000; aspect-ratio: 16/9; object-fit: cover; }
+.popup-info h4 { color: var(--text-primary); font-size: 1.5rem; margin-bottom: 8px; font-weight: bold; }
+.popup-info p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; }
 
+/* 手机端独有的技能展示样式（隐藏于电脑端） */
+.mobile-skill-details { display: none; }
+
+/* ==========================================
+   其余版块 CSS
+========================================== */
 .experience{padding:100px 2% 40px;background:transparent;min-height:100vh}
 .experience-container{max-width:1800px;margin:0 auto;width:100%}
 .experience-card{background:var(--bg-card);border-radius:24px;padding:40px;border:1px solid rgba(255,255,255,0.05);opacity:0;transform:translateY(50px);transition:all 0.6s}
 .experience-card.visible{opacity:1;transform:translateY(0)}
-.experience-text-section{height:40vh;margin-bottom:20px;position:relative;overflow:hidden;border:2px solid rgba(99,102,241,0.3);border-radius:16px}
+
+/* 给文字区高度设定为自适应，防止重叠 */
+.experience-text-section{height:auto; min-height: 40vh; margin-bottom:20px;position:relative;overflow:hidden;border:2px solid rgba(99,102,241,0.3);border-radius:16px}
 .experience-text-container{height:100%;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+
 .experience-text-container::-webkit-scrollbar{width:8px}
 .experience-text-container::-webkit-scrollbar-track{background:var(--bg-secondary)}
 .experience-text-container::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px}
@@ -226,26 +171,19 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .experience-item .experience-date{font-size:1rem;color:var(--accent);margin-bottom:20px;font-weight:600}
 .experience-item p{font-size:1.1rem;color:var(--text-secondary);line-height:1.8;max-width:900px}
 .experience-item.active{background:rgba(99,102,241,0.05)}
-
 .experience-photo-section{height:25vh;min-height:200px;position:relative;overflow:visible;border-radius:16px}
 
 .full-width-photo-carousel {
-    width: 100%; position: relative; background: transparent; padding: 60px 0 20px; 
-    margin-top: 40px; box-sizing: border-box;
+    width: 100%; position: relative; background: transparent; padding: 60px 0 20px; margin-top: 40px; box-sizing: border-box;
 }
 .full-width-photo-carousel h3 {
-    text-align: center; margin: 0 auto 30px; padding: 0 40px; font-size: 1.5rem;
-    color: var(--text-primary); position: relative;
+    text-align: center; margin: 0 auto 30px; padding: 0 40px; font-size: 1.5rem; color: var(--text-primary); position: relative;
 }
-
-.photo-carousel-wrapper {
-    width: 100%; overflow: hidden; padding: 150px 0; margin: -150px 0; position: relative;
-}
-
+.photo-carousel-wrapper { width: 100%; overflow: hidden; padding: 150px 0; margin: -150px 0; position: relative; }
 .photo-carousel-track { display: flex; gap: 20px; padding: 0 20px; height: 220px; will-change: transform; }
 .photo-carousel-item {
-    min-width: 220px; height: 100%; border-radius: 12px; cursor: pointer; flex-shrink: 0;
-    position: relative; z-index: 1; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+    min-width: 220px; height: 100%; border-radius: 12px; cursor: pointer; flex-shrink: 0;
+    position: relative; z-index: 1; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
 }
 .photo-carousel-item:hover { transform: scale(2); z-index: 2000; box-shadow: 0 30px 80px rgba(99,102,241,0.6); }
 .photo-carousel-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; pointer-events: none; }
@@ -270,7 +208,7 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .thumbnail{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--bg-secondary)}
 .thumbnail img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease}
 .video-thumbnail:hover .thumbnail img{transform:scale(1.1)}
-.play-button{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:90px;height:90px;background:var(--gradient-1);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);box-shadow:0 10px 40px rgba(99,102,241,0.5);border:3px solid rgba(255,255,255,0.2)}
+.play-button{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:90px;height:90px;background:var(--gradient-1);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275);box-shadow:0 10px 40px rgba(99,102,241,0.5);border:3px solid rgba(255,255,255,0.2)}
 .video-thumbnail:hover .play-button{transform:translate(-50%,-50%) scale(1)}
 .play-button::after{content:'';width:0;height:0;border-left:28px solid #fff;border-top:18px solid transparent;border-bottom:18px solid transparent;margin-left:5px}
 .photo-gallery{display:none;max-width:1400px;margin:0 auto}
@@ -305,6 +243,7 @@ nav{position:fixed;top:0;width:100%;padding:20px 5%;background:rgba(10,10,10,0.9
 .contact-gif{position:absolute;width:150px;height:150px;object-fit:cover;border-radius:12px;opacity:0.8;transition:all 0.3s;z-index:1}
 .contact-gif:hover{opacity:1;transform:scale(1.05)}
 .contact-gif-1{top:80px;left:15%}.contact-gif-2{top:80px;right:15%}.contact-gif-3{bottom:80px;left:10%}.contact-gif-4{bottom:80px;right:10%}
+
 .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--bg-card);color:var(--text-primary);padding:15px 30px;border-radius:12px;border:1px solid var(--accent);box-shadow:0 10px 40px rgba(0,0,0,0.5);z-index:9999;opacity:0;transition:all 0.3s;display:flex;align-items:center;gap:10px}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 .toast-icon{font-size:1.2rem}.toast-text{font-size:1rem}.toast-text strong{color:var(--accent)}
@@ -313,36 +252,31 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 /* 网盘悬浮气泡弹窗 CSS */
 .more-works-wrapper { position: relative; display: inline-block; }
 .baidu-popup {
-    position: absolute; top: calc(100% + 15px); left: 50%; transform: translateX(-50%) translateY(10px);
-    width: 580px; background: rgba(15,15,15,0.98); border: 1px solid rgba(99,102,241,0.5);
-    border-radius: 16px; padding: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.8);
-    opacity: 0; visibility: hidden; pointer-events: auto; transform: translateX(-50%) translateY(0);
-    z-index: 1000;
+    position: absolute; top: calc(100% + 15px); left: 50%; transform: translateX(-50%) translateY(10px);
+    width: 580px; background: rgba(15,15,15,0.98); border: 1px solid rgba(99,102,241,0.5);
+    border-radius: 16px; padding: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+    opacity: 0; visibility: hidden; pointer-events: none; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
 }
 .baidu-popup.show { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
 .baidu-popup::before {
-    content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
-    border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 8px solid rgba(99,102,241,0.5);
+    content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+    border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 8px solid rgba(99,102,241,0.5);
 }
 .baidu-popup::after {
-    content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%);
-    border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 7px solid rgba(15,15,15,0.98);
+    content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%);
+    border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 7px solid rgba(15,15,15,0.98);
 }
 .baidu-popup-body { display: flex; align-items: flex-start; gap: 20px; }
 .baidu-popup-text { flex: 1; text-align: left; }
-.baidu-popup-text p { 
-    color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; word-break: break-all;
-}
+.baidu-popup-text p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; word-break: break-all; }
 .baidu-popup-text strong { color: var(--text-primary); font-size: 1.1rem;}
-.baidu-popup-qr { 
-    width: 120px; height: 120px; background: #fff; padding: 5px; 
-    border-radius: 10px; flex-shrink: 0; 
-}
+.baidu-popup-qr { width: 120px; height: 120px; background: #fff; padding: 5px; border-radius: 10px; flex-shrink: 0; }
 .baidu-popup-qr img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .copy-link-btn {
-    padding: 10px 20px; background: var(--gradient-1); color: #fff; border: none; border-radius: 20px;
-    font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s; display: inline-flex;
-    align-items: center; gap: 5px; margin-top: 5px;
+    padding: 10px 20px; background: var(--gradient-1); color: #fff; border: none; border-radius: 20px;
+    font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s; display: inline-flex;
+    align-items: center; gap: 5px; margin-top: 5px;
 }
 .copy-link-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(99,102,241,0.4); }
 
@@ -356,24 +290,17 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 .modal-title{color:#fff;font-size:1.5rem;margin-top:20px;text-align:center}
 
 /* ==========================================
-   加载动画样式与文字 (新增修改)
+   加载动画样式与文字 (新增切换动画)
 ========================================== */
 .loader{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--bg-primary);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;transition:opacity 0.5s}
 .loader.hidden{opacity:0;pointer-events:none}
 .loader-circle{width:60px;height:60px;border:4px solid var(--bg-card);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite; margin-bottom: 20px;}
-.loader-text{color: rgba(255,255,255,0.7); font-size: 1rem; letter-spacing: 1px; animation: pulseText 2s infinite; text-align: center; padding: 0 20px; line-height: 1.5;}
+.loader-text{color: rgba(255,255,255,0.7); font-size: 1rem; letter-spacing: 1px; text-align: center; padding: 0 20px; line-height: 1.5; transition: opacity 0.5s ease;}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes pulseText{0%,100%{opacity:0.6}50%{opacity:1}}
 
-/* 流体球体背景优化 */
-.aurora-light {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -1; overflow: hidden; background: #0a0a0a; pointer-events: none; 
-}
-.light-spot {
-    position: absolute; border-radius: 50%; mix-blend-mode: screen; 
-    opacity: 0.6; will-change: transform; transform: translateZ(0); 
-}
+/* 流体球体背景 */
+.aurora-light { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; background: #0a0a0a; pointer-events: none; }
+.light-spot { position: absolute; border-radius: 50%; mix-blend-mode: screen; opacity: 0.6; will-change: transform; transform: translateZ(0); }
 @keyframes floatSpot1 { 0% { transform: translate(-10vw, -10vh) scale(1); } 33% { transform: translate(60vw, 40vh) scale(1.3); } 66% { transform: translate(10vw, 80vh) scale(0.8); } 100% { transform: translate(-10vw, -10vh) scale(1); } }
 @keyframes floatSpot2 { 0% { transform: translate(80vw, 80vh) scale(1); } 33% { transform: translate(10vw, 20vh) scale(0.9); } 66% { transform: translate(70vw, -10vh) scale(1.4); } 100% { transform: translate(80vw, 80vh) scale(1); } }
 @keyframes floatSpot3 { 0% { transform: translate(20vw, 90vh) scale(1.1); } 40% { transform: translate(90vw, 10vh) scale(0.7); } 70% { transform: translate(-10vw, 40vh) scale(1.2); } 100% { transform: translate(20vw, 90vh) scale(1.1); } }
@@ -382,61 +309,54 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 .spot-3 { width: 38vw; height: 38vw; background: radial-gradient(circle, rgba(255, 0, 255, 0.6) 0%, rgba(255, 0, 255, 0.15) 40%, transparent 70%); animation: floatSpot3 30s ease-in-out infinite;}
 
 /* ==========================================
-   手机端与平板端适配 (核心修复重叠BUG)
+   手机端与平板端适配 (核心修复重叠BUG)
 ========================================== */
 @media(max-width:968px){
-    .hero-container{grid-template-columns:1fr;gap:50px}.hero-image{order:-1}.hero-stats{gap:20px}.stat-item{flex:1;min-width:120px}
-    .photo-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));grid-auto-rows:180px}.contact-gif{width:120px;height:120px}.contact-gif-1{top:60px;left:5%}.contact-gif-2{top:60px;right:5%}.contact-gif-3{bottom:60px;left:2%}.contact-gif-4{bottom:60px;right:2%}.video-row{grid-template-columns:1fr;gap:40px}.video-row.reverse{direction:ltr}.video-content h3{font-size:1.5rem}
-    .skills-layout { grid-template-columns: 1fr; gap: 40px; }
-    .skill-item-new p { padding-left: 0; margin-top: 10px; }
+    .hero-container{grid-template-columns:1fr;gap:50px}.hero-image{order:-1}.hero-stats{gap:20px}.stat-item{flex:1;min-width:120px}
+    .photo-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));grid-auto-rows:180px}.contact-gif{width:120px;height:120px}.contact-gif-1{top:60px;left:5%}.contact-gif-2{top:60px;right:5%}.contact-gif-3{bottom:60px;left:2%}.contact-gif-4{bottom:60px;right:2%}.video-row{grid-template-columns:1fr;gap:40px}.video-row.reverse{direction:ltr}.video-content h3{font-size:1.5rem}
+    .skills-layout { grid-template-columns: 1fr; gap: 40px; }
+    .skill-item-new p { padding-left: 0; margin-top: 10px; }
+    
+    /* 核心修复：移除平板和手机端卡片高度限制 */
+    .experience-text-section { height: auto !important; min-height: 400px; border: none; overflow: visible; }
+    .experience-text-container { height: auto; overflow: visible; }
+    .experience-item { height: auto; min-height: auto; padding: 25px 0; justify-content: flex-start; }
 }
 
 @media(max-width:768px){
-    .aurora-light { display: none; }
-    .menu-toggle{display:flex}.nav-links{position:fixed;top:0;right:-100%;width:70%;max-width:300px;height:100vh;background:var(--bg-secondary);flex-direction:column;padding:100px 40px;gap:30px;transition:right 0.3s;box-shadow:-5px 0 20px rgba(0,0,0,0.5)}.nav-links.active{right:0}.nav-links a{font-size:1.2rem}.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.menu-toggle.active span:nth-child(2){opacity:0}.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}.hero{padding:100px 5% 60px}.hero-container{gap:40px}.hero h1{font-size:2rem}.hero-description{font-size:0.95rem}.hero-stats{gap:15px}.stat-item{padding:15px 20px;min-width:100px}.stat-number{font-size:2rem}.hero-image{max-width:400px;margin:0 auto}.hero-image-badge{bottom:15px;right:15px;padding:12px 18px}.hero-image-badge h3{font-size:1rem}.hero-image-badge p{font-size:0.8rem}.skills{padding:80px 5%}.skill-card{padding:30px}.tools-grid{grid-template-columns:repeat(3,1fr);gap:15px}.experience{padding:80px 2%}.experience-card{padding:30px}
+    .aurora-light { display: none; }
+    .menu-toggle{display:flex}.nav-links{position:fixed;top:0;right:-100%;width:70%;max-width:300px;height:100vh;background:var(--bg-secondary);flex-direction:column;padding:100px 40px;gap:30px;transition:right 0.3s;box-shadow:-5px 0 20px rgba(0,0,0,0.5)}.nav-links.active{right:0}.nav-links a{font-size:1.2rem}.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.menu-toggle.active span:nth-child(2){opacity:0}.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}.hero{padding:100px 5% 60px}.hero-container{gap:40px}.hero h1{font-size:2rem}.hero-description{font-size:0.95rem}.hero-stats{gap:15px}.stat-item{padding:15px 20px;min-width:100px}.stat-number{font-size:2rem}.hero-image{max-width:400px;margin:0 auto}.hero-image-badge{bottom:15px;right:15px;padding:12px 18px}.hero-image-badge h3{font-size:1rem}.hero-image-badge p{font-size:0.8rem}.skills{padding:80px 5%}.skill-card{padding:30px}.tools-grid{grid-template-columns:repeat(3,1fr);gap:15px}.experience{padding:80px 2%}.experience-card{padding:30px}
 
-    /* ===== 核心修复：手机端文字重叠问题 ===== */
-    .experience-text-section { 
-        height: auto; /* 移除固定的高度限制 */
-        min-height: 400px; /* 设定最小高度即可 */
-        overflow: visible; 
-        border: none; /* 移除小屏幕上的边框节省空间 */
-    }
-    .experience-text-container { 
-        height: auto; 
-        overflow: visible; 
-    }
-    .experience-item { 
-        height: auto; 
-        min-height: auto; 
-        padding: 30px 0; /* 增加上下间距防止挤压 */
-        justify-content: flex-start; /* 顶部对齐防止由于居中导致的标题错乱 */
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
+    /* 进一步优化手机端个人经历间距 */
     .experience-item h3 { font-size: 1.6rem; margin-bottom: 10px; }
-    /* ======================================= */
-
-    .portfolio{padding:80px 5%}.portfolio-grid{gap:60px}.photo-scroll-container{height:600px}.photo-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));grid-auto-rows:150px;gap:2px}.contact{padding:80px 5%}.contact-gif{display:none}.video-content h3{font-size:1.3rem}.video-content p{font-size:1rem}.play-button{width:70px;height:70px}
-    .baidu-popup { width: 320px; }
-    .baidu-popup-body { flex-direction: column; text-align: center; }
-    .baidu-popup-text { text-align: center; }
-    .baidu-popup-qr { margin: 0 auto; }
-    .skills-visual-side { display: none !important; }
+    
+    .portfolio{padding:80px 5%}.portfolio-grid{gap:60px}.photo-scroll-container{height:600px}.photo-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));grid-auto-rows:150px;gap:2px}.contact{padding:80px 5%}.contact-gif{display:none}.video-content h3{font-size:1.3rem}.video-content p{font-size:1rem}.play-button{width:70px;height:70px}
+    .baidu-popup { width: 320px; }
+    .baidu-popup-body { flex-direction: column; text-align: center; }
+    .baidu-popup-text { text-align: center; }
+    .baidu-popup-qr { margin: 0 auto; }
+    .skills-visual-side { display: none !important; }
+    .mobile-skill-details { display: block; margin-top: 15px; background: rgba(255,255,255,0.03); border-radius: 12px; padding: 15px; border: 1px solid rgba(255,255,255,0.05); }
+    .mobile-skill-details video { width: 100%; border-radius: 8px; margin-bottom: 10px; background: #000; }
+    .skill-item-new { margin-bottom: 40px; }
+    .skill-header { margin-bottom: 5px; }
+    .skill-item-new p.main-desc { display: none; } 
 }
 
 @media(max-width:480px){.hero h1{font-size:1.8rem}.hero-subtitle{font-size:0.95rem}.section-title{font-size:1.8rem}.stat-item{min-width:90px;padding:12px 15px}.stat-number{font-size:1.6rem}.stat-label{font-size:0.8rem}.nav-links{width:80%;padding:80px 30px}.contact-btn{width:100%;max-width:280px;justify-content:center}.tools-grid{grid-template-columns:repeat(3,1fr)}.portfolio-grid{gap:50px}.photo-scroll-container{height:500px}.video-content h3{font-size:1.2rem}}
 </style>
 </head>
 <body>
+
 <div class="loader">
-    <div class="loader-circle"></div>
-    <div class="loader-text" id="loaderText">网站内有100M的图文视频，需要加载一会~</div>
+    <div class="loader-circle"></div>
+    <div class="loader-text" id="loaderText">网站内有 100M 的图文视频，需要加载一会~</div>
 </div>
 
 <div class="aurora-light">
-    <div class="light-spot spot-1"></div>
-    <div class="light-spot spot-2"></div>
-    <div class="light-spot spot-3"></div>
+    <div class="light-spot spot-1"></div>
+    <div class="light-spot spot-2"></div>
+    <div class="light-spot spot-3"></div>
 </div>
 
 <nav>
@@ -450,14 +370,14 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 <a href="#contact" onclick="toggleMenu()">联系</a>
 </div>
 </nav>
-
 <section class="hero" id="home">
 <video class="hero-video" autoplay loop muted playsinline style="position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;transform:translate(-50%,-50%);z-index:0;object-fit:cover"><source src="images/bgvideo.mp4" type="video/mp4"></video>
 <div class="hero-container">
 <div class="hero-content">
 <div class="hero-subtitle">你好，我是</div>
 <h1>黄梓冠 <span>Ziko</span></h1>
-<p class="hero-description"><span class="highlight-text">擅长摄影&剪辑</span><span class="highlight-text">（后期包装）</span>。24 年毕业于深圳职业技术大学，广播影视节目制作专业。拥有 3+ 年工作经历。交付中短各类视频项目 30+，完成多个商业纪录片、宣传片、公益中视频、微电影、产品视频以及各类短视频...能够快速适应不同环境以及项目。</p>
+<p class="hero-description"><span class="highlight-text">擅长摄影&剪辑</span><span class="highlight-text">（后期包装）</span>。24 年毕业于深圳职业技术大学，广播影视节目制作专业。拥有 3+ 年工作经历。交付中短各类视频项目 30+，完成多个商业纪录片、宣传片、公益中视频、微电影、产品视频以及各类短视频。能够快速适应不同环境以及项目。</p>
+<p class="hero-description">热爱影视行业，毕业后仍持续保持学习，不断进步。工作之外的业余时间会创作个人短片以更新作品和跟进时代技术。</p>
 <div class="hero-stats">
 <div class="stat-item"><span class="stat-number" data-target="30" data-suffix="+">0</span><div class="stat-label">完成项目</div></div>
 <div class="stat-item"><span class="stat-number" data-target="3" data-suffix="+">0</span><div class="stat-label">工作经验</div></div>
@@ -472,50 +392,161 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 </section>
 
 <section class="skills" id="skills">
-    <h2 class="section-title">专业技能</h2>
-    <div class="skills-layout">
-        <div class="skills-text-side">
-            <ul class="skill-list-new">
-                <li class="skill-item-new visible">
-                    <div class="skill-header"><span class="icon">🎬</span><h4>视频剪辑</h4></div>
-                    <p>从短视频到宣传片纪录片等大部分内容的素材筛选、素材标记，成片剪辑交付均在达芬奇内完成。剪辑过多种类型片子，包括不限于微电影纪录片、综艺感短片、多机位访谈，产品视频，短视频...</p>
-                </li>
-                <li class="skill-item-new visible">
-                    <div class="skill-header"><span class="icon">📷</span><h4>摄影摄像</h4></div>
-                    <p>熟悉各类拍摄器材，包括索尼、松下、大疆、影石。擅长使用如影稳定器给视频运镜拍摄，近期个人创作作品中创作风格受Brandon Li和Andras Ra影响很大...电商产品拍摄中，熟练地在前期详细策划低成本方案，让拍摄现场高效完成任务。</p>
-                </li>
-                <li class="skill-item-new visible">
-                    <div class="skill-header"><span class="icon">✨</span><h4>后期特效</h4></div>
-                    <p>常用AE和Fusion以及Blender去完成添加在剪辑视频中的各类动效和其他特效动画内容。以及修复前期拍摄中残留的各类问题，例如拍摄到了不该出现的东西需要将其隐蔽掉。</p>
-                </li>
-                <li class="skill-item-new visible">
-                    <div class="skill-header"><span class="icon">🤖</span><h4>AI</h4></div>
-                    <p>近半年的视频创作中已经在使用各类开源（wan2.2、Ltx2.3）闭源（seedance2.0、kling 3.0）AI模型，替代掉大部分传统后期繁杂冗余的步骤，例如将画面中不好看的地方去掉。</p>
-                </li>
-            </ul>
-        </div>
-        <div class="skills-visual-side">
-            <div class="energy-spheres-area">
-                <div class="sphere-wrapper pos-center">
-                    <div class="sphere-float float-ai">
-                        <div class="energy-sphere"><img src="images/AI.png" alt="AI"></div>
-                        <div class="skill-popup">
-                            <video src="images/video/AI技能球展示.mp4" autoplay loop muted playsinline controls></video>
-                            <div class="popup-info"><h4>AI</h4><p>如今，AI能够做到事情越来越多，AI也从以前辅助其他软件工作逐渐到其他专业软件来辅助AI。</p></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sphere-wrapper orbit-wrapper pos-1"><div class="sphere-float float-1"><div class="energy-sphere"><img src="images/davinci.png" alt="DaVinci"></div><div class="skill-popup"><video src="images/video/剪辑技能球展示.mp4" autoplay loop muted playsinline controls></video><div class="popup-info"><h4>剪辑</h4><p>剪辑工作中，闲时经常各种类型的优秀案例，以备后续参考。</p></div></div></div></div>
-                <div class="sphere-wrapper orbit-wrapper pos-2"><div class="sphere-float float-2"><div class="energy-sphere"><img src="images/Adobe Ae.png" alt="AE"></div><div class="skill-popup"><video src="images/video/AEPS技能球展示.mp4" autoplay loop muted playsinline controls></video><div class="popup-info"><h4>AE & PS</h4><p>AE和PS更多情况下是辅助剪辑，删改不需要的画面，添加各种小动效等等</p></div></div></div></div>
-                <div class="sphere-wrapper orbit-wrapper pos-3"><div class="sphere-float float-3"><div class="energy-sphere"><img src="images/blender.png" alt="Blender"></div><div class="skill-popup"><video src="images/video/Blender技能球展示.mp4" autoplay loop muted playsinline controls></video><div class="popup-info"><h4>Blender</h4><p>进入电商产品公司接收了大量产品动画的需求，才开始学习更详细的三维动画制作。</p></div></div></div></div>
-                <div class="sphere-wrapper orbit-wrapper pos-4"><div class="sphere-float float-4"><div class="energy-sphere"><img src="images/photo.png" alt="photo"></div><div class="skill-popup"><video src="images/video/摄影技能球展示.mp4" autoplay loop muted playsinline controls></video><div class="popup-info"><h4>摄影摄像</h4><p>喜欢使用大范围的运镜和多线剪辑叙事去完成一个旅拍类型的片子...</p></div></div></div></div>
-                <div class="sphere-wrapper orbit-wrapper pos-5"><div class="sphere-float float-5"><div class="energy-sphere"><img src="images/edit.png" alt="edit"></div><div class="skill-popup"><video src="images/video/剪辑技能球展示.mp4" autoplay loop muted playsinline controls></video><div class="popup-info"><h4>剪辑</h4><p>参考优秀部分融入到剪辑当中。</p></div></div></div></div>
-                <div class="sphere-wrapper orbit-wrapper pos-6"><div class="sphere-float float-6"><div class="energy-sphere"><img src="images/overwatch.png" alt="Overwatch"></div><div class="skill-popup"><video src="images/video/游戏技能球展示.mp4" autoplay loop muted playsinline controls></video><div class="popup-info"><h4>Overwatch</h4><p>....</p></div></div></div></div>
-                <div class="sphere-wrapper orbit-wrapper pos-7"><div class="sphere-float float-7"><div class="energy-sphere"><img src="images/ps.png" alt="PS"></div><div class="skill-popup"><video src="images/video/AEPS技能球展示.mp4" autoplay loop muted playsinline controls></video><div class="popup-info"><h4>AE & PS</h4><p>辅助剪辑，删改不需要的画面，添加各种小动效等等</p></div></div></div></div>
-            </div>
-            <img src="images/cultivator.png" class="cultivator-img" alt="修仙者">
-        </div>
-    </div>
+    <h2 class="section-title">专业技能</h2>
+    <div class="skills-layout">
+        <div class="skills-text-side">
+            <ul class="skill-list-new">
+                <li class="skill-item-new visible">
+                    <div class="skill-header"><span class="icon">🎬</span><h4>视频剪辑</h4></div>
+                    <p class="main-desc">从短视频到宣传片纪录片等大部分内容的素材筛选、素材标记，成片剪辑交付均在达芬奇内完成。剪辑过多种类型片子，包括不限于微电影纪录片、综艺感短片、多机位访谈，产品视频，短视频...</p>
+                    <div class="mobile-skill-details">
+                        <video src="images/video/剪辑技能球展示.mp4" controls playsinline></video>
+                        <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.6;">剪辑工作中，闲时经常各种类型的优秀案例，以备后续参考，在剪辑某个类型的片子时也会搜寻大量相同案例，参考优秀部分融入到剪辑当中。</p>
+                    </div>
+                </li>
+                
+                <li class="skill-item-new visible">
+                    <div class="skill-header"><span class="icon">📷</span><h4>摄影摄像</h4></div>
+                    <p class="main-desc">熟悉各类拍摄器材，包括索尼、松下、大疆、影石。擅长使用如影稳定器给视频运镜拍摄，近期个人创作作品中创作风格受Brandon Li和Andras Ra影响很大，使用了大量大范围运镜。户外创作中熟练在混乱复杂环境捕捉好看画面。电商产品拍摄中，熟练地在前期详细策划低成本方案，让拍摄现场高效完成任务，以达到节省成本的效果。</p>
+                    <div class="mobile-skill-details">
+                        <video src="images/video/摄影技能球展示.mp4" controls playsinline></video>
+                        <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.6;">在商业拍摄中，经常受限于时间和成本问题，所以会在前期详细策划脚本，拍摄时也是大量使用固定镜头从而在后期中有更大的调整空间。近期个人创作中受到Brandon Li和Andras Ra的影响很大，喜欢使用大范围的运镜和多线剪辑叙事去完成一个旅拍类型的片子...</p>
+                    </div>
+                </li>
+                
+                <li class="skill-item-new visible">
+                    <div class="skill-header"><span class="icon">✨</span><h4>后期特效</h4></div>
+                    <p class="main-desc">常用AE和Fusion以及Blender去完成添加在剪辑视频中的各类动效和其他特效动画内容。以及修复前期拍摄中残留的各类问题，例如拍摄到了不该出现的东西需要将其隐蔽掉。</p>
+                    <div class="mobile-skill-details">
+                        <video src="images/video/AEPS技能球展示.mp4" controls playsinline></video>
+                        <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.6;">AE和PS更多情况下是辅助剪辑，删改不需要的画面，添加各种小动效等等</p>
+                    </div>
+                </li>
+                
+                <li class="skill-item-new visible">
+                    <div class="skill-header"><span class="icon">🤖</span><h4>AI</h4></div>
+                    <p class="main-desc">近半年的视频创作中已经在使用各类开源（wan2.2、Ltx2.3）闭源（seedance2.0、kling 3.0）AI模型，替代掉大部分传统后期繁杂冗余的步骤，例如将画面中不好看的地方去掉，将空旷单调的位置添加新物品，将阴霾的天空换成晴朗的蓝天、将Blender建模创作好的静帧渲染为动画等等</p>
+                    <div class="mobile-skill-details">
+                        <video src="images/video/AI技能球展示.mp4" controls playsinline></video>
+                        <p style="color:var(--text-secondary); font-size:0.9rem; line-height:1.6;">如今，AI能够做到事情越来越多，AI也从以前辅助其他软件工作逐渐到其他专业软件来辅助AI，修复AI的BUG。通过使用AI超低成本也可慢慢获得曾经看似“精良”的质感和画面。</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="skills-visual-side">
+            <div class="energy-spheres-area">
+                
+                <div class="sphere-wrapper pos-center">
+                    <div class="sphere-float float-ai">
+                        <div class="energy-sphere">
+                            <img src="images/AI.png" alt="AI">
+                        </div>
+                        <div class="skill-popup">
+                            <video src="images/video/AI技能球展示.mp4" autoplay loop muted playsinline controls></video>
+                            <div class="popup-info">
+                                <h4>AI</h4>
+                                <p>如今，AI能够做到事情越来越多，AI也从以前辅助其他软件工作逐渐到其他专业软件来辅助AI，修复AI的BUG。通过使用AI超低成本也可慢慢获得曾经看似“精良”的质感和画面。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sphere-wrapper orbit-wrapper pos-1">
+                    <div class="sphere-float float-1">
+                        <div class="energy-sphere"><img src="images/davinci.png" alt="DaVinci"></div>
+                        <div class="skill-popup">
+                            <video src="images/video/剪辑技能球展示.mp4" autoplay loop muted playsinline controls></video>
+                            <div class="popup-info">
+                                <h4>剪辑</h4>
+                                <p>剪辑工作中，闲时经常各种类型的优秀案例，以备后续参考，在剪辑某个类型的片子时也会搜寻大量相同案例，参考优秀部分融入到剪辑当中。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sphere-wrapper orbit-wrapper pos-2">
+                    <div class="sphere-float float-2">
+                        <div class="energy-sphere"><img src="images/Adobe Ae.png" alt="AE"></div>
+                        <div class="skill-popup">
+                            <video src="images/video/AEPS技能球展示.mp4" autoplay loop muted playsinline controls></video>
+                            <div class="popup-info">
+                                <h4>AE & PS</h4>
+                                <p>AE和PS更多情况下是辅助剪辑，删改不需要的画面，添加各种小动效等等</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sphere-wrapper orbit-wrapper pos-3">
+                    <div class="sphere-float float-3">
+                        <div class="energy-sphere"><img src="images/blender.png" alt="Blender"></div>
+                        <div class="skill-popup">
+                            <video src="images/video/Blender技能球展示.mp4" autoplay loop muted playsinline controls></video>
+                            <div class="popup-info">
+                                <h4>Blender</h4>
+                                <p>作为后期特效专业出身的学生，本应会使用三维软件，但当我在校的课程到三维阶段时，AI绘画已经出现，当时非常焦虑是否要继续学习传统三维，故而三维技能被搁置。直到进入电商产品公司接收了大量产品动画的需求，才开始学习更详细的三维动画制作，所以三维作品基本为产品相关。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sphere-wrapper orbit-wrapper pos-4">
+                    <div class="sphere-float float-4">
+                        <div class="energy-sphere"><img src="images/photo.png" alt="photo"></div>
+                        <div class="skill-popup">
+                            <video src="images/video/摄影技能球展示.mp4" autoplay loop muted playsinline controls></video>
+                            <div class="popup-info">
+                                <h4>摄影摄像</h4>
+                                <p>在商业拍摄中，经常受限于时间和成本问题，所以会在前期详细策划脚本，拍摄时也是大量使用固定镜头从而在后期中有更大的调整空间。近期个人创作中受到Brandon Li和Andras Ra的影响很大，喜欢使用大范围的运镜和多线剪辑叙事去完成一个旅拍类型的片子...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sphere-wrapper orbit-wrapper pos-5">
+                    <div class="sphere-float float-5">
+                        <div class="energy-sphere"><img src="images/edit.png" alt="edit"></div>
+                        <div class="skill-popup">
+                            <video src="images/video/剪辑技能球展示.mp4" autoplay loop muted playsinline controls></video>
+                            <div class="popup-info">
+                                <h4>剪辑</h4>
+                                <p>剪辑工作中，闲时经常各种类型的优秀案例，以备后续参考，在剪辑某个类型的片子时也会搜寻大量相同案例，参考优秀部分融入到剪辑当中。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sphere-wrapper orbit-wrapper pos-6">
+                    <div class="sphere-float float-6">
+                        <div class="energy-sphere"><img src="images/overwatch.png" alt="Overwatch"></div>
+                        <div class="skill-popup">
+                            <video src="images/video/游戏技能球展示.mp4" autoplay loop muted playsinline controls></video>
+                            <div class="popup-info">
+                                <h4>Overwatch</h4>
+                                <p>....</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sphere-wrapper orbit-wrapper pos-7">
+                    <div class="sphere-float float-7">
+                        <div class="energy-sphere"><img src="images/ps.png" alt="PS"></div>
+                        <div class="skill-popup">
+                            <video src="images/video/AEPS技能球展示.mp4" autoplay loop muted playsinline controls></video>
+                            <div class="popup-info">
+                                <h4>AE & PS</h4>
+                                <p>AE和PS更多情况下是辅助剪辑，删改不需要的画面，添加各种小动效等等</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <img src="images/cultivator.png" class="cultivator-img" alt="修仙者">
+        </div>
+    </div>
 </section>
 
 <section class="experience" id="experience">
@@ -527,29 +558,29 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 <div class="experience-text-section">
 <div class="experience-text-container" id="experienceTextContainer">
 <div class="experience-item active">
-    <h3>入行学习</h3>
-    <div class="experience-date">2021.09 - 2024.06</div>
-    <p>进入深圳职业技术大学，广播影视节目制作，正式进入影视行业，主修后期特效方向。作业创作时常常兼顾摄影与剪辑，完成多类型创作，具备全流程创作能力。<br>25年5月，由我担任拍摄和剪辑的毕设作品纪录片《我和你们一样》荣获学校3年一度的最佳纪录片作品奖。</p>
+    <h3>入行学习</h3>
+    <div class="experience-date">2021.09 - 2024.06</div>
+    <p>进入深圳职业技术大学，广播影视节目制作，正式进入影视行业，主修后期特效方向。作业创作时常常兼顾摄影与剪辑，完成多类型创作，具备全流程创作能力。<br>25年5月，由我担任拍摄和剪辑的毕设作品纪录片《我和你们一样》荣获学校3年一度的最佳纪录片作品奖。</p>
 </div>
 <div class="experience-item">
-    <h3>深圳市极浪传媒有限公司</h3>
-    <div class="experience-date">2024.03 - 2024.08</div>
-    <p>实习期间找到的第一份正式工作，在公司担任剪辑师一职，公司很小，仅有老板（导演）一人常驻公司，故而受到老板很多业内知识亲传...制作的项目包括不限于：微信支付，腾讯招聘，腾讯活水访谈...</p>
+    <h3>深圳市极浪传媒有限公司</h3>
+    <div class="experience-date">2024.03 - 2024.08</div>
+    <p>实习期间找到的第一份正式工作，在公司担任剪辑师一职，公司很小，仅有老板（导演）一人常驻公司，故而受到老板很多业内知识亲传，时至今日（2026.04）仍然沿用当时的工作流。<br>公司主要业务来自于各大厂的外包剪辑项目，例如，腾讯，小红书，米其林等等，制作的项目包括不限于：微信支付，腾讯招聘，腾讯活水访谈，小红书公益，米其林周年视频......<br>我的工作内容是依据导演脚本完成素材整理、剪辑、包装与成片输出，偶尔复杂的复杂项目参与前期策划，形成成熟高效的工作流。</p>
 </div>
 <div class="experience-item">
-    <h3>自由职业（流浪期）</h3>
-    <div class="experience-date">2024.09 - 2024.12</div>
-    <p>接了同学给的一个小单子，发现这样也能够有收入，所以并没有很快的去找新工作。期间做了很多杂七杂八的视频...逐渐形成以 Brandon Li、Andras Ra 为参考的个人影像风格。</p>
+    <h3>自由职业（流浪期）</h3>
+    <div class="experience-date">2024.09 - 2024.12</div>
+    <p>从上家公司离职后，很巧合的接了同学给的一个小单子，发现这样也能够有收入，所以并没有很快的去找新工作。期间在社会上遇到形形色色的人和公司，做了很多杂七杂八的视频。因为时间充裕，所以业余创作的时间也丰富，逐渐形成以 Brandon Li、Andras Ra 为参考的个人影像风格。</p>
 </div>
 <div class="experience-item">
-    <h3>电商产品项目制作</h3>
-    <div class="experience-date">2024.12 - 2026.04</div>
-    <p>此期间先后任职于深圳马茨、深圳银舍智能，专注产品视频全流程制作。覆盖 3C 数码、香薰理疗、智能小家电等品类...熟练掌握产品拍摄流程，在控制预算的同时，又能输出好看商业视频。</p>
+    <h3>电商产品项目制作</h3>
+    <div class="experience-date">2024.12 - 2026.04</div>
+    <p>此期间先后任职于深圳马茨、深圳银舍智能，专注产品视频全流程制作。覆盖 3C 数码、香薰理疗、智能小家电等品类，从低成本竖屏信息流到高质感主图视频的拍摄与剪辑。我逐渐熟练掌握产品拍摄流程，在控制预算的同时，又能输出好看的吸睛的商业视频。</p>
 </div>
 <div class="experience-item">
-    <h3>个人创作（抖音账号：Ziko）</h3>
-    <div class="experience-date">2024.09 - 至今</div>
-    <p>毕业后，仍保持学习，无限进步。在工作之余持续创作视频，学习和输出网络流行的视觉效果，融入自身工作技能和流程上。</p>
+    <h3>个人创作（抖音账号：Ziko）</h3>
+    <div class="experience-date">2024.09 - 至今</div>
+    <p>毕业后，仍保持学习，无限进步。在工作之余持续创作视频，既有5分钟的短片创作，也有几秒钟的“创意”短视频。学习和输出网络流行的视觉效果，融入自身工作技能和流程上。</p>
 </div>
 </div>
 </div>
@@ -557,8 +588,8 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 <div class="full-width-photo-carousel experience-photo-section">
 <h3 style="font-size:1.5rem;margin-bottom:15px;color:var(--text-primary)">一些工作花絮照</h3>
 <div class="photo-carousel-wrapper">
-    <div class="photo-carousel-track" id="photoCarouselTrack">
-        <div class="photo-carousel-item"><img src="images/bts/bts01.jpg" alt="工作花絮 1"></div>
+    <div class="photo-carousel-track" id="photoCarouselTrack">
+        <div class="photo-carousel-item"><img src="images/bts/bts01.jpg" alt="工作花絮 1"></div>
         <div class="photo-carousel-item"><img src="images/bts/bts02.jpg" alt="工作花絮 2"></div>
         <div class="photo-carousel-item"><img src="images/bts/bts03.jpg" alt="工作花絮 3"></div>
         <div class="photo-carousel-item"><img src="images/bts/bts04.jpg" alt="工作花絮 4"></div>
@@ -586,7 +617,7 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
         <div class="photo-carousel-item"><img src="images/bts/bts26.jpg" alt="工作花絮 26"></div>
         <div class="photo-carousel-item"><img src="images/bts/bts27.jpg" alt="工作花絮 27"></div>
         <div class="photo-carousel-item"><img src="images/bts/bts28.jpg" alt="工作花絮 28"></div>
-    </div>
+    </div>
 </div>
 </div>
 </div>
@@ -597,100 +628,381 @@ footer{padding:30px 5%;background:var(--bg-primary);text-align:center;color:var(
 <div class="portfolio-filter">
 <button class="filter-btn active" onclick="filterPortfolio('videos')">视频作品</button>
 <button class="filter-btn" onclick="filterPortfolio('photos')">静帧作品</button>
+
 <div class="more-works-wrapper">
-    <button class="filter-btn special-btn" onclick="toggleBaiduPanPopup(event)">更多作品</button>
-    <div class="baidu-popup" id="baiduPanPopup">
-        <div class="baidu-popup-body">
-            <div class="baidu-popup-text">
-                <p style="color:var(--text-primary); font-size:1.05rem; font-weight:600; margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">如果网站内的视频不够清晰，或者需要更多视频作品可点击下方链接或扫描二维码进入百度网盘。</p>
-                <p><strong>视觉作品集</strong><br>链接: https://pan.baidu.com/s/1UXFaeMftiApQdqKOg6nP3A?pwd=v64w<br>提取码: v64w</p>
-                <button class="copy-link-btn" onclick="copyAndChange(this, 'https://pan.baidu.com/s/1UXFaeMftiApQdqKOg6nP3A?pwd=v64w', '<span>🔗</span> 点击复制链接')"><span>🔗</span> 点击复制链接</button>
-            </div>
-            <div class="baidu-popup-qr"><img src="images/二维码.png" alt="网盘二维码"></div>
-        </div>
-    </div>
+    <button class="filter-btn special-btn" onclick="toggleBaiduPanPopup(event)">更多作品</button>
+    
+    <div class="baidu-popup" id="baiduPanPopup">
+        <div class="baidu-popup-body">
+            <div class="baidu-popup-text">
+                <p style="color:var(--text-primary); font-size:1.05rem; font-weight:600; margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                    如果网站内的视频不够清晰，或者需要更多视频作品可点击下方链接或扫描二维码进入百度网盘。
+                </p>
+                <p><strong>视觉作品集</strong><br>
+                链接: https://pan.baidu.com/s/1UXFaeMftiApQdqKOg6nP3A?pwd=v64w<br>
+                提取码: v64w<br>
+                <span style="font-size:0.8rem; color:#888;">--来自百度网盘超级会员v6的分享</span></p>
+                <button class="copy-link-btn" onclick="copyAndChange(this, 'https://pan.baidu.com/s/1UXFaeMftiApQdqKOg6nP3A?pwd=v64w', '<span>🔗</span> 点击复制链接')">
+                    <span>🔗</span> 点击复制链接
+                </button>
+            </div>
+            <div class="baidu-popup-qr">
+                <img src="images/二维码.png" alt="网盘二维码">
+            </div>
+        </div>
+    </div>
 </div>
+
 </div>
 <div class="portfolio-grid" id="videoGrid">
-    <div class="video-row visible">
-        <div class="video-content"><h3>记录潮汕——年</h3><p>春节期间，我来到潮汕，看到了这片土地特有的年味。</p><div class="video-tags"><span class="tag">旅拍</span><span class="tag">推荐指数⭐️⭐️⭐️⭐️⭐️</span></div></div>
-        <div class="video-thumbnail" onclick="openModal(this)" data-video="//player.bilibili.com/player.html?isOutside=true&aid=115972958587270&bvid=BV1gqz9BNEcX" data-title="记录潮汕——年"><div class="thumbnail"><img src="images/《记录潮汕——年》封面.jpg" alt="封面"><div class="play-button"></div></div></div>
-    </div>
-    <div class="video-row reverse">
-        <div class="video-thumbnail" onclick="openModal(this)" data-video="//player.bilibili.com/player.html?isOutside=true&aid=116193646150209&bvid=BV1D1Nuz3Ekn" data-title="浅看深圳"><div class="thumbnail"><img src="images/浅看深圳封面.png" alt="封面"><div class="play-button"></div></div></div>
-        <div class="video-content"><h3>浅看深圳 | A glimpse of Shenzhen</h3><p>科技与烟火交错，一趟平凡的送跑腿路。</p><div class="video-tags"><span class="tag">运镜</span><span class="tag">推荐指数⭐️⭐️⭐️</span></div></div>
-    </div>
-    </div>
-</section>
+<div class="video-row visible">
+<div class="video-content">
+<h3>记录潮汕——年</h3>
+<p>春节期间，我来到潮汕，看到了这片土地特有的年味。通过镜头记录下传统习俗与现代生活的交融，展现了潮汕地区独特的文化魅力和浓厚的人情味。</p>
+<div class="video-tags">
+<span class="tag">旅拍</span>
+<span class="tag">记录</span>
+<span class="tag">剪辑</span>
+<span class="tag">人文</span>
+<span class="tag">推荐指数⭐️⭐️⭐️⭐️⭐️</span>
+</div>
+</div>
+<div class="video-thumbnail" onclick="openModal(this)" data-video="//player.bilibili.com/player.html?isOutside=true&aid=115972958587270&bvid=BV1gqz9BNEcX&cid=35669540936&p=1" data-title="记录潮汕——年">
+<div class="thumbnail"><img src="images/《记录潮汕——年》封面.jpg" alt="封面"><div class="play-button"></div></div>
+</div>
+</div>
+<div class="video-row reverse">
+<div class="video-thumbnail" onclick="openModal(this)" data-video="//player.bilibili.com/player.html?isOutside=true&aid=116193646150209&bvid=BV1D1Nuz3Ekn&cid=36553819711&p=1" data-title="浅看深圳|A glimpse of Shenzhen">
+<div class="thumbnail"><img src="images/浅看深圳封面.png" alt="封面"><div class="play-button"></div></div>
+</div>
+<div class="video-content">
+<h3>浅看深圳 | A glimpse of Shenzhen</h3>
+<p>科技与烟火交错，喧嚣与温柔共生。一趟平凡的送跑腿路，浅浅地看一看深圳。这座城市既有快节奏的现代生活，也有温暖的市井气息。</p>
+<div class="video-tags">
+<span class="tag">运镜</span>
+<span class="tag">剪辑</span>
+<span class="tag">人文</span>
+<span class="tag">推荐指数⭐️⭐️⭐️</span>
+</div>
+</div>
+</div>
+<div class="video-row">
+<div class="video-content">
+<h3>微电影|衔尾蛇</h3>
+<p>本视频制作时间是24年6月，毕业前夕用一个周末两天时间和另外两个同学合作置景拍摄的微电影，有本人导演拍摄和剪辑。</p>
+<div class="video-tags">
+<span class="tag">微电影</span>
+<span class="tag">电影感</span>
+<span class="tag">学生作品</span>
+<span class="tag">推荐指数⭐️⭐️⭐️</span>
+</div>
+</div>
+<div class="video-thumbnail" onclick="openModal(this)" data-video="//player.bilibili.com/player.html?isOutside=true&aid=116244715930733&bvid=BV1YiwRzPEUY&cid=36769958597&p=1" data-title="微电影|衔尾蛇">
+<div class="thumbnail"><img src="images/衔尾蛇封面.png" alt="封面"><div class="play-button"></div></div>
+</div>
+</div>
+<div class="video-row reverse">
+<div class="video-thumbnail" onclick="openModal(this)" data-video="//player.bilibili.com/player.html?isOutside=true&aid=116244783038493&bvid=BV1s9wRzQE8q&cid=36770285645&p=1" data-title="小红书公益（上海站）">
+<div class="thumbnail"><img src="images/小红书上海站封面.png" alt="封面"><div class="play-button"></div></div>
+</div>
+<div class="video-content">
+<h3>小红书公益（上海站）</h3>
+<p>小红书公益官方视频，公益纪录片宣传片</p>
+<div class="video-tags">
+<span class="tag">纪录片</span>
+<span class="tag">宣传片</span>
+<span class="tag">剪辑</span>
+<span class="tag">包装</span>
+<span class="tag">推荐指数⭐️⭐️⭐️⭐️⭐️</span>
+</div>
+</div>
+</div>
+<div class="video-row">
+<div class="video-content">
+<h3>捷途|搜狐马拉松</h3>
+<p>多机位剪辑项目。捷途旅行者赞助搜狐马拉松的视频，片子有8个机位，我负责从8个机位中选取选取合适画面，剪辑成一个“综艺感”片子。</p>
+<div class="video-tags">
+<span class="tag">综艺</span>
+<span class="tag">剪辑</span>
+<span class="tag">包装</span>
+<span class="tag">推荐指数⭐️⭐️⭐️</span>
+</div>
+</div>
+<div class="video-thumbnail" onclick="openModal(this)" data-video="//player.bilibili.com/player.html?isOutside=true&aid=116244749552700&bvid=BV1QzwRzwELk&cid=36770350804&p=1" data-title="捷途|搜狐马拉松">
+<div class="thumbnail"><img src="images/搜狐马拉松封面.png" alt="封面"><div class="play-button"></div></div>
+</div>
+</div>
+<div class="video-row reverse">
+<div class="video-thumbnail" onclick="openModal(this)" data-video="//player.bilibili.com/player.html?bvid=BV1pfwRzEE7K&page=1" data-title="腾讯活水访谈">
+<div class="thumbnail"><img src="images/活水封面.png" alt="封面"><div class="play-button"></div></div>
+</div>
+<div class="video-content">
+<h3>腾讯活水访谈</h3>
+<p>腾讯活水访谈剪辑项目，通过使用腾讯会议摘取访谈文案，并提取重要内容剪辑成片，再通过Ae制作过场动画和包装等动效。</p>
+<div class="video-tags">
+<span class="tag">访谈</span>
+<span class="tag">剪辑</span>
+<span class="tag">推荐指数⭐️⭐️</span>
+</div>
+</div>
+</div>
+<div class="video-row">
+<div class="video-content">
+<h3>亚马逊产品视频</h3>
+<p>此视频为亚马逊产品视频，以较低成本完成，平均单条视频成本为6000元，拍剪均有个人完成。</p>
+<div class="video-tags">
+<span class="tag">拍摄</span>
+<span class="tag">剪辑</span>
+<span class="tag">推荐指数⭐️⭐️⭐️⭐️</span>
+</div>
+</div>
+<div class="video-thumbnail" onclick="openModal(this)" data-video="//player.bilibili.com/player.html?isOutside=true&aid=116244732838164&bvid=BV1G6wRzaEFo&cid=36770023428&p=1" data-title="亚马逊产品视频">
+<div class="thumbnail"><img src="images/吸尘器产品封面.png" alt="封面"><div class="play-button"></div></div>
+</div>
+</div>
 
+<div class="video-row reverse">
+<div class="video-thumbnail" onclick="openModal(this)" data-video="//player.bilibili.com/player.html?isOutside=true&aid=116329591998006&bvid=BV12f9EBPECB&cid=37153865958&p=1" data-title="2021-2023在校作品集（陈年老片）">
+<div class="thumbnail"><img src="images/在校作品集封面.jpg" alt="封面"><div class="play-button"></div></div>
+</div>
+<div class="video-content">
+<h3>2021-2023在校作品集（陈年老片）</h3>
+<p>在校期间零零散散的视频混剪，也是实习期间找工作用的作品集。</p>
+<div class="video-tags">
+<span class="tag">混剪</span>
+<span class="tag">学生作品</span>
+<span class="tag">推荐指数⭐️⭐️</span>
+</div>
+</div>
+</div>
+</div>
+<div class="photo-gallery" id="photoGrid">
+<div class="photo-scroll-container"><div class="photo-grid">
+<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg1.jpg"><div class="photo-overlay"><h4>作品 01</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg2.jpg"><div class="photo-overlay"><h4>作品 02</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg3.jpg"><div class="photo-overlay"><h4>作品 03</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg4.jpg"><div class="photo-overlay"><h4>作品 04</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg5.jpg"><div class="photo-overlay"><h4>作品 05</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg6.jpg"><div class="photo-overlay"><h4>作品 06</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg7.jpg"><div class="photo-overlay"><h4>作品 07</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg8.jpg"><div class="photo-overlay"><h4>作品 08</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg9.jpg"><div class="photo-overlay"><h4>作品 09</h4><p>摄影作品</p></div></div>
+<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg10.jpg"><div class="photo-overlay"><h4>作品 10</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg11.jpg"><div class="photo-overlay"><h4>作品 11</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg12.jpg"><div class="photo-overlay"><h4>作品 12</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg13.jpg"><div class="photo-overlay"><h4>作品 13</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg14.jpg"><div class="photo-overlay"><h4>作品 14</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg15.jpg"><div class="photo-overlay"><h4>作品 15</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg16.jpg"><div class="photo-overlay"><h4>作品 16</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg17.jpg"><div class="photo-overlay"><h4>作品 17</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg18.jpg"><div class="photo-overlay"><h4>作品 18</h4><p>摄影作品</p></div></div>
+<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg19.jpg"><div class="photo-overlay"><h4>作品 19</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg20.jpg"><div class="photo-overlay"><h4>作品 20</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg21.jpg"><div class="photo-overlay"><h4>作品 21</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg22.jpg"><div class="photo-overlay"><h4>作品 22</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg23.jpg"><div class="photo-overlay"><h4>作品 23</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg24.jpg"><div class="photo-overlay"><h4>作品 24</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg25.jpg"><div class="photo-overlay"><h4>作品 25</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg26.jpg"><div class="photo-overlay"><h4>作品 26</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg27.jpg"><div class="photo-overlay"><h4>作品 27</h4><p>摄影作品</p></div></div>
+<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg28.jpg"><div class="photo-overlay"><h4>作品 28</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg29.jpg"><div class="photo-overlay"><h4>作品 29</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg30.jpg"><div class="photo-overlay"><h4>作品 30</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg31.jpg"><div class="photo-overlay"><h4>作品 31</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg32.jpg"><div class="photo-overlay"><h4>作品 32</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg33.jpg"><div class="photo-overlay"><h4>作品 33</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg34.jpg"><div class="photo-overlay"><h4>作品 34</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg35.jpg"><div class="photo-overlay"><h4>作品 35</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg36.jpg"><div class="photo-overlay"><h4>作品 36</h4><p>摄影作品</p></div></div>
+<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg37.jpg"><div class="photo-overlay"><h4>作品 37</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg38.jpg"><div class="photo-overlay"><h4>作品 38</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg39.jpg"><div class="photo-overlay"><h4>作品 39</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg40.jpg"><div class="photo-overlay"><h4>作品 40</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg41.jpg"><div class="photo-overlay"><h4>作品 41</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg42.jpg"><div class="photo-overlay"><h4>作品 42</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg43.jpg"><div class="photo-overlay"><h4>作品 43</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg44.jpg"><div class="photo-overlay"><h4>作品 44</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg45.jpg"><div class="photo-overlay"><h4>作品 45</h4><p>摄影作品</p></div></div>
+<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg46.jpg"><div class="photo-overlay"><h4>作品 46</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg47.jpg"><div class="photo-overlay"><h4>作品 47</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg48.jpg"><div class="photo-overlay"><h4>作品 48</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg49.jpg"><div class="photo-overlay"><h4>作品 49</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg50.jpg"><div class="photo-overlay"><h4>作品 50</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg51.jpg"><div class="photo-overlay"><h4>作品 51</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg52.jpg"><div class="photo-overlay"><h4>作品 52</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg53.jpg"><div class="photo-overlay"><h4>作品 53</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg54.jpg"><div class="photo-overlay"><h4>作品 54</h4><p>摄影作品</p></div></div>
+<div class="photo-item large" onclick="openImageViewer(this)"><img src="images/photo/jpg55.jpg"><div class="photo-overlay"><h4>作品 55</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg56.jpg"><div class="photo-overlay"><h4>作品 56</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg57.jpg"><div class="photo-overlay"><h4>作品 57</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg58.jpg"><div class="photo-overlay"><h4>作品 58</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg59.jpg"><div class="photo-overlay"><h4>作品 59</h4><p>摄影作品</p></div></div>
+<div class="photo-item" onclick="openImageViewer(this)"><img src="images/photo/jpg60.jpg"><div class="photo-overlay"><h4>作品 60</h4><p>摄影作品</p></div></div>
+<div class="photo-item wide" onclick="openImageViewer(this)"><img src="images/photo/jpg61.jpg"><div class="photo-overlay"><h4>作品 61</h4><p>摄影作品</p></div></div>
+<div class="photo-item tall" onclick="openImageViewer(this)"><img src="images/photo/jpg62.jpg"><div class="photo-overlay"><h4>作品 62</h4><p>摄影作品</p></div></div>
+</div></div>
+</div>
+</section>
 <section class="contact" id="contact">
 <h2 class="section-title">联系我</h2>
+<p class="contact-description">非常感谢您在百忙之中浏览完我的个人网站，如果您对我的经历和作品感兴趣，快点击下方按钮吧!</p>
+<img src="images/GIF/head2.gif" alt="GIF 装饰 1" class="contact-gif contact-gif-1">
+<img src="images/GIF/head3.gif" alt="GIF 装饰 2" class="contact-gif contact-gif-2">
+<img src="images/GIF/head4.gif" alt="GIF 装饰 3" class="contact-gif contact-gif-3">
+<img src="images/GIF/head5.gif" alt="GIF 装饰 4" class="contact-gif contact-gif-4">
 <div class="contact-buttons">
 <button class="contact-btn" onclick="copyAndChange(this,'1691679113@qq.com','📧 发送邮件')"><span>📧</span> 发送邮件</button>
 <button class="contact-btn" onclick="copyAndChange(this,'13129566521','💬 微信联系')"><span>💬</span> 微信联系</button>
 <button class="contact-btn" onclick="copyAndChange(this,'13129566521','📱 电话咨询')"><span>📱</span> 电话咨询</button>
 </div>
 </section>
-
+<footer><p>&copy; 2024 Ziko Huang. All rights reserved.</p></footer>
 <div class="modal" id="videoModal"><div class="modal-content"><span class="modal-close" onclick="closeModal()">&times;</span><iframe id="modalIframe" src="" allowfullscreen></iframe><div class="modal-title" id="modalTitle"></div></div></div>
 <div class="image-viewer" id="imageViewer"><span class="image-viewer-close" onclick="closeImageViewer()">&times;</span><img src="" alt="大图预览" id="viewerImage"></div>
 <div class="toast" id="toast"><span class="toast-icon">✅</span><span class="toast-text"><strong id="toastContent"></strong> 已复制到剪贴板</span></div>
-
 <script>
-// ===== 新增：加载页面随机文案逻辑 =====
+// ===== 新增：加载页面随机文案逻辑，每2秒切换一次 =====
 const loaderTexts = [
     "网站内有100M的图文视频，需要加载一会~",
     "空腹不能吃太多，不然会很撑",
     "你知道吗？当人发现自己没在笑时，通常表情都很平静。",
     "温度高的时候，通常会觉得热。"
 ];
-document.getElementById('loaderText').innerText = loaderTexts[Math.floor(Math.random() * loaderTexts.length)];
+const loaderTextEl = document.getElementById('loaderText');
+let textIndex = 0;
+setInterval(() => {
+    loaderTextEl.style.opacity = 0; // 先变透明
+    setTimeout(() => {
+        textIndex = (textIndex + 1) % loaderTexts.length;
+        loaderTextEl.innerText = loaderTexts[textIndex];
+        loaderTextEl.style.opacity = 1; // 再显示出来
+    }, 500); // 配合 CSS 里的动画时间
+}, 2000); // 每2秒执行一次
 
-window.addEventListener('load',()=>{setTimeout(()=>document.querySelector('.loader').classList.add('hidden'),1000)});
+window.addEventListener('load',()=>{setTimeout(()=>document.querySelector('.loader').classList.add('hidden'),1000)}); // 这里我稍微延长了一点Loader的隐藏时间，让用户能多看一眼文案，你可以根据需要改回500
 
-// (保留之前的 JS 逻辑...)
 function animateNumbers(){document.querySelectorAll('.stat-number').forEach(stat=>{const target=parseInt(stat.getAttribute('data-target')),suffix=stat.getAttribute('data-suffix')||'+';let current=0,step=target/125;const timer=setInterval(()=>{current+=step;if(current>=target){stat.textContent=target+suffix;clearInterval(timer)}else{stat.textContent=Math.floor(current)}},16)})}
-function filterPortfolio(type){const videoGrid=document.getElementById('videoGrid'),photoGrid=document.getElementById('photoGrid');document.querySelectorAll('.filter-btn:not(.special-btn)').forEach(btn=>{btn.classList.remove('active');if(btn.textContent.includes(type==='videos'?'视频':'静帧'))btn.classList.add('active')});if(type==='videos'){videoGrid.style.display='flex';photoGrid.classList.remove('active');}else{videoGrid.style.display='none';photoGrid.classList.add('active');}}
-const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}})},{threshold:0.1});
-document.querySelectorAll('.video-row,.skill-item-new,.experience-card').forEach(el=>observer.observe(el));
-
-function openModal(el){const url=el.getAttribute('data-video');document.getElementById('modalIframe').src=url;document.getElementById('videoModal').classList.add('active');document.body.style.overflow='hidden'}
+function filterPortfolio(type){const videoGrid=document.getElementById('videoGrid'),photoGrid=document.getElementById('photoGrid');document.querySelectorAll('.filter-btn:not(.special-btn)').forEach(btn=>{btn.classList.remove('active');if(btn.textContent.includes(type==='videos'?'视频':'静帧'))btn.classList.add('active')});if(type==='videos'){videoGrid.style.display='flex';photoGrid.classList.remove('active');setTimeout(()=>videoGrid.querySelectorAll('.video-row').forEach((row,i)=>setTimeout(()=>row.classList.add('visible'),i*200)),100)}else{videoGrid.style.display='none';photoGrid.classList.add('active');setTimeout(()=>photoGrid.querySelectorAll('.photo-item').forEach((c,i)=>setTimeout(()=>c.classList.add('visible'),i*50)),100)}}
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');if(entry.target.classList.contains('skill-list-item')||entry.target.classList.contains('tool-item')||entry.target.classList.contains('skill-item-new')){const idx=Array.from(entry.target.parentNode.children).indexOf(entry.target);entry.target.style.transitionDelay=`${(entry.target.classList.contains('skill-list-item')||entry.target.classList.contains('skill-item-new'))?idx*0.1:idx*0.05}s`}}else{entry.target.classList.remove('visible')}})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.video-row,.skill-card,.skill-list-item,.tool-item,.photo-item,.experience-card,.skill-item-new').forEach(el=>observer.observe(el));
+const heroObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){animateNumbers();heroObserver.unobserve(entry.target)}})},{threshold:0.5});heroObserver.observe(document.querySelector('.hero-stats'));
+function openModal(el){const url=el.getAttribute('data-video'),title=el.getAttribute('data-title');let final=url;if(url.includes('bilibili'))final=url+'&autoplay=1';else if(url.includes('youtube'))final=url+'?autoplay=1&rel=0';document.getElementById('modalIframe').src=final;document.getElementById('modalTitle').textContent=title;document.getElementById('videoModal').classList.add('active');document.body.style.overflow='hidden'}
 function closeModal(){document.getElementById('videoModal').classList.remove('active');document.getElementById('modalIframe').src='';document.body.style.overflow='auto'}
 function openImageViewer(el){const img=el.querySelector('img');document.getElementById('viewerImage').src=img.src;document.getElementById('imageViewer').classList.add('active');document.body.style.overflow='hidden'}
 function closeImageViewer(){document.getElementById('imageViewer').classList.remove('active');document.body.style.overflow='auto'}
+function showToast(content){const toast=document.getElementById('toast');document.getElementById('toastContent').textContent=content;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2500)}
+async function copyAndChange(btn,text,originalContent){try{await navigator.clipboard.writeText(text);const originalHTML=btn.innerHTML;btn.innerHTML=`<span>✅</span> ${text}`;btn.style.background='var(--accent-hover)';showToast(text);setTimeout(()=>{btn.innerHTML=originalHTML;btn.style.background=''},2000)}catch(err){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);const originalHTML=btn.innerHTML;btn.innerHTML=`<span>✅</span> ${text}`;btn.style.background='var(--accent-hover)';showToast(text);setTimeout(()=>{btn.innerHTML=originalHTML;btn.style.background=''},2000)}}
 
-function toggleBaiduPanPopup(event) { event.stopPropagation(); const popup = document.getElementById('baiduPanPopup'); popup.classList.toggle('show'); }
-document.addEventListener('click', (e) => { const popup = document.getElementById('baiduPanPopup'); if (popup && !document.querySelector('.more-works-wrapper').contains(e.target)) popup.classList.remove('show'); });
+/* ===== 新增交互：切换和关闭气泡弹窗 ===== */
+function toggleBaiduPanPopup(event) {
+    event.stopPropagation(); 
+    const popup = document.getElementById('baiduPanPopup');
+    popup.classList.toggle('show');
+}
+document.addEventListener('click', (e) => {
+    const popup = document.getElementById('baiduPanPopup');
+    const wrapper = document.querySelector('.more-works-wrapper');
+    if (popup && popup.classList.contains('show') && !wrapper.contains(e.target)) {
+        popup.classList.remove('show');
+    }
+});
+/* ========================================= */
 
-async function copyAndChange(btn,text,originalContent){try{await navigator.clipboard.writeText(text);const originalHTML=btn.innerHTML;btn.innerHTML=`<span>✅</span> 复制成功`;const toast=document.getElementById('toast');document.getElementById('toastContent').textContent=text;toast.classList.add('show');setTimeout(()=>{btn.innerHTML=originalHTML;toast.classList.remove('show')},2000)}catch(err){}}
+document.getElementById('videoModal').addEventListener('click',e=>{if(e.target.id==='videoModal')closeModal()});
+document.getElementById('imageViewer').addEventListener('click',e=>{if(e.target.id==='imageViewer')closeImageViewer()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){
+    closeModal();
+    closeImageViewer();
+    const popup = document.getElementById('baiduPanPopup');
+    if(popup) popup.classList.remove('show');
+}});
 
-function toggleMenu(){document.getElementById('navLinks').classList.toggle('active');document.querySelector('.menu-toggle').classList.toggle('active')}
+let lastScroll=0;window.addEventListener('scroll',()=>{const nav=document.querySelector('nav');if(window.pageYOffset>100)nav.style.boxShadow='0 4px 20px rgba(0,0,0,0.3)';else nav.style.boxShadow='none';lastScroll=window.pageYOffset});
+function toggleMenu(){const nav=document.getElementById('navLinks'),toggle=document.querySelector('.menu-toggle');nav.classList.toggle('active');toggle.classList.toggle('active')}
+document.addEventListener('click',e=>{const nav=document.getElementById('navLinks'),toggle=document.querySelector('.menu-toggle');if(!nav.contains(e.target)&&!toggle.contains(e.target)){nav.classList.remove('active');toggle.classList.remove('active')}});
+document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>document.querySelectorAll('.video-row').forEach((row,i)=>setTimeout(()=>row.classList.add('visible'),i*200)),300)});
+const textContainer=document.getElementById('experienceTextContainer'),experienceItems=document.querySelectorAll('.experience-item');let currentExperienceIndex=0,isScrolling=false,scrollTimeout;
+textContainer.addEventListener('wheel',(e)=>{e.preventDefault();if(isScrolling)return;isScrolling=true;clearTimeout(scrollTimeout);if(e.deltaY>0){currentExperienceIndex=(currentExperienceIndex+1)%experienceItems.length}else{currentExperienceIndex=(currentExperienceIndex-1+experienceItems.length)%experienceItems.length}updateExperienceDisplay();scrollTimeout=setTimeout(()=>{isScrolling=false},500)},{passive:false});
+function updateExperienceDisplay(){experienceItems.forEach((item,index)=>{if(index===currentExperienceIndex){item.classList.add('active');textContainer.scrollTo({top:item.offsetTop,behavior:'smooth'})}else{item.classList.remove('active')}})}
 
-// 照片轮播逻辑
+// ===== 重写：专业级防穿透、绝对无缝衔接循环照片相册 =====
+const photoSection = document.querySelector('.full-width-photo-carousel');
 const photoTrack = document.getElementById('photoCarouselTrack');
 let photoScrollPosition = 0;
+let isPhotoHovered = false;
+let autoScrollId;
+let originalItemsCount = 0;
 let exactMaxScroll = 0;
+
 function initPhotoCarousel() {
     const items = Array.from(photoTrack.querySelectorAll('.photo-carousel-item'));
-    items.forEach(item => photoTrack.appendChild(item.cloneNode(true)));
-    setTimeout(() => {
+    originalItemsCount = items.length;
+    
+    items.forEach(item => {
+        const clone = item.cloneNode(true);
+        photoTrack.appendChild(clone);
+    });
+
+    window.addEventListener('load', () => {
         const allItems = photoTrack.querySelectorAll('.photo-carousel-item');
-        exactMaxScroll = allItems[items.length].offsetLeft - allItems[0].offsetLeft;
-    }, 500);
+        if(allItems.length > originalItemsCount) {
+            exactMaxScroll = allItems[originalItemsCount].offsetLeft - allItems[0].offsetLeft;
+        }
+    });
 }
+
 function animatePhotoCarousel() {
-    if (exactMaxScroll > 0) {
+    if (!isPhotoHovered && exactMaxScroll > 0) {
         photoScrollPosition += 1;
-        if (photoScrollPosition >= exactMaxScroll) photoScrollPosition -= exactMaxScroll;
+        if (photoScrollPosition >= exactMaxScroll) {
+            photoScrollPosition -= exactMaxScroll; 
+        }
         photoTrack.style.transform = `translate3d(-${photoScrollPosition}px, 0, 0)`;
     }
-    requestAnimationFrame(animatePhotoCarousel);
+    autoScrollId = requestAnimationFrame(animatePhotoCarousel);
 }
-initPhotoCarousel(); animatePhotoCarousel();
-</script>
 
-<div style="text-align:center; padding:15px; font-size:13px; color:rgba(255,255,255,0.5); position:fixed; bottom:0; left:0; right:0; z-index:999;">
-  <a href="https://beian.miit.gov.cn" target="_blank" style="color:rgba(255,255,255,0.5); text-decoration:none;">粤ICP备2026033705号</a>
+photoSection.addEventListener('mouseenter', () => { isPhotoHovered = true; });
+photoSection.addEventListener('mouseleave', () => { isPhotoHovered = false; });
+
+photoSection.addEventListener('wheel', (e) => {
+    if(exactMaxScroll === 0) return;
+    e.preventDefault(); 
+    photoScrollPosition += e.deltaX || e.deltaY;
+    if (photoScrollPosition >= exactMaxScroll) {
+        photoScrollPosition -= exactMaxScroll;
+    } else if (photoScrollPosition < 0) {
+        photoScrollPosition += exactMaxScroll;
+    }
+    photoTrack.style.transform = `translate3d(-${photoScrollPosition}px, 0, 0)`;
+}, { passive: false }); 
+
+window.addEventListener('resize', () => {
+    const allItems = photoTrack.querySelectorAll('.photo-carousel-item');
+    if(allItems.length > originalItemsCount) {
+        exactMaxScroll = allItems[originalItemsCount].offsetLeft - allItems[0].offsetLeft;
+    }
+});
+
+initPhotoCarousel();
+animatePhotoCarousel();
+
+document.addEventListener('mousemove', (e) => {
+    requestAnimationFrame(() => {
+        const auroraContainer = document.querySelector('.aurora-container');
+        if (!auroraContainer) return;
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const x = (e.clientX - centerX) / 1000; 
+        const y = (e.clientY - centerY) / 1000;
+        auroraContainer.style.transform = `translate3d(${x * 15}px, ${y * 10}px, 0)`;
+    });
+});
+</script>
+    <div style="text-align:center; padding:15px; font-size:13px; color:rgba(255,255,255,0.5); position:fixed; bottom:0; left:0; right:0; z-index:999;">
+  <a href="https://beian.miit.gov.cn" target="_blank" style="color:rgba(255,255,255,0.5); text-decoration:none;">
+    粤ICP备2026033705号
+  </a>
 </div>
 </body>
 </html>
